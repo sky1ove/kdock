@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "kdock"
+  site-url: "https://sky1ove.github.io/kdock"
+  description: "A collection of docking tools"
+  repo-branch: main
+  repo-url: "https://github.com/sky1ove/kdock"
