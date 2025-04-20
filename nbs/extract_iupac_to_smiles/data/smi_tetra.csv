@@ -1,0 +1,233 @@
+index,Example,IUPAC,SMILES
+1,1,"(R)-1-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-3-methylpiperidin-3-ol",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1C[C@@](CCC1)(O)C)OCC12CCCN2CCC1)O)F
+2,2,"(R)-1-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-3-methylpiperidin-3-ol",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1C[C@@](CCC1)(O)C)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+3,3,"(R)-1-(7-(8-ethyl-7-fluoronaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-3-methylpiperidin-3-ol",C(C)C=1C(=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1C[C@@](CCC1)(O)C)OCC12CCCN2CCC1)F
+4,4,"1-(7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-3-methylpiperidin-3-ol",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC(CCC1)(O)C)OCC12CCCN2CCC1
+5,5,"7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-N-(pyridin-3-yl)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-amine",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)NC=1C=NC=CC1)OCC12CCCN2CCC1
+6,6,"4-(7-(8-ethylnaphthalen-1-yl)-2-((tetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-1,4-oxazepan-6-ol",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCOCC(C1)O)OCC12CCCN2CCC1
+7,7,"1-(7-(8-ethylnaphthalen-1-yl)-2-((tetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)azepan-4-ol",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCC(CCC1)O)OCC12CCCN2CCC1
+8,8,"(5-(7-(8-ethylnaphthalen-1-yl)-2-((tetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-5,6,7,8-tetrahydro-4H-pyrazolo[1,5-a][1,4]diazepin-2-yl)methanol",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC=2N(CCC1)N=C(C2)CO)OCC21CCCN1CCC2
+9,9,"4-(7-(8-ethylnaphthalen-1-yl)-2-((tetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-6-(1H-pyrazol-1-yl)-1,4-oxazepane",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCOCC(C1)N1N=CC=C1)OCC12CCCN2CCC1
+10,10,"5-(7-(8-ethylnaphthalen-1-yl)-2-((tetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-5,6,7,8-tetrahydro-4H-pyrazolo[1,5-a][1,4]diazepin-2-amine",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC=2N(CCC1)N=C(C2)N)OCC21CCCN1CCC2
+11,11,"(3aR,6aS)-5-(7-(8-ethylnaphthalen-1-yl)-2-((tetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)tetrahydropyrrolo[3,4-c]pyrrole-1,3(2H,3aH)-dione",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1C[C@@H]2[C@H](C1)C(NC2=O)=O)OCC21CCCN1CCC2
+12,12,"7-(7-(8-ethylnaphthalen-1-yl)-2-((tetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-1,3,7-triazaspiro[4.5]decane-2,4-dione",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2(C(NC(N2)=O)=O)CCC1)OCC12CCCN2CCC1
+13,13,"1-(7-(8-ethylnaphthalen-1-yl)-2-((tetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-5-(hydroxymethyl)azepan-4-ol",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCC(C(CC1)CO)O)OCC12CCCN2CCC1
+14,14,"7-(8-ethylnaphthalen-1-yl)-4-(3-(methylsulfonyl)azocan-1-yl)-2-((tetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidine",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC(CCCCC1)S(=O)(=O)C)OCC12CCCN2CCC1
+15,15,"(R)-1-(7-(5,6-dimethyl-1H-indazol-4-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-3-methylpiperidin-3-ol",CC=1C(=C2C=NNC2=CC1C)N1CC=2N=C(N=C(C2CC1)N1C[C@@](CCC1)(O)C)OCC12CCCN2CCC1
+16,16,"6-(7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-1,6-diazaspiro[3.5]nonan-2-one",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2(CC(N2)=O)CCC1)OCC12CCCN2CCC1
+17,17,"4-(4-(((2-aminopyridin-3-yl)methyl)amino)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-)yl)methoxy)-5,6-dihydropyrido[3,4-d]pyrimidin-7(8H)-yl)-5-ethyl-6-fluoronaphthalen-2-ol",Did not work
+18,18,"4-(4-(2-amino-7,8-dihydro-4H-pyrazolo[1,5-a][1,4]diazepin-5(6H)-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6-dihydropyrido[3,4-d]pyrimidin-7(8H)-yl)-5-ethyl-6-fluoronaphthalen-2-ol",NC1=NN2C(CN(CCC2)C=2C3=C(N=C(N2)OC[C@]24CCCN4C[C@@H](C2)F)CN(CC3)C3=CC(=CC2=CC=C(C(=C32)CC)F)O)=C1
+19,19,"4-(4-(3-(1H-1,2,4-triazol-5-yl)piperidin-1-yl)-2-(((2R,7aS)-2-fluorotetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,8-dihydropyrido[3,4-d]pyrimidin-7(6H)-yl)-5-ethyl-6-fluoronaphthalen-2-ol",N1N=CN=C1C1CN(CCC1)C=1C2=C(N=C(N1)OC[C@]13CCCN3C[C@@H](C1)F)CN(CC2)C2=CC(=CC1=CC=C(C(=C21)CC)F)O
+20,20,"4-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-6-methyl-1,4-oxazepan-6-ol",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCOCC(C1)(O)C)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+21,21,"6-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-1,6-diazaspiro[3.5]nonan-2-one",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2(CC(N2)=O)CCC1)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+22,22,"4-(7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-6-methyl-1,4-oxazepan-6-ol",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCOCC(C1)(O)C)OCC12CCCN2CCC1
+23,23,"4-(4-(((1H-pyrrolo[2,3-b]pyridin-3-yl)methyl)amino)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6-dihydropyrido[3,4-d]pyrimidin-7(8H)-yl)-5-ethyl-6-fluoronaphthalen-2-ol",N1C=C(C=2C1=NC=CC2)CNC=2C1=C(N=C(N2)OC[C@]23CCCN3C[C@@H](C2)F)CN(CC1)C1=CC(=CC2=CC=C(C(=C12)CC)F)O
+24,24,"5-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)tetrahydropyrrolo[3,4-c]pyrrole-1,3(2H,3aH)-dione",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2C(C1)C(NC2=O)=O)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+25,25,"4-(4-(6-(1H-pyrazol-1-yl)-1,4-oxazepan-4-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6-dihydropyrido[3,4-d]pyrimidin-7(8H)-yl)-5-ethyl-6-fluoronaphthalen-2-ol",N1(N=CC=C1)C1CN(CCOC1)C=1C2=C(N=C(N1)OC[C@]13CCCN3C[C@@H](C1)F)CN(CC2)C2=CC(=CC1=CC=C(C(=C21)CC)F)O
+26,26,"4-(4-(3-(4-amino-1H-pyrazol-5-yl)pyrrolidin-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6-dihydropyrido[3,4-d]pyrimidin-7(8H)-yl)-5-ethyl-6-fluoronaphthalen-2-ol",NC=1C=NNC1C1CN(CC1)C=1C2=C(N=C(N1)OC[C@]13CCCN3C[C@@H](C1)F)CN(CC2)C2=CC(=CC1=CC=C(C(=C21)CC)F)O
+27,27,"1-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)piperidin-3-ol",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC(CCC1)O)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+28,28,"5-ethyl-6-fluoro-4-(2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-4-(3-(methylsulfonyl)azepan-1-yl)-5,6-dihydropyrido[3,4-d]pyrimidin-7(8H)-yl)naphthalen-2-ol",C(C)C1=C2C(=CC(=CC2=CC=C1F)O)N1CC=2N=C(N=C(C2CC1)N1CC(CCCC1)S(=O)(=O)C)OC[C@]12CCCN2C[C@@H](C1)F
+29,29,"4-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-1,4-oxazepan-6-ol",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCOCC(C1)O)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+30,30,"1-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)azepan-4-ol",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCC(CCC1)O)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+31,31,"4-(4-(([1,2,4]triazolo[4,3-a]pyridin-6-ylmethyl)amino)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6-dihydropyrido[3,4-d]pyrimidin-7(8H)-yl)-5-ethyl-6-fluoronaphthalen-2-ol",N=1N=CN2C1C=CC(=C2)CNC=2C1=C(N=C(N2)OC[C@]23CCCN3C[C@@H](C2)F)CN(CC1)C1=CC(=CC2=CC=C(C(=C12)CC)F)O
+32,32,"3-(difluoromethyl)-1-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)piperidin-3-ol",FC(C1(CN(CCC1)C=1C2=C(N=C(N1)OC[C@]13CCCN3C[C@@H](C1)F)CN(CC2)C2=CC(=CC1=CC=C(C(=C21)CC)F)O)O)F
+33,33,"1-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-5-(hydroxymethyl)azepan-4-ol",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCC(C(CC1)CO)O)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+34,34,"5-ethyl-6-fluoro-4-(2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-4-(2-(hydroxymethyl)-7,8-dihydro-4H-pyrazolo[1,5-a][1,4]diazepin-5(6H)-yl)-5,6-dihydropyrido[3,4-d]pyrimidin-7(8H)-yl)naphthalen-2-ol",C(C)C1=C2C(=CC(=CC2=CC=C1F)O)N1CC=2N=C(N=C(C2CC1)N1CC=2N(CCC1)N=C(C2)CO)OC[C@]21CCCN1C[C@@H](C2)F
+35,35,"6-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-6-azabicyclo[3.2.1]octan-3-ol",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1C2CC(CC(C1)C2)O)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+36,36,"5-ethyl-6-fluoro-4-(2-(((2R,7aS)-2-fluorotetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-4-(3-(methylsulfonyl)azocan-1-yl)-5,8-dihydropyrido[3,4-d]pyrimidin-7(6H)-yl)naphthalen-2-ol",C(C)C1=C2C(=CC(=CC2=CC=C1F)O)N1CC=2N=C(N=C(C2CC1)N1CC(CCCCC1)S(=O)(=O)C)OC[C@]12CCCN2C[C@@H](C1)F
+37,37,"(4-(7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-1,4-oxazepan-6-yl)methanol",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCOCC(C1)CO)OCC12CCCN2CCC1
+38,38,"(1-(7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)azepan-3-yl)methanol",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC(CCCC1)CO)OCC12CCCN2CCC1
+39,39,"N-([1,2,4]triazolo[4,3-a]pyridin-6-ylmethyl)-7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-amine",N=1N=CN2C1C=CC(=C2)CNC=2C1=C(N=C(N2)OCC23CCCN3CCC2)CN(CC1)C1=CC=CC2=CC=CC(=C12)CC
+40,40,"N-((2-aminopyridin-3-yl)methyl)-7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-amine",NC1=NC=CC=C1CNC=1C2=C(N=C(N1)OCC13CCCN3CCC1)CN(CC2)C2=CC=CC1=CC=CC(=C21)CC
+41,41,"6-(7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-6-azabicyclo[3.2.1]octan-3-ol",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1C2CC(CC(C1)C2)O)OCC21CCCN1CCC2
+42,42,"7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-4-(3-(methylsulfonyl)azepan-1-yl)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidine",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC(CCCC1)S(=O)(=O)C)OCC12CCCN2CCC1
+43,43,"1-(7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)piperidin-3-ol",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC(CCC1)O)OCC12CCCN2CCC1
+44,44,"3-(difluoromethyl)-1-(7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)piperidin-3-ol",FC(C1(CN(CCC1)C=1C2=C(N=C(N1)OCC13CCCN3CCC1)CN(CC2)C2=CC=CC1=CC=CC(=C21)CC)O)F
+45,45,"N-((1H-pyrrolo[2,3-b]pyridin-3-yl)methyl)-7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-amine",N1C=C(C=2C1=NC=CC2)CNC=2C1=C(N=C(N2)OCC23CCCN3CCC2)CN(CC1)C1=CC=CC2=CC=CC(=C12)CC
+46,46,"5-(1-(7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)pyrrolidin-3-yl)-1H-pyrazol-4-amine",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC(CC1)C1=C(C=NN1)N)OCC12CCCN2CCC1
+47,47,"4-(7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-1,4-oxazepane",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCOCCC1)OCC12CCCN2CCC1
+48,48,"1-(7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)azepan-3-ol",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC(CCCC1)O)OCC12CCCN2CCC1
+49,49,"4-(azepan-1-yl)-7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidine",N1(CCCCCC1)C=1C2=C(N=C(N1)OCC13CCCN3CCC1)CN(CC2)C2=CC=CC1=CC=CC(=C21)CC
+50,50,"5-(7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-5,6,7,8-tetrahydro-4H-pyrazolo[1,5-a][1,4]diazepin-7-ol",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC=2N(CC(C1)O)N=CC2)OCC21CCCN1CCC2
+51,51,"4-(7,8-dihydro-4H-pyrazolo[1,5-a][1,4]diazepin-5(6H)-yl)-7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidine",N1=CC=C2N1CCCN(C2)C=2C1=C(N=C(N2)OCC23CCCN3CCC2)CN(CC1)C1=CC=CC2=CC=CC(=C12)CC
+52,52,"5-(7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)hexahydropyrrolo[3,4-c]pyrrol-1(2H)-one",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2C(C1)CNC2=O)OCC21CCCN1CCC2
+53,53,"4-(3-(1H-1,2,4-triazol-5-yl)piperidin-1-yl)-7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidine",N1N=CN=C1C1CN(CCC1)C=1C2=C(N=C(N1)OCC13CCCN3CCC1)CN(CC2)C2=CC=CC1=CC=CC(=C21)CC
+54,54,"4-(azocan-1-yl)-7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidine",N1(CCCCCCC1)C=1C2=C(N=C(N1)OCC13CCCN3CCC1)CN(CC2)C2=CC=CC1=CC=CC(=C21)CC
+55,55,"6-(7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-6,7,8,9-tetrahydro-5H-pyrido[3,2-c]azepine",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2=C(CCC1)N=CC=C2)OCC21CCCN1CCC2
+56,56,"7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-4-(2-methyl-7,8-dihydro-4H-pyrazolo[1,5-a][1,4]diazepin-5(6H)-yl)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidine",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC=2N(CCC1)N=C(C2)C)OCC21CCCN1CCC2
+57,57,"7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-4-(piperidin-1-yl)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidine",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCCCC1)OCC12CCCN2CCC1
+58,58,"7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-4-(4-(pyrimidin-4-yl)piperazin-1-yl)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidine",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCN(CC1)C1=NC=NC=C1)OCC12CCCN2CCC1
+59,59,"7-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-1,3,7-triazaspiro[4.5]decane-2,4-dione",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2(C(NC(N2)=O)=O)CCC1)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+60,60,"6-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-6-azaspiro[3.5]nonan-2-ol",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2(CC(C2)O)CCC1)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+61,61,"7-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-2-thia-1,3,7-triazaspiro[4.5]decane 2,2-dioxide",Did not work
+62,62,"7-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-1,3,7-triazaspiro[4.5]decan-2-one",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2(CNC(N2)=O)CCC1)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+63,63,"3-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-3-azabicyclo[3.2.1]octan-6-ol",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2CC(C(C1)C2)O)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+64,64,"6-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-2,6-diazaspiro[3.5]nonan-1-one",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2(CNC2=O)CCC1)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+65,65,"5-ethyl-6-fluoro-4-(2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-4-(6-(hydroxymethyl)-1,4-oxazepan-4-yl)-5,6-dihydropyrido[3,4-d]pyrimidin-7(8H)-yl)naphthalen-2-ol",C(C)C1=C2C(=CC(=CC2=CC=C1F)O)N1CC=2N=C(N=C(C2CC1)N1CCOCC(C1)CO)OC[C@]12CCCN2C[C@@H](C1)F
+66,66,"5-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-N,N-dimethyl-5,6,7,8-tetrahydro-4H-pyrazolo[1,5-a][1,4]diazepine-2-carboxamide",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC=2N(CCC1)N=C(C2)C(=O)N(C)C)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+67,67,"4-(4-(3-(1H-pyrazol-1-yl)piperidin-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6-dihydropyrido[3,4-d]pyrimidin-7(8H)-yl)-5-ethyl-6-fluoronaphthalen-2-ol",N1(N=CC=C1)C1CN(CCC1)C=1C2=C(N=C(N1)OC[C@]13CCCN3C[C@@H](C1)F)CN(CC2)C2=CC(=CC1=CC=C(C(=C21)CC)F)O
+68,68,"(R)-1-(7-(8-chloro-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-3-methylpiperidin-3-ol",ClC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1C[C@@](CCC1)(O)C)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+69,69,"7-(7-(8-chloro-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-1,3,7-triazaspiro[4.5]decane-2,4-dione",ClC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2(C(NC(N2)=O)=O)CCC1)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+70,70,"6-(7-(8-chloro-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-1,6-diazaspiro[3.5]nonan-2-one",ClC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2(CC(N2)=O)CCC1)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+71,71,"6-(7-(8-chloro-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-6-azaspiro[3.5]nonan-2-ol",ClC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2(CC(C2)O)CCC1)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+72,72,"7-(7-(8-chloro-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-2-thia-1,3,7-triazaspiro[4.5]decane 2,2-dioxide",Did not work
+73,73,"5-chloro-6-fluoro-4-(2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-4-(6-(hydroxymethyl)-1,4-oxazepan-4-yl)-5,6-dihydropyrido[3,4-d]pyrimidin-7(8H)-yl)naphthalen-2-ol",ClC1=C2C(=CC(=CC2=CC=C1F)O)N1CC=2N=C(N=C(C2CC1)N1CCOCC(C1)CO)OC[C@]12CCCN2C[C@@H](C1)F
+74,74,"4-(7-(8-chloro-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-6-methyl-1,4-oxazepan-6-ol",ClC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCOCC(C1)(O)C)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+75,75,"4-(4-(2-amino-7,8-dihydro-4H-pyrazolo[1,5-a][1,4]diazepin-5(6H)-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6-dihydropyrido[3,4-d]pyrimidin-7(8H)-yl)-5-chloro-6-fluoronaphthalen-2-ol",NC1=NN2C(CN(CCC2)C=2C3=C(N=C(N2)OC[C@]24CCCN4C[C@@H](C2)F)CN(CC3)C3=CC(=CC2=CC=C(C(=C32)Cl)F)O)=C1
+76,76_77,"6-(7-(8-chloro-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-6-azabicyclo[3.2.1]octan-3-ol",ClC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1C2CC(CC(C1)C2)O)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+77,77,,Did not work
+78,78,"5-(7-(8-bromonaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)tetrahydropyrrolo[3,4-c]pyrrole-1,3(2H,3aH)-dione",BrC=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2C(C1)C(NC2=O)=O)OCC21CCCN1CCC2
+79,79,"5-(7-(8-chloronaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)tetrahydropyrrolo[3,4-c]pyrrole-1,3(2H,3aH)-dione",ClC=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2C(C1)C(NC2=O)=O)OCC21CCCN1CCC2
+80,80,"5-(2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-7-(8-methylnaphthalen-1-yl)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)tetrahydropyrrolo[3,4-c]pyrrole-1,3(2H,3aH)-dione",C1CCN2CCCC12COC=1N=C(C2=C(N1)CN(CC2)C2=CC=CC1=CC=CC(=C21)C)N2CC1C(C2)C(NC1=O)=O
+81,81,"5-(7-(8-fluoronaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)tetrahydropyrrolo[3,4-c]pyrrole-1,3(2H,3aH)-dione",FC=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2C(C1)C(NC2=O)=O)OCC21CCCN1CCC2
+82,82,,Did not work
+83,83,,Did not work
+84,84,,Did not work
+85,85,,Did not work
+86,86,,Did not work
+87,87,,Did not work
+88,88,,Did not work
+89,89,,Did not work
+90,90,,Did not work
+91,91,,Did not work
+92,92,,Did not work
+93,93,,Did not work
+94,94,,Did not work
+95,95,,Did not work
+96,96,,Did not work
+97,97,,Did not work
+98,98,,Did not work
+99,99,,Did not work
+100,100,,Did not work
+101,101,,Did not work
+102,102,,Did not work
+103,103,,Did not work
+104,104,,Did not work
+105,105,,Did not work
+106,106,,Did not work
+107,107,,Did not work
+108,108,,Did not work
+109,109,,Did not work
+110,110,,Did not work
+111,111,,Did not work
+112,112,,Did not work
+113,113,,Did not work
+114,114,,Did not work
+115,115,,Did not work
+116,116,,Did not work
+117,117,,Did not work
+118,118,,Did not work
+119,119,,Did not work
+120,120,,Did not work
+121,121,,Did not work
+122,122,,Did not work
+123,123,,Did not work
+124,124,,Did not work
+125,125,,Did not work
+126,126,,Did not work
+127,127,,Did not work
+128,128,,Did not work
+129,129,,Did not work
+130,130,,Did not work
+131,131,,Did not work
+132,132,,Did not work
+133,133,,Did not work
+134,134,,Did not work
+135,135,,Did not work
+136,136,,Did not work
+137,137,,Did not work
+138,138,,Did not work
+139,139,,Did not work
+140,140,,Did not work
+141,141,,Did not work
+142,142,,Did not work
+143,143,,Did not work
+144,144,,Did not work
+145,145,,Did not work
+146,146,,Did not work
+147,147,,Did not work
+148,148,,Did not work
+149,149,,Did not work
+150,150,,Did not work
+151,151,,Did not work
+152,152,,Did not work
+153,153,,Did not work
+154,154,,Did not work
+155,155,,Did not work
+156,156,,Did not work
+157,157,,Did not work
+158,158,,Did not work
+159,159,,Did not work
+160,160,,Did not work
+161,161,,Did not work
+162,162,,Did not work
+163,163,,Did not work
+164,164,,Did not work
+165,165,,Did not work
+166,166,,Did not work
+167,167,,Did not work
+168,168,,Did not work
+169,169,,Did not work
+170,170,,Did not work
+171,171,,Did not work
+172,172,"1-(7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-6-(hydroxymethyl)azepan-4-ol",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCC(CC(C1)CO)O)OCC12CCCN2CCC1
+173,173,"1-(7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-6-(hydroxymethyl)azepan-4-ol",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCC(CC(C1)CO)O)OCC12CCCN2CCC1
+174,174,"1-(7-(8-ethylnaphthalen-1-yl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-6-(hydroxymethyl)azepan-4-ol",C(C)C=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCC(CC(C1)CO)O)OCC12CCCN2CCC1
+175,175,"5-[7-(8-ethyl-7-fluoro-3-hydroxy-1-naphthyl)-2-(1,2,3,5,6,7-hexahydropyrrolizin-8-ylmethoxy)-6,8-dihydro-5H-pyrido[3,4-d]pyrimidin-4-yl]-N,N-dimethyl-4,6,7,8-tetrahydropyrazolo[1,5-a][1,4]diazepine-2-carboxamide",Did not work
+176,176,"4-(4-(8-oxa-3-azabicyclo[3.2.1]octan-3-yl)-2-(((2R,7aS)-2-fluorotetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,8-dihydropyrido[3,4-d]pyrimidin-7(6H)-yl)-5-ethyl-6-fluoronaphthalen-2-ol",C12CN(CC(CC1)O2)C=2C1=C(N=C(N2)OC[C@]23CCCN3C[C@@H](C2)F)CN(CC1)C1=CC(=CC2=CC=C(C(=C12)CC)F)O
+177,177,"3-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-3-azabicyclo[3.2.0]heptan-6-ol",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2CC(C2C1)O)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+178,178,"4-(4-(7,8-dihydro-4H-[1,2,3]triazolo[1,5-a][1,4]diazepin-5(6H)-yl)-2-(((2R,7aS)-2-fluorotetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,8-dihydropyrido[3,4-d]pyrimidin-7(6H)-yl)-5-ethyl-6-fluoronaphthalen-2-ol",N1=NC=C2N1CCCN(C2)C=2C1=C(N=C(N2)OC[C@]23CCCN3C[C@@H](C2)F)CN(CC1)C1=CC(=CC2=CC=C(C(=C12)CC)F)O
+179,179,"3-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-3-azabicyclo[3.3.1]nonan-7-ol",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2CC(CC(C1)C2)O)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+180,180,"4-(4-(8,9-dihydro-5H-pyrido[3,2-c]azepin-6(7H)-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6-dihydropyrido[3,4-d]pyrimidin-7(8H)-yl)-5-ethyl-6-fluoronaphthalen-2-ol",N1=CC=CC=2CN(CCCC21)C=2C1=C(N=C(N2)OC[C@]23CCCN3C[C@@H](C2)F)CN(CC1)C1=CC(=CC2=CC=C(C(=C12)CC)F)O
+181,181,"4-(4-(2-amino-7,8-dihydro-4H-thiazolo[5,4-c]azepin-5(6H)-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6-dihydropyrido[3,4-d]pyrimidin-7(8H)-yl)-5-ethyl-6-fluoronaphthalen-2-ol",NC=1SC=2CN(CCCC2N1)C=1C2=C(N=C(N1)OC[C@]13CCCN3C[C@@H](C1)F)CN(CC2)C2=CC(=CC1=CC=C(C(=C21)CC)F)O
+182,182,"(3aR,4S,6aS)-2-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)octahydrocyclopenta[c]pyrrol-4-ol",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1C[C@@H]2[C@H](C1)[C@H](CC2)O)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+183,183,"(3aR,5R,6aS)-2-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)octahydrocyclopenta[c]pyrrol-5-ol",Did not work
+184,184,"(3aR,5S,6aS)-2-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)octahydrocyclopenta[c]pyrrol-5-ol",Did not work
+185,185,"(3aR,4R,6aS)-2-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorotetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)octahydrocyclopenta[c]pyrrol-4-ol",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1C[C@@H]2[C@H](C1)[C@@H](CC2)O)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+186,186,"(3R,5R)-1-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-5-hydroxypiperidine-3-carboxamide",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1C[C@@H](C[C@H](C1)O)C(=O)N)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+187,187,"(3S,5R)-1-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-5-hydroxypiperidine-3-carboxamide",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1C[C@H](C[C@H](C1)O)C(=O)N)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+188,188,"5-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorotetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-N-isopropyl-5,6,7,8-tetrahydro-4H-pyrazolo[1,5-a][1,4]diazepine-2-carboxamide",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC=2N(CCC1)N=C(C2)C(=O)NC(C)C)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+189,189,"5-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorotetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-N,N,3-trimethyl-5,6,7,8-tetrahydro-4H-pyrazolo[1,5-a][1,4]diazepine-2-carboxamide",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC=2N(CCC1)N=C(C2C)C(=O)N(C)C)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+190,190,"5-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorotetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-3-fluoro-N,N-dimethyl-5,6,7,8-tetrahydro-4H-pyrazolo[1,5-a][1,4]diazepine-2-carboxamide",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC=2N(CCC1)N=C(C2F)C(=O)N(C)C)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+191,191,"(5-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorotetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-5,6,7,8-tetrahydro-4H-pyrazolo[1,5-a][1,4]diazepin-2-yl)(pyrrolidin-1-yl)methanone",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC=2N(CCC1)N=C(C2)C(=O)N2CCCC2)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+192,192,"3-chloro-5-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorotetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-N,N-dimethyl-5,6,7,8-tetrahydro-4H-pyrazolo[1,5-a][1,4]diazepine-2-carboxamide",ClC=1C(=NN2C1CN(CCC2)C=2C1=C(N=C(N2)OC[C@]23CCCN3C[C@@H](C2)F)CN(CC1)C1=CC(=CC2=CC=C(C(=C12)CC)F)O)C(=O)N(C)C
+193,193,"(5-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-5,6,7,8-tetrahydro-4H-pyrazolo[1,5-a][1,4]diazepin-2-yl)(morpholino)methanone",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC=2N(CCC1)N=C(C2)C(=O)N2CCOCC2)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+194,194,"5-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-N,N-dimethyl-5,6,7,8-tetrahydropyrazolo[4,3-c]azepine-2(4H)-carboxamide",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC=2C(CCC1)=NN(C2)C(=O)N(C)C)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+195,195,"5-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-N-isopropyl-5,6,7,8-tetrahydropyrazolo[4,3-c]azepine-2(4H)-carboxamide",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC=2C(CCC1)=NN(C2)C(=O)NC(C)C)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+196,196,"(R)-7-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-1,3,7-triazaspiro[4.5]decane-2,4-dione",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1C[C@@]2(C(NC(N2)=O)=O)CCC1)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+197,197,"7-(7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-2,7-diazaspiro[4.5]decan-3-one",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2(CC(NC2)=O)CCC1)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+198,198,"5-[7-(8-ethyl-7-fluoro-3-hydroxy-1-naphthyl)-2-[[(2S)-1-methylpyrrolidin-2-yl]methoxy]-6,8-dihydro-5H-pyrido[3,4-d]pyrimidin-4-yl]-N,N-dimethyl-4,6,7,8-tetrahydropyrazolo[1,5-a][1,4]diazepine-2-carboxamide",C(C)C=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC=2N(CCC1)N=C(C2)C(=O)N(C)C)OC[C@H]2N(CCC2)C)O)F
+199,199,"(R)-1-(2-((1-((dimethylamino)methyl)cyclopropyl)methoxy)-7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-3-methylpiperidin-3-ol",CN(C)CC1(CC1)COC=1N=C(C2=C(N1)CN(CC2)C2=CC(=CC1=CC=C(C(=C21)CC)F)O)N2C[C@@](CCC2)(O)C
+200,200,"(3aS,6aR)-5-[2-[[1-[(dimethylamino)methyl]cyclopropyl]methoxy]-7-(8-ethyl-7-fluoro-3-hydroxy-1-naphthyl)-6,8-dihydro-5H-pyrido[3,4-d]pyrimidin-4-yl]-3a,4,6,6a-tetrahydropyrrolo[3,4-c]pyrrole-1,3-dione",CN(C)CC1(CC1)COC=1N=C(C2=C(N1)CN(CC2)C2=CC(=CC1=CC=C(C(=C21)CC)F)O)N2C[C@H]1[C@@H](C2)C(NC1=O)=O
+201,201,"7-(2-((1-((dimethylamino)methyl)cyclopropyl)methoxy)-7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-1,3,7-triazaspiro[4.5]decane-2,4-dione",CN(C)CC1(CC1)COC=1N=C(C2=C(N1)CN(CC2)C2=CC(=CC1=CC=C(C(=C21)CC)F)O)N2CC1(C(NC(N1)=O)=O)CCC2
+202,202,"7-(2-((1-((dimethylamino)methyl)cyclopropyl)methoxy)-7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-2-thia-1,3,7-triazaspiro[4.5]decane 2,2-dioxide",Did not work
+203,203,"5-(2-((1-((dimethylamino)methyl)cyclopropyl)methoxy)-7-(8-ethyl-7-fluoro-3-hydroxynaphthalen-1-yl)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-N,N-dimethyl-5,6,7,8-tetrahydro-4H-pyrazolo[1,5-a][1,4]diazepine-2-carboxamide",CN(C)CC1(CC1)COC=1N=C(C2=C(N1)CN(CC2)C2=CC(=CC1=CC=C(C(=C21)CC)F)O)N2CC=1N(CCC2)N=C(C1)C(=O)N(C)C
+204,204,"(R)-1-(7-(3-chloro-2-cyclopropyl-5-hydroxyphenyl)-2-((hexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-3-methylpiperidin-3-ol",ClC=1C(=C(C=C(C1)O)N1CC=2N=C(N=C(C2CC1)N1C[C@@](CCC1)(O)C)OCC12CCCN2CCC1)C1CC1
+205,205,"4-[7-(8-chloro-1-naphthyl)-2-[[(2S)-1-methylpyrrolidin-2-yl]methoxy]-6,8-dihydro-5H-pyrido[3,4-d]pyrimidin-4-yl]-6-methyl-1,4-oxazepan-6-ol",ClC=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCOCC(C1)(O)C)OC[C@H]1N(CCC1)C
+206,206,"(3aS,6aR)-5-[7-(8-chloro-1-naphthyl)-2-[[(2S)-1-methylpyrrolidin-2-yl]methoxy]-6,8-dihydro-5H-pyrido[3,4-d]pyrimidin-4-yl]-3a,4,6,6a-tetrahydropyrrolo[3,4-c]pyrrole-1,3-dione",ClC=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1C[C@H]2[C@@H](C1)C(NC2=O)=O)OC[C@H]2N(CCC2)C
+207,207,"8-[7-(8-chloro-1-naphthyl)-2-[[(2S)-1-methylpyrrolidin-2-yl]methoxy]-6,8-dihydro-5H-pyrido[3,4-d]pyrimidin-4-yl]-1,8-diazaspiro[3.5]nonan-2-one",ClC=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCCC2(CC(N2)=O)C1)OC[C@H]1N(CCC1)C
+208,208,"9-[7-(8-chloro-1-naphthyl)-2-[[(2S)-1-methylpyrrolidin-2-yl]methoxy]-6,8-dihydro-5H-pyrido[3,4-d]pyrimidin-4-yl]-2λ6-thia-1,3,9-triazaspiro[4.5]decane 2,2-dioxide",Did not work
+209,209,"(S)-5-(7-(8-chloronaphthalen-1-yl)-2-((1-methylpyrrolidin-2-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-N,N-dimethyl-5,6,7,8-tetrahydro-4H-pyrazolo[1,5-a][1,4]diazepine-2-carboxamide",ClC=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC=2N(CCC1)N=C(C2)C(=O)N(C)C)OC[C@H]2N(CCC2)C
+210,210,"7-(7-(8-chloronaphthalen-1-yl)-2-(((S)-1-methylpyrrolidin-2-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-1,3,7-triazaspiro[4.5]decan-2-one",ClC=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2(CNC(N2)=O)CCC1)OC[C@H]1N(CCC1)C
+211,211,"9-[7-(8-chloro-1-naphthyl)-2-[[(2S)-1-methylpyrrolidin-2-yl]methoxy]-6,8-dihydro-5H-pyrido[3,4-d]pyrimidin-4-yl]-1,3,9-triazaspiro[4.5]decane-2,4-dione",ClC=1C=CC=C2C=CC=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCCC2(C(NC(N2)=O)=O)C1)OC[C@H]1N(CCC1)C
+212,212,"4-(4-(2-amino-7,8-dihydro-4H-pyrazolo[1,5-a][1,4]diazepin-5(6H)-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6-dihydropyrido[3,4-d]pyrimidin-7(8H)-yl)-5-bromo-6-fluoronaphthalen-2-ol",NC1=NN2C(CN(CCC2)C=2C3=C(N=C(N2)OC[C@]24CCCN4C[C@@H](C2)F)CN(CC3)C3=CC(=CC2=CC=C(C(=C32)Br)F)O)=C1
+213,213_214,"6-(7-(8-bromo-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorotetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-6-azabicyclo[3.2.1]octan-3-ol",BrC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1C2CC(CC(C1)C2)O)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+214,214,,Did not work
+215,215,"3-(7-(8-bromo-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-3-azabicyclo[3.2.1]octan-6-ol",BrC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2CC(C(C1)C2)O)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+216,216,"7-(7-(8-bromo-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-1,3,7-triazaspiro[4.5]decan-2-one",BrC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2(CNC(N2)=O)CCC1)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+217,217,"7-(7-(8-bromo-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-1,3,7-triazaspiro[4.5]decane-2,4-dione",BrC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2(C(NC(N2)=O)=O)CCC1)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+218,218,"5-(7-(8-bromo-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-N,N-dimethyl-5,6,7,8-tetrahydro-4H-pyrazolo[1,5-a][1,4]diazepine-2-carboxamide",BrC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC=2N(CCC1)N=C(C2)C(=O)N(C)C)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+219,219,"4-(7-(8-bromo-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-6-methyl-1,4-oxazepan-6-ol",BrC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CCOCC(C1)(O)C)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+220,220,"5-bromo-6-fluoro-4-(2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-4-(6-(hydroxymethyl)-1,4-oxazepan-4-yl)-5,6-dihydropyrido[3,4-d]pyrimidin-7(8H)-yl)naphthalen-2-ol",BrC1=C2C(=CC(=CC2=CC=C1F)O)N1CC=2N=C(N=C(C2CC1)N1CCOCC(C1)CO)OC[C@]12CCCN2C[C@@H](C1)F
+221,221,"4-(4-(6-(1H-pyrazol-1-yl)-1,4-oxazepan-4-yl)-2-(((2R,7aS)-2-fluorotetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,8-dihydropyrido[3,4-d]pyrimidin-7(6H)-yl)-5-bromo-6-fluoronaphthalen-2-ol",N1(N=CC=C1)C1CN(CCOC1)C=1C2=C(N=C(N1)OC[C@]13CCCN3C[C@@H](C1)F)CN(CC2)C2=CC(=CC1=CC=C(C(=C21)Br)F)O
+222,222,"(R)-1-(7-(8-bromo-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorotetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-3-methylpiperidin-3-ol",BrC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1C[C@@](CCC1)(O)C)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+223,223,"6-(7-(8-bromo-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-1,6-diazaspiro[3.5]nonan-2-one",BrC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2(CC(N2)=O)CCC1)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+224,224,"6-(7-(8-bromo-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-6-azaspiro[3.5]nonan-2-ol",BrC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2(CC(C2)O)CCC1)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+225,225,"7-(7-(8-bromo-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-2-thia-1,3,7-triazaspiro[4.5]decane 2,2-dioxide",Did not work
+226,226,"5-(7-(8-bromo-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)tetrahydropyrrolo[3,4-c]pyrrole-1,3(2H,3aH)-dione",BrC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2C(C1)C(NC2=O)=O)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+227,227,"3-(7-(8-chloro-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-3-azabicyclo[3.2.1]octan-6-ol",ClC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2CC(C(C1)C2)O)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+228,228,"7-(7-(8-chloro-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-1,3,7-triazaspiro[4.5]decan-2-one",ClC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2(CNC(N2)=O)CCC1)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+229,229,"5-(7-(8-chloro-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-N,N-dimethyl-5,6,7,8-tetrahydro-4H-pyrazolo[1,5-a][1,4]diazepine-2-carboxamide",ClC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC=2N(CCC1)N=C(C2)C(=O)N(C)C)OC[C@]21CCCN1C[C@@H](C2)F)O)F
+230,230,"4-(4-(6-(1H-pyrazol-1-yl)-1,4-oxazepan-4-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6-dihydropyrido[3,4-d]pyrimidin-7(8H)-yl)-5-chloro-6-fluoronaphthalen-2-ol",N1(N=CC=C1)C1CN(CCOC1)C=1C2=C(N=C(N1)OC[C@]13CCCN3C[C@@H](C1)F)CN(CC2)C2=CC(=CC1=CC=C(C(=C21)Cl)F)O
+231,231,"6-(7-(8-chloro-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorotetrahydro-1H-pyrrolizin-7a(5H)-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)-2,6-diazaspiro[3.5]nonan-1-one",ClC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2(CNC2=O)CCC1)OC[C@]12CCCN2C[C@@H](C1)F)O)F
+232,232,"5-(7-(8-chloro-7-fluoro-3-hydroxynaphthalen-1-yl)-2-(((2R,7aS)-2-fluorohexahydro-1H-pyrrolizin-7a-yl)methoxy)-5,6,7,8-tetrahydropyrido[3,4-d]pyrimidin-4-yl)tetrahydropyrrolo[3,4-c]pyrrole-1,3(2H,3aH)-dione",ClC=1C(=CC=C2C=C(C=C(C12)N1CC=2N=C(N=C(C2CC1)N1CC2C(C1)C(NC2=O)=O)OC[C@]21CCCN1C[C@@H](C2)F)O)F
