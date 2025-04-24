@@ -17,6 +17,7 @@ from umap.umap_ import UMAP
 # kdock
 from .core import *
 
+# for visualization
 import py3Dmol
 
 # %% ../nbs/01_plot.ipynb 5
@@ -104,28 +105,38 @@ def view_mol(file, #sdf or pdb file
     v.show()
 
 # %% ../nbs/01_plot.ipynb 15
-def view_complex(receptor, # protein file
-                 ligand, # ligand (green), or docked ligand
-                 ori_ligand = None, #original ligand (yellow)
+def view_complex(receptor,           # protein file
+                 ligand,             # ligand (green), or docked ligand
+                 ori_ligand=None,    # original ligand (yellow)
+                 box=None            # optional box: [x, y, z, sizeX, sizeY, sizeZ]
                 ):
+
+    "Visualize the receptor, ligand, optional original ligand, and optional box via py3Dmol."
     v = py3Dmol.view()
+    
+    # Load receptor
     v.addModel(open(receptor).read())
-    v.setStyle({'cartoon':{},'stick':{'radius':0.15}})
+    v.setStyle({'cartoon': {}, 'stick': {'radius': 0.15}})
     
+    # Load docked ligand
     v.addModel(open(ligand).read())
-    v.setStyle({'model':1},
-               {'stick':
-                {'colorscheme':'greenCarbon'}
-               }
-              )
-    
+    v.setStyle({'model': 1}, {'stick': {'colorscheme': 'greenCarbon'}})
+
+    # Load original ligand if provided
     if ori_ligand is not None:
-    
         v.addModel(open(ori_ligand).read())
-        v.setStyle({'model':2},
-                   {'stick':
-                    {'colorscheme':'yellowCarbon'}
-                   })
-    
-    v.zoomTo({'model':1})
+        v.setStyle({'model': 2}, {'stick': {'colorscheme': 'yellowCarbon'}})
+
+    # Add bounding box if specified
+    if box is not None and len(box) == 6:
+        x, y, z, sizeX, sizeY, sizeZ = box
+        v.addBox({
+            'center': {'x': x, 'y': y, 'z': z},
+            'dimensions': {'w': sizeX, 'h': sizeY, 'd': sizeZ},
+            'color': 'red',
+            'opacity': 1,
+            'wireframe': True
+        })
+
+    v.zoomTo({'model': 1})
     v.show()
