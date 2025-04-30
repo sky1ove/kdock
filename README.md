@@ -9,7 +9,7 @@ Install latest from the GitHub
 [repository](https://github.com/sky1ove/kdock):
 
 ``` sh
-$ pip install git+https://github.com/sky1ove/kdock.git
+$ pip install -U git+https://github.com/sky1ove/kdock.git
 ```
 
 ### Documentation
