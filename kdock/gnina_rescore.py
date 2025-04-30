@@ -33,15 +33,15 @@ def rename_residues(structure, chain_id, new_resname='LIG'):
                     residue.resname = new_resname
 
 # %% ../nbs/05_gnina_AF3_rescore.ipynb 7
-def split_cif(cif_path, chainA_pdb_path, chainL_pdb_path):
+def split_cif(cif_path, rec_chain_id,lig_chain_id, rec_pdb_path, lig_pdb_path):
     "Split AF3 output CIF to protein and ligand PDBs"
     parser = MMCIFParser(QUIET=True)
     structure = parser.get_structure('complex', cif_path)
-    rename_residues(structure, chain_id='L', new_resname='LIG')
+    rename_residues(structure, chain_id=lig_chain_id, new_resname='LIG')
     io = PDBIO()
     io.set_structure(structure)
-    io.save(str(chainA_pdb_path), ChainSelect('A'))  # receptor
-    io.save(str(chainL_pdb_path), ChainSelect('L'))  # ligand
+    io.save(str(rec_pdb_path), ChainSelect(rec_chain_id))  # receptor
+    io.save(str(lig_pdb_path), ChainSelect(lig_chain_id))  # ligand
 
 # %% ../nbs/05_gnina_AF3_rescore.ipynb 8
 def pdb2sdf(pdb_path, sdf_path):
@@ -57,20 +57,20 @@ def pdb2sdf(pdb_path, sdf_path):
         return pdb_path
 
 # %% ../nbs/05_gnina_AF3_rescore.ipynb 9
-def prepare_rec_lig(cif_path, chainA_pdb_path, chainL_sdf_path):
+def prepare_rec_lig(cif_path, rec_chain_id, lig_chain_id, rec_pdb_path, lig_pdb_path):
     "Split AF3 cif to protein.pdb (chainA) and ligand.sdf (chainL) "
     
     tmp_name = Path(cif_path).stem
     tmp_path = f'{tmp_name}_lig.pdb'
-    split_cif(cif_path, chainA_pdb_path, tmp_path)
-    failed = pdb2sdf(tmp_path, chainL_sdf_path)
+    split_cif(cif_path, rec_chain_id,lig_chain_id, rec_pdb_path, tmp_path)
+    failed = pdb2sdf(tmp_path, lig_pdb_path)
     try:
         os.remove(tmp_path)
     except OSError:
         pass
     return failed
 
-# %% ../nbs/05_gnina_AF3_rescore.ipynb 14
+# %% ../nbs/05_gnina_AF3_rescore.ipynb 15
 def gnina_rescore_local(protein_pdb, # receptor file
                   ligand_sdf, # ligand file
                   ):
@@ -83,7 +83,7 @@ def gnina_rescore_local(protein_pdb, # receptor file
     result = subprocess.run(command, capture_output=True, text=True)
     return result.stdout
 
-# %% ../nbs/05_gnina_AF3_rescore.ipynb 16
+# %% ../nbs/05_gnina_AF3_rescore.ipynb 17
 def gnina_rescore_docker(protein_pdb, ligand_sdf):
     """
     Run GNINA rescoring using Docker. Supports receptor and ligand in different folders.
@@ -109,7 +109,7 @@ def gnina_rescore_docker(protein_pdb, ligand_sdf):
     result = subprocess.run(command, capture_output=True, text=True)
     return result.stdout
 
-# %% ../nbs/05_gnina_AF3_rescore.ipynb 18
+# %% ../nbs/05_gnina_AF3_rescore.ipynb 19
 def extract_gnina_rescore(txt):
     "Extract GNINA output text to dictionary."
     
@@ -127,8 +127,8 @@ def extract_gnina_rescore(txt):
     
     return {k: float(v) for k, v in pattern.groupdict().items()} # convert values to float
 
-# %% ../nbs/05_gnina_AF3_rescore.ipynb 21
-def get_gnina_rescore(cif_path,is_local=False):
+# %% ../nbs/05_gnina_AF3_rescore.ipynb 22
+def get_gnina_rescore(cif_path,rec_chain_id='A', lig_chain_id='L', is_local=False):
     "Split the CIF into receptor and ligand folders, then extract the GNINA rescored affinity score"
     cif_path = Path(cif_path).expanduser()
     parent,stem = cif_path.parent,cif_path.stem
@@ -140,19 +140,19 @@ def get_gnina_rescore(cif_path,is_local=False):
     rec_dir.mkdir(exist_ok=True)
     lig_dir.mkdir(exist_ok=True)
     
-    prepare_rec_lig(cif_path,rec_path,lig_path)
+    prepare_rec_lig(cif_path,rec_chain_id, lig_chain_id,rec_path,lig_path)
     if is_local:
         gnina_output = gnina_rescore_local(rec_path,lig_path)
     else:
         gnina_output = gnina_rescore_docker(rec_path,lig_path)
     return extract_gnina_rescore(gnina_output)
 
-# %% ../nbs/05_gnina_AF3_rescore.ipynb 25
-def get_gnina_rescore_folder(cif_folder,is_local=False):
+# %% ../nbs/05_gnina_AF3_rescore.ipynb 27
+def get_gnina_rescore_folder(cif_folder,rec_chain_id='A', lig_chain_id='L',is_local=False):
     "Parallel processing to get gnina rescore given folder path"
     cifs = L(Path(cif_folder).expanduser().glob("*.cif")) # just take cif file
     
-    func = partial(get_gnina_rescore,is_local=is_local)
+    func = partial(get_gnina_rescore,rec_chain_id=rec_chain_id, lig_chain_id=lig_chain_id,is_local=is_local)
     results = process_map(func, cifs, max_workers=4)
 
     # use path.stem as df index
