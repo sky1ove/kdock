@@ -13,11 +13,19 @@ import os,sys,logging,contextlib
 from datetime import datetime
 from pathlib import Path
 
-# protenix-dock
-import multiprocessing as mp # to prevent the error in pxdock
-mp.set_start_method("spawn", force=True)
-from pxdock import ProtenixDock
-from pxdock.common.rmsd_calculator import write_ligand_to_sdf
+# import protenix-dock
+try:
+    from pxdock import ProtenixDock
+    from pxdock.common.rmsd_calculator import write_ligand_to_sdf
+
+    # Prevent multiprocessing-related errors in pxdock
+    import multiprocessing as mp
+    mp.set_start_method("spawn", force=True)
+
+except ImportError as e:
+    print(f"pxdock import failed: {e}")
+    ProtenixDock = None
+    write_ligand_to_sdf = None
 
 
 # %% ../nbs/06_proteinix_dock.ipynb 15
