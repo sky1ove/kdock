@@ -57,4 +57,12 @@ d = { 'settings': { 'branch': 'main',
                                 'kdock.protenix.get_protenix_dock': ('proteinix_dock.html#get_protenix_dock', 'kdock/protenix.py'),
                                 'kdock.protenix.get_protenix_vina_dock': ( 'proteinix_dock.html#get_protenix_vina_dock',
                                                                            'kdock/protenix.py'),
-                                'kdock.protenix.json2sdf': ('proteinix_dock.html#json2sdf', 'kdock/protenix.py')}}}
+                                'kdock.protenix.json2sdf': ('proteinix_dock.html#json2sdf', 'kdock/protenix.py')},
+            'kdock.px': { 'kdock.px.get_protein_ligand_df_json': ('protenix.html#get_protein_ligand_df_json', 'kdock/px.py'),
+                          'kdock.px.get_single_job': ('protenix.html#get_single_job', 'kdock/px.py'),
+                          'kdock.px.get_single_protein_ligand_json': ('protenix.html#get_single_protein_ligand_json', 'kdock/px.py'),
+                          'kdock.px.get_virtual_screening_json': ('protenix.html#get_virtual_screening_json', 'kdock/px.py')},
+            'kdock.pxdock': { 'kdock.pxdock.capture_output': ('proteinix_dock.html#capture_output', 'kdock/pxdock.py'),
+                              'kdock.pxdock.get_protenix_dock': ('proteinix_dock.html#get_protenix_dock', 'kdock/pxdock.py'),
+                              'kdock.pxdock.get_protenix_vina_dock': ('proteinix_dock.html#get_protenix_vina_dock', 'kdock/pxdock.py'),
+                              'kdock.pxdock.json2sdf': ('proteinix_dock.html#json2sdf', 'kdock/pxdock.py')}}}

@@ -71,23 +71,33 @@ def prepare_rec_lig(cif_path, rec_chain_id, lig_chain_id, rec_pdb_path, lig_pdb_
     return failed
 
 # %% ../nbs/05_gnina_AF3_rescore.ipynb 15
-def gnina_rescore_local(protein_pdb, # receptor file
-                  ligand_sdf, # ligand file
-                  ):
-    
+def gnina_rescore_local(protein_pdb,  # receptor file
+                        ligand_sdf,   # ligand file
+                        CNN_affinity=True,
+                        vinardo=False, # if True, use vinardo instead of vina
+                        ):
+
     command = ['./gnina', 
                '-r', protein_pdb, 
-               '-l', ligand_sdf, 
-               '--minimize']
+               '-l', ligand_sdf,
+               '--minimize']  # always include this
+
+    # Handle scoring options
+    if not CNN_affinity:
+        command += ['--cnn_scoring', 'none']
+    if vinardo:
+        command += ['--scoring', 'vinardo']
 
     result = subprocess.run(command, capture_output=True, text=True)
     return result.stdout
 
 # %% ../nbs/05_gnina_AF3_rescore.ipynb 17
-def gnina_rescore_docker(protein_pdb, ligand_sdf):
-    """
-    Run GNINA rescoring using Docker. Supports receptor and ligand in different folders.
-    """
+def gnina_rescore_docker(protein_pdb, 
+                         ligand_sdf, 
+                         CNN_affinity=True, 
+                         vinardo=False):
+    "Run GNINA rescoring using Docker. Supports receptor and ligand in different folders."
+
     protein_pdb = Path(protein_pdb).resolve()
     ligand_sdf = Path(ligand_sdf).resolve()
 
@@ -97,38 +107,51 @@ def gnina_rescore_docker(protein_pdb, ligand_sdf):
 
     command = [
         'docker', 'run', '--rm',
-        '-v', f'{protein_pdb.parent}:{rec_mount}', # mount path separately
-        '-v', f'{ligand_sdf.parent}:{lig_mount}',
+        '-v', f'{protein_pdb.parent}:{rec_mount}',  # mount receptor directory
+        '-v', f'{ligand_sdf.parent}:{lig_mount}',   # mount ligand directory
         'gnina/gnina',
         'gnina',
         '-r', f'{rec_mount}/{protein_pdb.name}',
         '-l', f'{lig_mount}/{ligand_sdf.name}',
-        '--minimize',
+        '--minimize',  # always include
     ]
+
+    if not CNN_affinity:
+        command += ['--cnn_scoring', 'none']
+    if vinardo:
+        command += ['--scoring', 'vinardo']
 
     result = subprocess.run(command, capture_output=True, text=True)
     return result.stdout
 
 # %% ../nbs/05_gnina_AF3_rescore.ipynb 19
 def extract_gnina_rescore(txt):
-    "Extract GNINA output text to dictionary."
-    
-    pattern = re.search(
-        r"Affinity:\s+(?P<binding_energy>[-.\d]+)\s+(?P<uncertainty>[-.\d]+).*?"
-        r"RMSD:\s+(?P<RMSD>[-.\d]+).*?"
-        r"CNNscore:\s+(?P<CNNscore>[-.\d]+).*?"
-        r"CNNaffinity:\s+(?P<CNNaffinity>[-.\d]+).*?"
-        r"CNNvariance:\s+(?P<CNNvariance>[-.\d]+)",
-        txt,
-        re.DOTALL)
+    """Extract GNINA output metrics into a dictionary (partial match allowed)."""
+    result = {}
 
-    if not pattern:
-        print("Failed to match GNINA output format.")
-    
-    return {k: float(v) for k, v in pattern.groupdict().items()} # convert values to float
+    patterns = {
+        'binding_energy': r'Affinity:\s+([-.\d]+)',
+        'uncertainty':    r'Affinity:\s+[-.\d]+\s+([-.\d]+)',
+        'RMSD':           r'RMSD:\s+([-.\d]+)',
+        'CNNscore':       r'CNNscore:\s+([-.\d]+)',
+        'CNNaffinity':    r'CNNaffinity:\s+([-.\d]+)',
+        'CNNvariance':    r'CNNvariance:\s+([-.\d]+)',
+    }
 
-# %% ../nbs/05_gnina_AF3_rescore.ipynb 22
-def get_gnina_rescore(cif_path,rec_chain_id='A', lig_chain_id='L', is_local=False):
+    for key, pat in patterns.items():
+        match = re.search(pat, txt)
+        if match:
+            result[key] = float(match.group(1))
+
+    return result
+
+# %% ../nbs/05_gnina_AF3_rescore.ipynb 24
+def get_gnina_rescore(cif_path,
+                      rec_chain_id='A', 
+                      lig_chain_id='L', 
+                      CNN_affinity=True,
+                      vinardo=False,
+                      is_local=True):
     "Split the CIF into receptor and ligand folders, then extract the GNINA rescored affinity score"
     cif_path = Path(cif_path).expanduser()
     parent,stem = cif_path.parent,cif_path.stem
@@ -142,17 +165,27 @@ def get_gnina_rescore(cif_path,rec_chain_id='A', lig_chain_id='L', is_local=Fals
     
     prepare_rec_lig(cif_path,rec_chain_id, lig_chain_id,rec_path,lig_path)
     if is_local:
-        gnina_output = gnina_rescore_local(rec_path,lig_path)
+        gnina_output = gnina_rescore_local(rec_path,lig_path,CNN_affinity,vinardo)
     else:
-        gnina_output = gnina_rescore_docker(rec_path,lig_path)
+        gnina_output = gnina_rescore_docker(rec_path,lig_path,CNN_affinity,vinardo)
     return extract_gnina_rescore(gnina_output)
 
-# %% ../nbs/05_gnina_AF3_rescore.ipynb 27
-def get_gnina_rescore_folder(cif_folder,rec_chain_id='A', lig_chain_id='L',is_local=False):
+# %% ../nbs/05_gnina_AF3_rescore.ipynb 29
+def get_gnina_rescore_folder(cif_folder,
+                             rec_chain_id='A', 
+                             lig_chain_id='L',
+                             CNN_affinity=True,
+                             vinardo=False,
+                             is_local=True):
     "Parallel processing to get gnina rescore given folder path"
     cifs = L(Path(cif_folder).expanduser().glob("*.cif")) # just take cif file
     
-    func = partial(get_gnina_rescore,rec_chain_id=rec_chain_id, lig_chain_id=lig_chain_id,is_local=is_local)
+    func = partial(get_gnina_rescore,
+                   rec_chain_id=rec_chain_id, 
+                   lig_chain_id=lig_chain_id,
+                   CNN_affinity=CNN_affinity,
+                   vinardo=vinardo,
+                   is_local=is_local)
     results = process_map(func, cifs, max_workers=4)
 
     # use path.stem as df index
