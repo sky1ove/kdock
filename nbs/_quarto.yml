@@ -29,5 +29,18 @@ website:
         href: https://github.com/sky1ove/kdock
   sidebar:
     style: floating
+    contents:
+      - text: "Get Started"
+        href: index.ipynb
+      - section: Tutorials
+        contents: tutorials/*
+      - section: Data
+        contents: data/*
+      - section: Alphafold3
+        contents: af3/*
+      - section: GNINA
+        contents: gnina/*
+      - section: Protenix
+        contents: protenix/*
 
 metadata-files: [nbdev.yml]
