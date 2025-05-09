@@ -3,20 +3,31 @@ project:
 
 format:
   html:
-    theme: cosmo
+    theme:
+      - cosmo
+      - custom.scss
     css: styles.css
     toc: true
     keep-md: true
   commonmark: default
 
 website:
+  favicon: favicon.ico
   twitter-card: true
   open-graph: true
   repo-actions: [issue]
   navbar:
+    title: false
+    logo: "logo.svg"
     background: primary
     search: true
+    left:
+      - text: "Home"
+        href: https://sky1ove.github.io/kdock/
+    right:
+      - icon: github
+        href: https://github.com/sky1ove/kdock
   sidebar:
     style: floating
 
-metadata-files: [nbdev.yml, sidebar.yml]
+metadata-files: [nbdev.yml]

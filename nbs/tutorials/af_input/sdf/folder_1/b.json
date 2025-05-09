@@ -1,5 +1,5 @@
 {
-    "name": "smi_name",
+    "name": "b",
     "modelSeeds": [
         1,
         2,
@@ -9,7 +9,7 @@
         {
             "ligand": {
                 "id": "L",
-                "smiles": "CCC"
+                "smiles": "OCO"
             }
         },
         {
