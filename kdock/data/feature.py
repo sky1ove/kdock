@@ -10,8 +10,6 @@ import pandas as pd, numpy as np
 from tqdm import tqdm
 import hashlib,numba
 from tqdm.contrib.concurrent import process_map
-from sklearn import set_config
-set_config(transform_output="pandas")
 
 from skfp.fingerprints import AtomPairFingerprint, ECFPFingerprint, MACCSFingerprint
 from .core import Data
@@ -131,7 +129,7 @@ def get_fp(SMILES,
     
     return np.concatenate(middle_parts)
 
-# %% ../../nbs/data/01_feature.ipynb 35
+# %% ../../nbs/data/01_feature.ipynb 34
 @numba.njit(parallel=True)
 def tanimoto_numba(fps):
     n = fps.shape[0]
@@ -146,16 +144,16 @@ def tanimoto_numba(fps):
             result[j, i] = sim  # fill symmetric position
     return result
 
-# %% ../../nbs/data/01_feature.ipynb 39
+# %% ../../nbs/data/01_feature.ipynb 38
 def compress_fp(array):
     return np.packbits(array,axis=1)
 
-# %% ../../nbs/data/01_feature.ipynb 42
+# %% ../../nbs/data/01_feature.ipynb 41
 def hash_fp(fp_row):
     "Hash a binary fingerprint row using SHA256"
     return hashlib.sha256(fp_row.tobytes()).hexdigest()
 
-# %% ../../nbs/data/01_feature.ipynb 44
+# %% ../../nbs/data/01_feature.ipynb 43
 def get_same_mol_group(df, smi_col='SMILES'):
     "Utilize hash sha256 to encode morgan fp and find same molecule; assign same molecules to the same group number."
     df = df.copy()
@@ -181,7 +179,7 @@ def get_same_mol_group(df, smi_col='SMILES'):
     df['group'] = group_ids
     return df
 
-# %% ../../nbs/data/01_feature.ipynb 48
+# %% ../../nbs/data/01_feature.ipynb 46
 def reduce_feature(data, # df or numpy array
                    method='pca', # dimensionality reduction method, accept both capital and lower case
                    complexity=20, # None for PCA; perfplexity for TSNE, recommend: 30; n_neigbors for UMAP, recommend: 15

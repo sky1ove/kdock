@@ -17,9 +17,10 @@ from tqdm.contrib.concurrent import process_map
 pd.set_option('mode.chained_assignment', 'raise') # raise error when overwriting
 
 # rdkit
-from rdkit import Chem,DataStructs
+from rdkit import Chem,RDLogger
 from rdkit.ML.Descriptors import MoleculeDescriptors
 from rdkit.Chem import Draw,Descriptors,Descriptors3D, AllChem,rdFingerprintGenerator
+RDLogger.DisableLog('rdApp.warning')
 
 from sklearn.preprocessing import StandardScaler
 from sklearn import set_config
