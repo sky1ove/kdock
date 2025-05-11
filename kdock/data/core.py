@@ -2,8 +2,7 @@
 
 # %% auto 0
 __all__ = ['get_uniprot_seq', 'get_uniprot_features', 'get_uniprot_kd', 'get_uniprot_type', 'mutate', 'compare_seq', 'Data',
-           'rglob', 'copy_files', 'rdkit_conformer', 'get_rec_lig', 'get_box', 'get_rdkit', 'get_rdkit_3d',
-           'get_rdkit_all', 'remove_hi_corr', 'preprocess', 'get_rdkit_df', 'tanimoto']
+           'rglob', 'copy_files', 'rdkit_conformer', 'get_rec_lig', 'get_box', 'tanimoto']
 
 # %% ../../nbs/data/00_core.ipynb 3
 # basics
@@ -11,8 +10,10 @@ import requests, subprocess,shutil,zipfile
 import pandas as pd, numpy as np
 from functools import lru_cache
 from pathlib import Path
-from tqdm import tqdm
-tqdm.pandas()
+from fastcore.meta import delegates
+# from tqdm import tqdm
+# tqdm.pandas()
+from tqdm.contrib.concurrent import process_map
 pd.set_option('mode.chained_assignment', 'raise') # raise error when overwriting
 
 # rdkit
@@ -104,7 +105,7 @@ def get_uniprot_type(uniprot_id,type_='Signal'):
 
     return out_regions
 
-# %% ../../nbs/data/00_core.ipynb 16
+# %% ../../nbs/data/00_core.ipynb 15
 def mutate(seq, # protein sequence
            *mutations, # e.g., E709A
            verbose=True,
@@ -128,7 +129,7 @@ def mutate(seq, # protein sequence
         
     return ''.join(seq_list)
 
-# %% ../../nbs/data/00_core.ipynb 18
+# %% ../../nbs/data/00_core.ipynb 17
 def compare_seq(original_seq, mutated_seq):
     "Compare original and mutated sequences."
     
@@ -145,7 +146,7 @@ def compare_seq(original_seq, mutated_seq):
         for pos, orig, mut in differences:
             print(f"  Position {pos}: {orig} → {mut}")
 
-# %% ../../nbs/data/00_core.ipynb 21
+# %% ../../nbs/data/00_core.ipynb 20
 class Data:
     "A class for fetching various datasets."
 
@@ -206,7 +207,7 @@ def copy_files(file_list, dest_dir):
 
 # %% ../../nbs/data/00_core.ipynb 32
 def rdkit_conformer(SMILES, # SMILES string
-                    output, # file ".sdf" to be saved
+                    output=None, # file ".sdf" to be saved
                     method='ETKDG', # Optimization method, can be 'UFF', 'MMFF' or 'ETKDGv3'
                     visualize=True, #whether or not to visualize the compound
                     seed = 3,# randomness of the 3D conformation
@@ -238,14 +239,16 @@ def rdkit_conformer(SMILES, # SMILES string
 
     # Remove hydrogens from the molecule
     # mol = Chem.RemoveHs(mol)
+
+    if output is not None:
+        Path(output).parent.mkdir(parents=True,exist_ok=True)
     
-    Path(output).parent.mkdir(parents=True,exist_ok=True)
+        w = Chem.SDWriter(output)
+        w.write(mol)
+        w.close()
+    return mol
 
-    w = Chem.SDWriter(output)
-    w.write(mol)
-    w.close()
-
-# %% ../../nbs/data/00_core.ipynb 34
+# %% ../../nbs/data/00_core.ipynb 35
 def get_rec_lig(pdb_id: str, # pdb id for download
                             lig_id: str, # ligand id shown on the protein page
                             out_dir = '.', # directory path to save pdb files
@@ -289,7 +292,7 @@ def get_rec_lig(pdb_id: str, # pdb id for download
 
     return str(rec_file), str(lig_sdf_file)
 
-# %% ../../nbs/data/00_core.ipynb 37
+# %% ../../nbs/data/00_core.ipynb 38
 def get_box(sdf_file, autobox_add=4.0,tolist=False):
     "Get the box coordinates of ligand.sdf; mimic GNINA's --autobox_ligand behavior."
     mol = Chem.SDMolSupplier(str(sdf_file), removeHs=False)[0]
@@ -316,82 +319,6 @@ def get_box(sdf_file, autobox_add=4.0,tolist=False):
     return list(box_dict.values()) if tolist else box_dict
 
 # %% ../../nbs/data/00_core.ipynb 41
-def get_rdkit(SMILES:str):
-    """
-    Extract chemical features from SMILES
-    Reference: https://greglandrum.github.io/rdkit-blog/posts/2022-12-23-descriptor-tutorial.html
-    """
-    mol = Chem.MolFromSmiles(SMILES)
-    return Descriptors.CalcMolDescriptors(mol)
-
-# %% ../../nbs/data/00_core.ipynb 42
-def get_rdkit_3d(SMILES:str):
-    "Extract 3d features from SMILES"
-    mol = Chem.MolFromSmiles(SMILES)
-    mol = Chem.AddHs(mol)
-    AllChem.EmbedMolecule(mol, AllChem.ETKDG())
-    AllChem.UFFOptimizeMolecule(mol)
-    return Descriptors3D.CalcMolDescriptors3D(mol)
-
-# %% ../../nbs/data/00_core.ipynb 43
-def get_rdkit_all(SMILES:str):
-    "Extract chemical features and 3d features from SMILES"
-    feat = get_rdkit(SMILES)
-    feat_3d = get_rdkit_3d(SMILES)
-    return feat|feat_3d
-
-# %% ../../nbs/data/00_core.ipynb 44
-def remove_hi_corr(df: pd.DataFrame, 
-                   thr=0.99 # threshold
-                   ):
-    "Remove highly correlated features in a dataframe given a pearson threshold"
-    corr_matrix = df.corr().abs()
-    upper = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
-    to_drop = [column for column in upper.columns if any(upper[column] > thr)]
-    return df.drop(to_drop, axis=1), to_drop
-
-# %% ../../nbs/data/00_core.ipynb 45
-def preprocess(df: pd.DataFrame, thr=0.99):
-    "Remove features with no variance, and highly correlated features based on threshold."
-    col_ori = df.columns
-
-    # Remove columns with std == 0
-    std_zero_cols = df.columns[df.std() == 0].tolist()
-    
-    if std_zero_cols:
-        n=len(std_zero_cols)
-        print(f"\n {n} Columns with zero std: {std_zero_cols}")
-    df = df.loc[:, df.std() != 0].copy()
-
-    # Remove highly correlated columns
-    df, high_corr_cols = remove_hi_corr(df, thr)
-    if high_corr_cols:
-        n=len(high_corr_cols)
-        print(f"\n {n} Columns removed due to high similarity (pearson>{thr}): {high_corr_cols}")
-
-    dropping_col = set(col_ori) - set(df.columns)
-    n = len(dropping_col)
-    print(f"\n Total removed columns: {n}")
-    
-    return df
-
-# %% ../../nbs/data/00_core.ipynb 46
-def get_rdkit_df(df: pd.DataFrame,
-                 include_3d=False,
-                 col='SMILES', # column of SMILES
-                 postprocess=False, # remove redundant columns and standardize features for dimension reduction
-                 ):
-    "Extract rdkit features (including 3d) from SMILES in a df"
-    if include_3d:
-        out = df[col].progress_apply(get_rdkit_all).apply(pd.Series)
-    else:
-        out = df[col].progress_apply(get_rdkit).apply(pd.Series)
-    if postprocess:
-        out = StandardScaler().fit_transform(out)
-        out = preprocess(out) # remove redundant
-    return out
-
-# %% ../../nbs/data/00_core.ipynb 56
 def tanimoto(df, # df with SMILES and ID columns
              smiles_col='SMILES', # colname of SMILES
              id_col='ID', # colname of compound ID
