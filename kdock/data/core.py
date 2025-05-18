@@ -86,7 +86,7 @@ class Data:
             URL = "https://github.com/sky1ove/kdock/raw/main/dataset/kras_seq.csv"
             return Data.fetch_csv(URL)
 
-# %% ../../nbs/data/00_core.ipynb 16
+# %% ../../nbs/data/00_core.ipynb 17
 @lru_cache()
 def get_uniprot_seq(uniprot_id):
     "Queries the UniProt database to retrieve the protein sequence for a given UniProt ID."
@@ -103,7 +103,7 @@ def get_uniprot_seq(uniprot_id):
     else:
         return f"Error: Unable to retrieve sequence for UniProt ID {uniprot_id}. Status code: {response.status_code}"
 
-# %% ../../nbs/data/00_core.ipynb 18
+# %% ../../nbs/data/00_core.ipynb 19
 @lru_cache()
 def get_uniprot_features(uniprot_id):
     "Given uniprot_id, get specific region for uniprot features."
@@ -119,7 +119,7 @@ def get_uniprot_features(uniprot_id):
     else:
         raise ValueError(f"Failed to retrieve UniProt features for {uniprot_id}")
 
-# %% ../../nbs/data/00_core.ipynb 20
+# %% ../../nbs/data/00_core.ipynb 21
 def get_uniprot_kd(uniprot_id):
     "Get kinase domain sequences based on UniProt ID."
     features = get_uniprot_features(uniprot_id)
@@ -142,7 +142,7 @@ def get_uniprot_kd(uniprot_id):
 
     return out_regions
 
-# %% ../../nbs/data/00_core.ipynb 22
+# %% ../../nbs/data/00_core.ipynb 23
 def get_uniprot_type(uniprot_id,type_='Signal'):
     "Get region sequences based on UniProt ID features."
     features = get_uniprot_features(uniprot_id)
@@ -165,7 +165,7 @@ def get_uniprot_type(uniprot_id,type_='Signal'):
 
     return out_regions
 
-# %% ../../nbs/data/00_core.ipynb 26
+# %% ../../nbs/data/00_core.ipynb 27
 def mutate(seq, # protein sequence
            *mutations, # e.g., E709A
            verbose=True,
@@ -189,7 +189,7 @@ def mutate(seq, # protein sequence
         
     return ''.join(seq_list)
 
-# %% ../../nbs/data/00_core.ipynb 28
+# %% ../../nbs/data/00_core.ipynb 29
 def compare_seq(original_seq, mutated_seq):
     "Compare original and mutated sequences."
     
@@ -206,7 +206,7 @@ def compare_seq(original_seq, mutated_seq):
         for pos, orig, mut in differences:
             print(f"  Position {pos}: {orig} → {mut}")
 
-# %% ../../nbs/data/00_core.ipynb 32
+# %% ../../nbs/data/00_core.ipynb 33
 def rglob(path, pattern, max_depth):
     "Get a file list given folder depths"
     base_path = Path(path).resolve()
@@ -214,7 +214,7 @@ def rglob(path, pattern, max_depth):
         if len(path.relative_to(base_path).parts) <= max_depth:
             yield path
 
-# %% ../../nbs/data/00_core.ipynb 34
+# %% ../../nbs/data/00_core.ipynb 35
 def copy_files(file_list, dest_dir):
     "Copy a list of files to the destination directory, or zip them if dest_dir ends with .zip."
     dest_path = Path(dest_dir)
@@ -232,7 +232,7 @@ def copy_files(file_list, dest_dir):
             shutil.copy2(file_path, dest_path / file_path.name)
         print(f'Copied {len(file_list)} files to {dest_path}')
 
-# %% ../../nbs/data/00_core.ipynb 37
+# %% ../../nbs/data/00_core.ipynb 38
 def rdkit_conformer(SMILES, # SMILES string
                     output=None, # file ".sdf" to be saved
                     method='ETKDG', # Optimization method, can be 'UFF', 'MMFF' or 'ETKDGv3'
@@ -275,7 +275,7 @@ def rdkit_conformer(SMILES, # SMILES string
         w.close()
     return mol
 
-# %% ../../nbs/data/00_core.ipynb 40
+# %% ../../nbs/data/00_core.ipynb 41
 def get_rec_lig(pdb_id: str, # pdb id for download
                             lig_id: str, # ligand id shown on the protein page
                             out_dir = '.', # directory path to save pdb files
@@ -319,7 +319,7 @@ def get_rec_lig(pdb_id: str, # pdb id for download
 
     return str(rec_file), str(lig_sdf_file)
 
-# %% ../../nbs/data/00_core.ipynb 43
+# %% ../../nbs/data/00_core.ipynb 44
 def get_box(sdf_file, autobox_add=4.0,tolist=False):
     "Get the box coordinates of ligand.sdf; mimic GNINA's --autobox_ligand behavior."
     mol = Chem.SDMolSupplier(str(sdf_file), removeHs=False)[0]
@@ -345,7 +345,7 @@ def get_box(sdf_file, autobox_add=4.0,tolist=False):
     }
     return list(box_dict.values()) if tolist else box_dict
 
-# %% ../../nbs/data/00_core.ipynb 46
+# %% ../../nbs/data/00_core.ipynb 47
 def tanimoto(df, # df with SMILES and ID columns
              smiles_col='SMILES', # colname of SMILES
              id_col='ID', # colname of compound ID
