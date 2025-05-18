@@ -41,7 +41,7 @@ class Data:
             """
             Antibiotics dataset of 50 µM 2,560 compounds screening in E. coli K12 BW25113.
             2,335 unique compounds after deduplicated.
-            Table S1B from Cell: A Deep Learning Approach to Antibiotic Discovery.
+            Table S1B from 2020 Cell: A Deep Learning Approach to Antibiotic Discovery.
             """
             URL = "https://github.com/sky1ove/kdock/raw/main/dataset/antibiotics_2k.csv"
             return Data.fetch_csv(URL)
