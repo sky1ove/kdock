@@ -190,4 +190,15 @@ def get_gnina_rescore_folder(cif_folder,
 
     # use path.stem as df index
     results_dict = dict(zip([p.stem for p in cifs], results))
-    return pd.DataFrame(results_dict).T.reset_index(names='ID')
+    result_df = pd.DataFrame(results_dict).T.reset_index(names='ID')
+    
+    prefix = "vinardo_" if vinardo else "vina_"
+    result_df = result_df.rename(columns={
+        "binding_energy": f"{prefix}binding_energy",
+        "uncertainty": f"{prefix}uncertainty",
+        "RMSD": f"{prefix}RMSD"
+    })
+
+    return result_df
+
+    
