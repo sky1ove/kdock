@@ -1,0 +1,1211 @@
+[
+  {
+    "objectID": "af3/json.html",
+    "href": "af3/json.html",
+    "title": "Generate json",
+    "section": "",
+    "text": "Default pipeline, will run MSA and template search\n\n\nsource\n\n\n\n dump_json (data, save_path)\n\nSave json data into a file\n\nsource\n\n\n\n\n get_protein_json (name, seq, save_path=None, seeds=[1])\n\nGenerate json of single protein sequence for input of docker command\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nname\n\n\njob name\n\n\nseq\n\n\naa sequence\n\n\nsave_path\nNoneType\nNone\n.json\n\n\nseeds\nlist\n[1]\n\n\n\n\n\ndata = get_protein_json('proteinA','AAA','data/proteinA.json',seeds=[1,2,3])\ndata\n\n{'name': 'proteinA',\n 'modelSeeds': [1, 2, 3],\n 'sequences': [{'protein': {'id': 'A', 'sequence': 'AAA'}}],\n 'bondedAtomPairs': [],\n 'dialect': 'alphafold3',\n 'version': 2}",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Generate json"
+    ]
+  },
+  {
+    "objectID": "af3/json.html#single-protein-sequence-default",
+    "href": "af3/json.html#single-protein-sequence-default",
+    "title": "Generate json",
+    "section": "",
+    "text": "Default pipeline, will run MSA and template search\n\n\nsource\n\n\n\n dump_json (data, save_path)\n\nSave json data into a file\n\nsource\n\n\n\n\n get_protein_json (name, seq, save_path=None, seeds=[1])\n\nGenerate json of single protein sequence for input of docker command\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nname\n\n\njob name\n\n\nseq\n\n\naa sequence\n\n\nsave_path\nNoneType\nNone\n.json\n\n\nseeds\nlist\n[1]\n\n\n\n\n\ndata = get_protein_json('proteinA','AAA','data/proteinA.json',seeds=[1,2,3])\ndata\n\n{'name': 'proteinA',\n 'modelSeeds': [1, 2, 3],\n 'sequences': [{'protein': {'id': 'A', 'sequence': 'AAA'}}],\n 'bondedAtomPairs': [],\n 'dialect': 'alphafold3',\n 'version': 2}",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Generate json"
+    ]
+  },
+  {
+    "objectID": "af3/json.html#protein-smiles",
+    "href": "af3/json.html#protein-smiles",
+    "title": "Generate json",
+    "section": "Protein-SMILES",
+    "text": "Protein-SMILES\n\nFirst run the normal sequence only pipeline for the protein\nGet the output data.json file, read it, load the [\"sequences\"][0][\"protein\"]\n\n\nsource\n\nread_json\n\n read_json (file_path)\n\n\nprotein_json = read_json('data/seq_only_data.json')\n\n\nsource\n\n\nget_protein_smiles_json\n\n get_protein_smiles_json (smi_id:str, SMILES:str, protein_json,\n                          save_path=None, seeds=[1])\n\nGet json for protein-ligand docking task\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nsmi_id\nstr\n\n\n\n\nSMILES\nstr\n\n\n\n\nprotein_json\n\n\njson type\n\n\nsave_path\nNoneType\nNone\n.json\n\n\nseeds\nlist\n[1]\n\n\n\n\n\nout = get_protein_smiles_json('smi_name','CCC',protein_json,'data/protein_smi.json',seeds=[1,2,3])\n\nLet’s take a look for the json:\n\nstr(out)[:100]\n\n\"{'name': 'smi_name', 'modelSeeds': [1, 2, 3], 'sequences': [{'ligand': {'id': 'L', 'smiles': 'CCC'}}\"\n\n\n\ndf = pd.DataFrame({'idx':['a','b'],'smi':['CCC','OCO']})\ndf\n\n\n\n\n\n\n\n\nidx\nsmi\n\n\n\n\n0\na\nCCC\n\n\n1\nb\nOCO\n\n\n\n\n\n\n\n\nproject_name='sdf'\nfor idx, smi in df.values:\n    _ = get_protein_smiles_json(idx,smi,protein_json,f'af_input/{project_name}/{idx}.json',seeds=[1,2,3])",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Generate json"
+    ]
+  },
+  {
+    "objectID": "af3/json.html#protein-ccdcode",
+    "href": "af3/json.html#protein-ccdcode",
+    "title": "Generate json",
+    "section": "Protein-CCDcode",
+    "text": "Protein-CCDcode\n\nsource\n\nget_protein_ccdcode_json\n\n get_protein_ccdcode_json (protein_json, ccd_code, job_id:str,\n                           save_path=None, seeds=[1])\n\nCreate AlphaFold3 docking JSON with CCD code(s).\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nprotein_json\n\n\ndict with protein sequence\n\n\nccd_code\n\n\nstr or list of str\n\n\njob_id\nstr\n\njob/task ID\n\n\nsave_path\nNoneType\nNone\noptional output path\n\n\nseeds\nlist\n[1]\noptional random seeds",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Generate json"
+    ]
+  },
+  {
+    "objectID": "af3/json.html#protein-ccd-for-covalent",
+    "href": "af3/json.html#protein-ccd-for-covalent",
+    "title": "Generate json",
+    "section": "Protein-CCD for covalent",
+    "text": "Protein-CCD for covalent\n\nsdf2CCD\nmol_to_ccd_cif Reference: https://github.com/google-deepmind/alphafold3/issues/178\nAbout hydrogens: https://github.com/google-deepmind/alphafold3/issues/212\n\nsource\n\n\nmol_to_ccd_text\n\n mol_to_ccd_text (mol, component_id, pdbx_smiles=None,\n                  include_hydrogens=False)\n\n\nsource\n\n\nassign_atom_names_from_graph\n\n assign_atom_names_from_graph (mol)\n\n\nsource\n\n\nsdf2ccd\n\n sdf2ccd (sdf_path, CCD_name='lig-1')\n\nConvert the compound to the AF3 required CCD format\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nsdf_path\n\n\n\n\n\nCCD_name\nstr\nlig-1\ndo not use ’_‘; use as less letter as possible, ’lig-any’ leads to extra ligands\n\n\n\n\nsdf2ccd('covalent_test/lig-HKI.sdf')[:100]\n\n\"data_lig-any\\n#\\n_chem_comp.id lig-any\\n_chem_comp.name 'lig-any'\\n_chem_comp.type non-polymer\\n_chem_com\"\n\n\n\n\njson\n\nsource\n\n\nget_protein_ccd_json\n\n get_protein_ccd_json (protein_json, rec_residue_num:int, rec_atom_id:str,\n                       lig_sdf_path, lig_atom_id:str, job_id:str,\n                       save_path=None, seeds=[1])\n\nCreate AlphaFold3 docking JSON with customized CCD ligand and bondedAtomPairs.\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nprotein_json\n\n\ndict with protein sequence\n\n\nrec_residue_num\nint\n\n1-indexed, for bondedAtomPairs, e.g., [“A”, 145, “SG”]\n\n\nrec_atom_id\nstr\n\nfor bondedAtomPairs, e.g., [“A”, 145, “SG”]\n\n\nlig_sdf_path\n\n\nccd text\n\n\nlig_atom_id\nstr\n\n0-indexed, for bondedAtomPairs, [“L”, 1, “C04”]\n\n\njob_id\nstr\n\nstr, job/task ID\n\n\nsave_path\nNoneType\nNone\noptional output path\n\n\nseeds\nlist\n[1]\noptional random seeds\n\n\n\nVersion 2, with user ccd and pair as input:\n\ndef get_protein_ccd_json2(protein_json,             # dict with protein sequence\n                         userCCD,                  # ccd text\n                         pair1,                    # protein pair e.g., [\"A\", 145, \"SG\"] 1-indexed\n                         pair2,                    # ligand pair e.g., [\"L\", 1, \"C04\"] 0-indexed\n                         job_id,                   # str, job/task ID\n                         save_path=None,           # optional output path\n                         seeds=[1]):               # optional random seeds\n    \"Create AlphaFold3 docking JSON with customized CCD ligand and bondedAtomPairs.\"\n    \n    ccd_id = re.search(r\"_chem_comp.id\\s+([^\\s#]+)\", ccd_text).group(1)\n    json_data = {\n        \"name\": job_id,\n        \"modelSeeds\": seeds,\n        \"sequences\": [\n            {\n                \"ligand\": {\n                    \"id\": \"L\",\n                    \"ccdCodes\": [ccd_id]\n                }\n            },\n            {\n                \"protein\": protein_json[\"sequences\"][0][\"protein\"]\n            },\n        ],\n        \"bondedAtomPairs\": [[pair1,pair2]],\n        \"userCCD\": userCCD,\n        \"dialect\": \"alphafold3\",\n        \"version\": 3\n    }\n\n    if save_path:\n        Path(save_path).parent.mkdir(parents=True, exist_ok=True)\n        dump_json(json_data, save_path)\n\n    return json_data",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Generate json"
+    ]
+  },
+  {
+    "objectID": "af3/json.html#split-the-files-to-subfolder",
+    "href": "af3/json.html#split-the-files-to-subfolder",
+    "title": "Generate json",
+    "section": "Split the files to subfolder",
+    "text": "Split the files to subfolder\n\nfor multi-GPUs\n\n\nsource\n\nsplit_nfolder\n\n split_nfolder (folder_dir, n=4)\n\nMove json files from a folder into subfolders (folder_0, folder_1, …, folder_N).\n\nsplit_nfolder(f'af_input/{project_name}')\n\nDistributed 2 files into 4 folders.",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Generate json"
+    ]
+  },
+  {
+    "objectID": "af3/json.html#end",
+    "href": "af3/json.html#end",
+    "title": "Generate json",
+    "section": "End",
+    "text": "End\n\nReference:\n\n# import collections\n# from collections.abc import Mapping, Sequence\n\n# from absl import logging\n# from alphafold3.cpp import cif_dict\n# import numpy as np\n# import rdkit.Chem as rd_chem\n# from rdkit.Chem import AllChem as rd_all_chem\n\n# def mol_to_ccd_cif(\n#     mol: rd_chem.Mol,\n#     component_id: str,\n#     pdbx_smiles: str | None = None,\n#     include_hydrogens: bool = True,\n# ) -&gt; cif_dict.CifDict:\n#   \"\"\"Creates a CCD-like mmcif data block from an rdkit Mol object.\n\n#   Only a subset of associated mmcif fields is populated, but that is\n#   sufficient for further usage, e.g. in featurization code.\n\n#   Atom names can be specified via `atom_name` property. For atoms with\n#   unspecified value of that property, the name is assigned based on element type\n#   and the order in the Mol object.\n\n#   If the Mol object has associated conformers, atom positions from the first of\n#   them will be populated in the resulting mmcif file.\n\n#   Args:\n#      mol: An rdkit molecule.\n#      component_id: Name of the molecule to use in the resulting mmcif. That is\n#        equivalent to CCD code.\n#      pdbx_smiles: If specified, the value will be used to populate\n#        `_chem_comp.pdbx_smiles`.\n#      include_hydrogens: Whether to include atom and bond data involving\n#        hydrogens.\n\n#   Returns:\n#      An mmcif data block corresponding for the given rdkit molecule.\n\n#   Raises:\n#     UnsupportedMolBond: When a molecule contains a bond that can't be\n#       represented with mmcif.\n#   \"\"\"\n#   mol = rd_chem.Mol(mol)\n#   if include_hydrogens:\n#     mol = rd_chem.AddHs(mol)\n#   rd_chem.Kekulize(mol)\n\n#   if mol.GetNumConformers() &gt; 0:\n#     ideal_conformer = mol.GetConformer(0).GetPositions()\n#     ideal_conformer = np.vectorize(lambda x: f'{x:.3f}')(ideal_conformer)\n#   else:\n#     # No data will be populated in the resulting mmcif if the molecule doesn't\n#     # have any conformers attached to it.\n#     ideal_conformer = None\n\n#   mol_cif = collections.defaultdict(list)\n#   mol_cif['data_'] = [component_id]\n#   mol_cif['_chem_comp.id'] = [component_id]\n#   if pdbx_smiles:\n#     mol_cif['_chem_comp.pdbx_smiles'] = [pdbx_smiles]\n\n#   mol = assign_atom_names_from_graph(mol, keep_existing_names=True)\n\n#   for atom_idx, atom in enumerate(mol.GetAtoms()):\n#     element = atom.GetSymbol()\n#     if not include_hydrogens and element in ('H', 'D'):\n#       continue\n\n#     mol_cif['_chem_comp_atom.comp_id'].append(component_id)\n#     mol_cif['_chem_comp_atom.atom_id'].append(atom.GetProp('atom_name'))\n#     mol_cif['_chem_comp_atom.type_symbol'].append(atom.GetSymbol().upper())\n#     mol_cif['_chem_comp_atom.charge'].append(str(atom.GetFormalCharge()))\n#     if ideal_conformer is not None:\n#       coords = ideal_conformer[atom_idx]\n#       mol_cif['_chem_comp_atom.pdbx_model_Cartn_x_ideal'].append(coords[0])\n#       mol_cif['_chem_comp_atom.pdbx_model_Cartn_y_ideal'].append(coords[1])\n#       mol_cif['_chem_comp_atom.pdbx_model_Cartn_z_ideal'].append(coords[2])\n\n#   for bond in mol.GetBonds():\n#     atom1 = bond.GetBeginAtom()\n#     atom2 = bond.GetEndAtom()\n#     if not include_hydrogens and (\n#         atom1.GetSymbol() in ('H', 'D') or atom2.GetSymbol() in ('H', 'D')\n#     ):\n#       continue\n#     mol_cif['_chem_comp_bond.comp_id'].append(component_id)\n#     mol_cif['_chem_comp_bond.atom_id_1'].append(\n#         bond.GetBeginAtom().GetProp('atom_name')\n#     )\n#     mol_cif['_chem_comp_bond.atom_id_2'].append(\n#         bond.GetEndAtom().GetProp('atom_name')\n#     )\n#     try:\n#       bond_type = bond.GetBondType()\n#       # Older versions of RDKit did not have a DATIVE bond type. Convert it to\n#       # SINGLE to match the AF3 training setup.\n#       if bond_type == rd_chem.BondType.DATIVE:\n#         bond_type = rd_chem.BondType.SINGLE\n#       mol_cif['_chem_comp_bond.value_order'].append(\n#           _RDKIT_BOND_TYPE_TO_MMCIF[bond_type]\n#       )\n#       mol_cif['_chem_comp_bond.pdbx_stereo_config'].append(\n#           _RDKIT_BOND_STEREO_TO_MMCIF[bond.GetStereo()]\n#       )\n#     except KeyError as e:\n#       raise UnsupportedMolBondError from e\n#     mol_cif['_chem_comp_bond.pdbx_aromatic_flag'].append(\n#         'Y' if bond.GetIsAromatic() else 'N'\n#     )\n\n#   return cif_dict.CifDict(mol_cif)",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Generate json"
+    ]
+  },
+  {
+    "objectID": "af3/protein_pairs.html",
+    "href": "af3/protein_pairs.html",
+    "title": "Protein pairs & ColabFold pipeline",
+    "section": "",
+    "text": "We use ColabFold MSA for protein pairs pipeline, as it takes shorter time",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Protein pairs & ColabFold pipeline"
+    ]
+  },
+  {
+    "objectID": "af3/protein_pairs.html#setup",
+    "href": "af3/protein_pairs.html#setup",
+    "title": "Protein pairs & ColabFold pipeline",
+    "section": "Setup",
+    "text": "Setup",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Protein pairs & ColabFold pipeline"
+    ]
+  },
+  {
+    "objectID": "af3/protein_pairs.html#setup-1",
+    "href": "af3/protein_pairs.html#setup-1",
+    "title": "Protein pairs & ColabFold pipeline",
+    "section": "Setup",
+    "text": "Setup\ndocker pull sky1ove/alphafold3",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Protein pairs & ColabFold pipeline"
+    ]
+  },
+  {
+    "objectID": "af3/protein_pairs.html#protein-pairs",
+    "href": "af3/protein_pairs.html#protein-pairs",
+    "title": "Protein pairs & ColabFold pipeline",
+    "section": "Protein pairs",
+    "text": "Protein pairs\nSince protein protein screening involves a lot of proteins, it takes a long time for AF3 default MSA pipeline, so we used colabfold MSA pipeline\n\nsource\n\nget_colabfold_cmd\n\n get_colabfold_cmd (csv_path, project_name)\n\n\nproject_name='sdf'\n\n\nget_colabfold_cmd('sdf.csv',project_name)\n\nRun below in terminal:\n\n colabfold_batch sdf.csv msa_sdf --msa-only",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Protein pairs & ColabFold pipeline"
+    ]
+  },
+  {
+    "objectID": "af3/protein_pairs.html#msa",
+    "href": "af3/protein_pairs.html#msa",
+    "title": "Protein pairs & ColabFold pipeline",
+    "section": "MSA",
+    "text": "MSA\n\nsource\n\ncopy_a3m\n\n copy_a3m (a3m_dir:str, dest_dir:str)\n\nCopies all .a3m files from the source directory to the destination directory.\n\n\n\n\n\n\n\n\n\nType\nDetails\n\n\n\n\na3m_dir\nstr\nPath to the source directory containing .a3m files.\n\n\ndest_dir\nstr\nPath to the destination directory where files will be copied\n\n\n\n\ncopy_a3m(a3m_dir='data',dest_dir='af_input')\n\nCopying files: 100%|██████████| 1/1 [00:00&lt;00:00, 637.53file/s]\n\n\nCopied 1 a3m files from data to af_input",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Protein pairs & ColabFold pipeline"
+    ]
+  },
+  {
+    "objectID": "af3/protein_pairs.html#protein-protein-input",
+    "href": "af3/protein_pairs.html#protein-protein-input",
+    "title": "Protein pairs & ColabFold pipeline",
+    "section": "Protein-protein input",
+    "text": "Protein-protein input\n\n\n\n\n\n\nImportant\n\n\n\nMake sure a3m files are under af_input, otherwise it won’t detect the files\n\n\n\nsource\n\na3m_to_seq\n\n a3m_to_seq (file_path:pathlib.Path)\n\nGet protein sequence from a3m file\n\na3m_to_seq(Path(f'af_input/{project_name}/a3m/CD8A.a3m'))\n\n'SQFRVSPLDRTWNLGETVELKCQVLLSNPTSGCSWLFQPRGAAASPTFLLYLSQNKPKAAEGLDTQRFSGKRLGDTFVLTLSDFRRENEGYYFCSALSNSIMYFSHFVPVFLPAKPTTTPAPRPPTPAPTIASQPLSLRPEACRPAAGGAVHTRGLDFACD'\n\n\n\nsource\n\n\nget_protein_subjson\n\n get_protein_subjson (gene_name, a3m_dir='.', idx='A', run_template=True)\n\nGet subjson (protein part) with colabfold unpairedMSA .a3m path\n\nsub_json = get_protein_subjson('CD8A',a3m_dir=f'af_input/{project_name}/a3m')\n\n\nsub_json\n\n{'id': 'A',\n 'sequence': 'SQFRVSPLDRTWNLGETVELKCQVLLSNPTSGCSWLFQPRGAAASPTFLLYLSQNKPKAAEGLDTQRFSGKRLGDTFVLTLSDFRRENEGYYFCSALSNSIMYFSHFVPVFLPAKPTTTPAPRPPTPAPTIASQPLSLRPEACRPAAGGAVHTRGLDFACD',\n 'modifications': [],\n 'unpairedMsaPath': '/root/af_input/sdf/a3m/CD8A.a3m',\n 'pairedMsa': '',\n 'templates': None}\n\n\n\nsource\n\n\ndump_json_folder\n\n dump_json_folder (json_data, folder)\n\nSave json under a folder\n\nsource\n\n\nget_multi_protein_json\n\n get_multi_protein_json (gene_list, a3m_dir, run_template=True,\n                         save_folder=None)\n\nGet json of multiple proteins, with unpaired MSA path indicated (from colabfold MSA)\n\nAF_input = get_multi_protein_json(['CD8A','CD8A'],\n                        a3m_dir=f'af_input/{project_name}/a3m',\n                        save_folder=f'af_input/{project_name}')\n\nYou can generate a list of json files under a folder.\n\nAF_input.keys(), len(AF_input['sequences'])\n\n(dict_keys(['name', 'modelSeeds', 'sequences', 'bondedAtomPairs', 'dialect', 'version']),\n 2)\n\n\n\nsource\n\n\ngenerate_pair_df\n\n generate_pair_df (gene_list, self_pair=True)\n\nUnique pair genes in a gene list\n\ngenerate_pair_df(list('ABC'))\n\n\n\n\n\n\n\n\nGene1\nGene2\n\n\n\n\n0\nA\nB\n\n\n1\nA\nC\n\n\n2\nB\nC\n\n\n3\nA\nA\n\n\n4\nB\nB\n\n\n5\nC\nC\n\n\n\n\n\n\n\n\ndf = generate_pair_df(['CD8A'])\ndf\n\n\n\n\n\n\n\n\nGene1\nGene2\n\n\n\n\n0\nCD8A\nCD8A\n\n\n\n\n\n\n\nGenerate json files first:\n\nfor idx, row in tqdm(df.iterrows(),total=len(df)):\n    json_data = get_multi_protein_json([row['Gene1'], row['Gene2']], \n                             a3m_dir=f'af_input/{project_name}/a3m', \n                             save_folder=f'af_input/{project_name}')\n\n100%|██████████| 1/1 [00:00&lt;00:00, 147.81it/s]\n\n\nSplit them to subfolder:\n\nsplit_nfolder(f'af_input/{project_name}')\n\nDistributed 1 files into 4 folders.",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Protein pairs & ColabFold pipeline"
+    ]
+  },
+  {
+    "objectID": "af3/protein_pairs.html#docker",
+    "href": "af3/protein_pairs.html#docker",
+    "title": "Protein pairs & ColabFold pipeline",
+    "section": "Docker",
+    "text": "Docker\nTodo: Pair proteins\nfor i in range(4):\n    get_docker_command(input_dir=f\"af_input/{project_name}/folder_{i}\",\n                       output_dir=f\"af_output/{project_name}\",\n                       gpus=i)",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Protein pairs & ColabFold pipeline"
+    ]
+  },
+  {
+    "objectID": "af3/protein_pairs.html#end",
+    "href": "af3/protein_pairs.html#end",
+    "title": "Protein pairs & ColabFold pipeline",
+    "section": "End",
+    "text": "End",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Protein pairs & ColabFold pipeline"
+    ]
+  },
+  {
+    "objectID": "af3/protein_pairs.html#utils",
+    "href": "af3/protein_pairs.html#utils",
+    "title": "Protein pairs & ColabFold pipeline",
+    "section": "Utils",
+    "text": "Utils\n\n# #| export\n# def split_files_into_subfolders(input_folder: str, nfolder: int = 4):\n    \n#     \"Splits `.a3m` files in a folder into subfolders (folder_0, folder_1, ..., folder_N).\"\n    \n#     input_path = Path(input_folder)\n#     if not input_path.is_dir():\n#         raise ValueError(f\"Input folder {input_folder} does not exist or is not a directory.\")\n\n#     # List all `.a3m` files\n#     a3m_files = sorted(input_path.glob(\"*.a3m\"))\n#     if not a3m_files:\n#         print(\"No `.a3m` files found in the input folder.\")\n#         return\n\n#     # Create the subfolders\n#     subfolders = [input_path / f\"folder_{i}\" for i in range(nfolder)]\n#     for folder in subfolders:\n#         folder.mkdir(exist_ok=True)\n\n#     # Distribute the files into the subfolders\n#     for idx, file in enumerate(a3m_files):\n#         target_folder = subfolders[idx % nfolder]\n#         shutil.move(str(file), target_folder / file.name)\n\n#     print(f\"Distributed {len(a3m_files)} files into {nfolder} folders.\")",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Protein pairs & ColabFold pipeline"
+    ]
+  },
+  {
+    "objectID": "data/feature.html#rdkit-feature",
+    "href": "data/feature.html#rdkit-feature",
+    "title": "Feature",
+    "section": "Rdkit feature",
+    "text": "Rdkit feature\n\nsource\n\nget_rdkit\n\n get_rdkit (SMILES:str)\n\nExtract chemical features from SMILES Reference: https://greglandrum.github.io/rdkit-blog/posts/2022-12-23-descriptor-tutorial.html\n\nsource\n\n\nget_rdkit_3d\n\n get_rdkit_3d (SMILES:str)\n\nExtract 3d features from SMILES\n\nsource\n\n\nget_rdkit_all\n\n get_rdkit_all (SMILES:str)\n\nExtract chemical features and 3d features from SMILES\n\nsource\n\n\nremove_hi_corr\n\n remove_hi_corr (df:pandas.core.frame.DataFrame, thr=0.99)\n\nRemove highly correlated features in a dataframe given a pearson threshold\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ndf\nDataFrame\n\n\n\n\nthr\nfloat\n0.99\nthreshold\n\n\n\n\nsource\n\n\npreprocess\n\n preprocess (df:pandas.core.frame.DataFrame, thr=0.99)\n\nRemove features with no variance, and highly correlated features based on threshold.\n\nsource\n\n\nget_rdkit_df\n\n get_rdkit_df (df:pandas.core.frame.DataFrame, include_3d=False,\n               col='SMILES', postprocess=False, chunksize=128)\n\nExtract rdkit features (optionally in parallel with 3D) from SMILES in a df\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ndf\nDataFrame\n\n\n\n\ninclude_3d\nbool\nFalse\n\n\n\ncol\nstr\nSMILES\n\n\n\npostprocess\nbool\nFalse\n\n\n\nchunksize\nint\n128\nfor parallel process_map\n\n\n\n\n# df=Data.collins.get_antibiotics_2k().head(300)\n# df.head()\n\n\n# %%time\n# feat_raw=get_rdkit_df(df)\n# feat_raw\n\n\n# feat = get_rdkit_df(df,postprocess=True)\n# feat",
+    "crumbs": [
+      "Home",
+      "Data",
+      "Feature"
+    ]
+  },
+  {
+    "objectID": "data/feature.html#morgan-fingerprints-ecfp",
+    "href": "data/feature.html#morgan-fingerprints-ecfp",
+    "title": "Feature",
+    "section": "Morgan fingerprints (ECFP)",
+    "text": "Morgan fingerprints (ECFP)\nReference: - kaggle notebook, scikit-fingerprints - scikit-fingerprints github - kaggle notebook, fingerprint tips and tricks\n\nsource\n\nget_fp\n\n get_fp (SMILES, name='ecfp', ELEMENTS_PER_WORKER=1000000)\n\nSuper fast method to get molecule fingerprints using scikit-fingerprints\n\n# %%time\n# fp = get_fp(df.SMILES, name='ecfp')\n# fp",
+    "crumbs": [
+      "Home",
+      "Data",
+      "Feature"
+    ]
+  },
+  {
+    "objectID": "data/feature.html#use-np.packbits-to-save-space",
+    "href": "data/feature.html#use-np.packbits-to-save-space",
+    "title": "Feature",
+    "section": "Use np.packbits to save space",
+    "text": "Use np.packbits to save space\n\nSave space when dealing with super big dataset\n\nPackbits will transform binary to decimals, if it is [1, 0, 1, 1, 0, 0, 0, 0, 1, 1], then it will take 8 bits in the sequence, [10110000] and [11000000], for the latter, if not enough for 8 bits length, it will add 0.\nTo transform binary to decimals, take [10110000] for example, calculate through 12^7 + 02^6 + 12^5 + 12^4 + 02^3 + 02^2 + 02^1 + 02^0=176\n\nsource\n\ncompress_fp\n\n compress_fp (array)\n\nCompress binary finterprints using np.packbits\n\n# compress_fp(fp)",
+    "crumbs": [
+      "Home",
+      "Data",
+      "Feature"
+    ]
+  },
+  {
+    "objectID": "data/feature.html#tanimoto",
+    "href": "data/feature.html#tanimoto",
+    "title": "Feature",
+    "section": "Tanimoto",
+    "text": "Tanimoto\nReference: https://www.kaggle.com/code/towardsentropy/fingerprint-tips-and-tricks/notebook\nSlow version:\nMethod 1\n\nfrom scipy.spatial import distance\n\n\n# %%time\n# tanimotos_scipy = 1-distance.cdist(fp, fp, metric='jaccard')\n# # 30.4s\n\nA little faster with parallel\n\nfrom sklearn.metrics import pairwise_distances\n\n\n# %%time\n# tanimotos_sklearn = 1 - pairwise_distances(fp, metric='jaccard', n_jobs=-1)\n# # 13.1s\n\nMethod 2\n\nfrom rdkit.Chem import DataStructs\n\n\n# %%time\n# tanimotos_rdkit = np.array([DataStructs.BulkTanimotoSimilarity(i, fp) for i in fp])\n\nMethod 3\n\ndef tanimoto_bitwise(fps_np):\n    intersection = (fps_np[:,None] & fps_np[None]).sum(-1)\n    union = (fps_np[:,None] | fps_np[None]).sum(-1)\n    return intersection / union\n\n\n# tanimoto_bitwise(fp)\n\n\nNumba tanimoto\n\nsource\n\n\ntanimoto_numba\n\n tanimoto_numba (fps)\n\nGet a NxN matrix of tanimoto similarity among N compounds.\n\n# %%time\n# tanimoto_numba(fp)",
+    "crumbs": [
+      "Home",
+      "Data",
+      "Feature"
+    ]
+  },
+  {
+    "objectID": "data/feature.html#group-same-compounds",
+    "href": "data/feature.html#group-same-compounds",
+    "title": "Feature",
+    "section": "Group same compounds",
+    "text": "Group same compounds\n\nUtilize hash sha256 to encode morgan fp and find same molecule\n\n\nsource\n\nhash_fp\n\n hash_fp (fp_row)\n\nHash a binary fingerprint row using SHA256\n\n# hash_fp(fp[0])\n\n\nsource\n\n\nget_same_mol_group\n\n get_same_mol_group (df, smi_col='SMILES')\n\nAssign a group number to the same compounds by utilizing hash sha256 to encode morgan fp and find same molecule.\n\n# %%time\n# df2 = get_same_mol_group(df)\n# df2.group.value_counts()",
+    "crumbs": [
+      "Home",
+      "Data",
+      "Feature"
+    ]
+  },
+  {
+    "objectID": "data/feature.html#dimensionality-reduction",
+    "href": "data/feature.html#dimensionality-reduction",
+    "title": "Feature",
+    "section": "Dimensionality reduction",
+    "text": "Dimensionality reduction\n\nsource\n\nreduce_feature\n\n reduce_feature (data, method='pca', complexity=20, n=2, seed:int=123,\n                 **kwargs)\n\nReduce the dimensionality given a dataframe of values\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ndata\n\n\ndf or numpy array\n\n\nmethod\nstr\npca\ndimensionality reduction method, accept both capital and lower case\n\n\ncomplexity\nint\n20\nNone for PCA; perfplexity for TSNE, recommend: 30; n_neigbors for UMAP, recommend: 15\n\n\nn\nint\n2\nn_components\n\n\nseed\nint\n123\nseed for random_state\n\n\nkwargs\nVAR_KEYWORD\n\n\n\n\n\n\n# pca = reduce_feature(fp,'pca',n=10)\n# pca",
+    "crumbs": [
+      "Home",
+      "Data",
+      "Feature"
+    ]
+  },
+  {
+    "objectID": "data/feature.html#end",
+    "href": "data/feature.html#end",
+    "title": "Feature",
+    "section": "End",
+    "text": "End",
+    "crumbs": [
+      "Home",
+      "Data",
+      "Feature"
+    ]
+  },
+  {
+    "objectID": "data/feature.html#old",
+    "href": "data/feature.html#old",
+    "title": "Feature",
+    "section": "Old",
+    "text": "Old",
+    "crumbs": [
+      "Home",
+      "Data",
+      "Feature"
+    ]
+  },
+  {
+    "objectID": "data/core.html#compound-datahub",
+    "href": "data/core.html#compound-datahub",
+    "title": "Core",
+    "section": "Compound Datahub",
+    "text": "Compound Datahub\n\nsource\n\nData\n\n Data ()\n\nA class for fetching various datasets.\n\n\nCollins lab dataset\nPublication list is available on the lab page\n\n\n\nData.collins.get_antibiotics_2k\n\n Data.collins.get_antibiotics_2k ()\n\nAntibiotics dataset of 50 µM 2,560 compounds screening in E. coli K12 BW25113. 2,335 unique compounds after deduplicated. Table S1B from 2020 Cell: A Deep Learning Approach to Antibiotic Discovery.\n\n\n\nData.collins.get_antibiotics_39k\n\n Data.collins.get_antibiotics_39k ()\n\nAntibiotics dataset of 50 µM 39,128 compounds screening in E. coli K12 BW25113. Supplementary dataset EV1 from 2022 Molecular Systems Biology: Benchmarking AlphaFold-enabled molecular docking predictions for antibiotic discovery.\n\n\n\nData.collins.get_antibiotics_enzyme\n\n Data.collins.get_antibiotics_enzyme ()\n\nAntibiotics enzymatic inhibition dataset of 100 µM 218 compounds and 12 essential proteins in E. coli K12 BW25113. Flattened benchmark dataset/Supplementary EV4 from 2022 Molecular Systems Biology: Benchmarking AlphaFold-enabled molecular docking predictions for antibiotic discovery.\n\n\nKras inhibitors\n\n\n\nData.kras.get_mirati_g12d_raw\n\n Data.kras.get_mirati_g12d_raw ()\n\nRaw G12D dataset from the paper and patents without deduplication\n\n\n\nData.kras.get_mirati_g12d\n\n Data.kras.get_mirati_g12d ()\n\nDeduplicated G12D dataset from the mirati paper and patents.\n\n\n\nData.kras.get_seq\n\n Data.kras.get_seq ()\n\nProtein sequence of human KRAS and its mutants G12D and G12C.",
+    "crumbs": [
+      "Home",
+      "Data",
+      "Core"
+    ]
+  },
+  {
+    "objectID": "data/core.html#uniprot-sequence",
+    "href": "data/core.html#uniprot-sequence",
+    "title": "Core",
+    "section": "Uniprot sequence",
+    "text": "Uniprot sequence\n\nsource\n\nget_uniprot_seq\n\n get_uniprot_seq (uniprot_id)\n\nQueries the UniProt database to retrieve the protein sequence for a given UniProt ID.\n\nget_uniprot_seq('P04626')\n\n'MELAALCRWGLLLALLPPGAASTQVCTGTDMKLRLPASPETHLDMLRHLYQGCQVVQGNLELTYLPTNASLSFLQDIQEVQGYVLIAHNQVRQVPLQRLRIVRGTQLFEDNYALAVLDNGDPLNNTTPVTGASPGGLRELQLRSLTEILKGGVLIQRNPQLCYQDTILWKDIFHKNNQLALTLIDTNRSRACHPCSPMCKGSRCWGESSEDCQSLTRTVCAGGCARCKGPLPTDCCHEQCAAGCTGPKHSDCLACLHFNHSGICELHCPALVTYNTDTFESMPNPEGRYTFGASCVTACPYNYLSTDVGSCTLVCPLHNQEVTAEDGTQRCEKCSKPCARVCYGLGMEHLREVRAVTSANIQEFAGCKKIFGSLAFLPESFDGDPASNTAPLQPEQLQVFETLEEITGYLYISAWPDSLPDLSVFQNLQVIRGRILHNGAYSLTLQGLGISWLGLRSLRELGSGLALIHHNTHLCFVHTVPWDQLFRNPHQALLHTANRPEDECVGEGLACHQLCARGHCWGPGPTQCVNCSQFLRGQECVEECRVLQGLPREYVNARHCLPCHPECQPQNGSVTCFGPEADQCVACAHYKDPPFCVARCPSGVKPDLSYMPIWKFPDEEGACQPCPINCTHSCVDLDDKGCPAEQRASPLTSIISAVVGILLVVVLGVVFGILIKRRQQKIRKYTMRRLLQETELVEPLTPSGAMPNQAQMRILKETELRKVKVLGSGAFGTVYKGIWIPDGENVKIPVAIKVLRENTSPKANKEILDEAYVMAGVGSPYVSRLLGICLTSTVQLVTQLMPYGCLLDHVRENRGRLGSQDLLNWCMQIAKGMSYLEDVRLVHRDLAARNVLVKSPNHVKITDFGLARLLDIDETEYHADGGKVPIKWMALESILRRRFTHQSDVWSYGVTVWELMTFGAKPYDGIPAREIPDLLEKGERLPQPPICTIDVYMIMVKCWMIDSECRPRFRELVSEFSRMARDPQRFVVIQNEDLGPASPLDSTFYRSLLEDDDMGDLVDAEEYLVPQQGFFCPDPAPGAGGMVHHRHRSSSTRSGGGDLTLGLEPSEEEAPRSPLAPSEGAGSDVFDGDLGMGAAKGLQSLPTHDPSPLQRYSEDPTVPLPSETDGYVAPLTCSPQPEYVNQPDVRPQPPSPREGPLPAARPAGATLERPKTLSPGKNGVVKDVFAFGGAVENPEYLTPQGGAAPQPHPPPAFSPAFDNLYYWDQDPPERGAPPSTFKGTPTAENPEYLGLDVPV'\n\n\n\nsource\n\n\nget_uniprot_features\n\n get_uniprot_features (uniprot_id)\n\nGiven uniprot_id, get specific region for uniprot features.\n\nget_uniprot_features('P04626')[:3]\n\n[{'type': 'Signal',\n  'location': {'start': {'value': 1, 'modifier': 'EXACT'},\n   'end': {'value': 22, 'modifier': 'EXACT'}},\n  'description': '',\n  'evidences': [{'evidenceCode': 'ECO:0000255'}]},\n {'type': 'Chain',\n  'location': {'start': {'value': 23, 'modifier': 'EXACT'},\n   'end': {'value': 1255, 'modifier': 'EXACT'}},\n  'description': 'Receptor tyrosine-protein kinase erbB-2',\n  'featureId': 'PRO_0000016669'},\n {'type': 'Topological domain',\n  'location': {'start': {'value': 23, 'modifier': 'EXACT'},\n   'end': {'value': 652, 'modifier': 'EXACT'}},\n  'description': 'Extracellular',\n  'evidences': [{'evidenceCode': 'ECO:0000255'}]}]\n\n\n\nsource\n\n\nget_uniprot_kd\n\n get_uniprot_kd (uniprot_id)\n\nGet kinase domain sequences based on UniProt ID.\n\nget_uniprot_kd('P04626')\n\n[{'uniprot_id': 'P04626',\n  'type': 'Domain',\n  'start': 720,\n  'end': 987,\n  'description': 'Protein kinase',\n  'sequence': 'LRKVKVLGSGAFGTVYKGIWIPDGENVKIPVAIKVLRENTSPKANKEILDEAYVMAGVGSPYVSRLLGICLTSTVQLVTQLMPYGCLLDHVRENRGRLGSQDLLNWCMQIAKGMSYLEDVRLVHRDLAARNVLVKSPNHVKITDFGLARLLDIDETEYHADGGKVPIKWMALESILRRRFTHQSDVWSYGVTVWELMTFGAKPYDGIPAREIPDLLEKGERLPQPPICTIDVYMIMVKCWMIDSECRPRFRELVSEFSRMARDPQRFV'}]\n\n\n\nsource\n\n\nget_uniprot_type\n\n get_uniprot_type (uniprot_id, type_='Signal')\n\nGet region sequences based on UniProt ID features.\n\nget_uniprot_type('P04626','Signal') # signal peptide\n\n[{'uniprot_id': 'P04626',\n  'type': 'Signal',\n  'start': 1,\n  'end': 22,\n  'description': '',\n  'sequence': 'MELAALCRWGLLLALLPPGAAS'}]\n\n\n\nget_uniprot_type('P04626','Transmembrane') # tm domain\n\n[{'uniprot_id': 'P04626',\n  'type': 'Transmembrane',\n  'start': 653,\n  'end': 675,\n  'description': 'Helical',\n  'sequence': 'SIISAVVGILLVVVLGVVFGILI'}]",
+    "crumbs": [
+      "Home",
+      "Data",
+      "Core"
+    ]
+  },
+  {
+    "objectID": "data/core.html#mutate-sequence",
+    "href": "data/core.html#mutate-sequence",
+    "title": "Core",
+    "section": "Mutate sequence",
+    "text": "Mutate sequence\n\nsource\n\nmutate\n\n mutate (seq, *mutations, verbose=True)\n\nApply mutations to a protein sequence.\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nseq\n\n\nprotein sequence\n\n\nmutations\nVAR_POSITIONAL\n\ne.g., E709A\n\n\nverbose\nbool\nTrue\n\n\n\n\n\nseq = get_uniprot_seq('P04626')\nmut_seq = mutate(seq,'M1A','E2S')\nmut_seq\n\nConverted: M1A\nConverted: E2S\n\n\n'ASLAALCRWGLLLALLPPGAASTQVCTGTDMKLRLPASPETHLDMLRHLYQGCQVVQGNLELTYLPTNASLSFLQDIQEVQGYVLIAHNQVRQVPLQRLRIVRGTQLFEDNYALAVLDNGDPLNNTTPVTGASPGGLRELQLRSLTEILKGGVLIQRNPQLCYQDTILWKDIFHKNNQLALTLIDTNRSRACHPCSPMCKGSRCWGESSEDCQSLTRTVCAGGCARCKGPLPTDCCHEQCAAGCTGPKHSDCLACLHFNHSGICELHCPALVTYNTDTFESMPNPEGRYTFGASCVTACPYNYLSTDVGSCTLVCPLHNQEVTAEDGTQRCEKCSKPCARVCYGLGMEHLREVRAVTSANIQEFAGCKKIFGSLAFLPESFDGDPASNTAPLQPEQLQVFETLEEITGYLYISAWPDSLPDLSVFQNLQVIRGRILHNGAYSLTLQGLGISWLGLRSLRELGSGLALIHHNTHLCFVHTVPWDQLFRNPHQALLHTANRPEDECVGEGLACHQLCARGHCWGPGPTQCVNCSQFLRGQECVEECRVLQGLPREYVNARHCLPCHPECQPQNGSVTCFGPEADQCVACAHYKDPPFCVARCPSGVKPDLSYMPIWKFPDEEGACQPCPINCTHSCVDLDDKGCPAEQRASPLTSIISAVVGILLVVVLGVVFGILIKRRQQKIRKYTMRRLLQETELVEPLTPSGAMPNQAQMRILKETELRKVKVLGSGAFGTVYKGIWIPDGENVKIPVAIKVLRENTSPKANKEILDEAYVMAGVGSPYVSRLLGICLTSTVQLVTQLMPYGCLLDHVRENRGRLGSQDLLNWCMQIAKGMSYLEDVRLVHRDLAARNVLVKSPNHVKITDFGLARLLDIDETEYHADGGKVPIKWMALESILRRRFTHQSDVWSYGVTVWELMTFGAKPYDGIPAREIPDLLEKGERLPQPPICTIDVYMIMVKCWMIDSECRPRFRELVSEFSRMARDPQRFVVIQNEDLGPASPLDSTFYRSLLEDDDMGDLVDAEEYLVPQQGFFCPDPAPGAGGMVHHRHRSSSTRSGGGDLTLGLEPSEEEAPRSPLAPSEGAGSDVFDGDLGMGAAKGLQSLPTHDPSPLQRYSEDPTVPLPSETDGYVAPLTCSPQPEYVNQPDVRPQPPSPREGPLPAARPAGATLERPKTLSPGKNGVVKDVFAFGGAVENPEYLTPQGGAAPQPHPPPAFSPAFDNLYYWDQDPPERGAPPSTFKGTPTAENPEYLGLDVPV'\n\n\n\nsource\n\n\ncompare_seq\n\n compare_seq (original_seq, mutated_seq)\n\nCompare original and mutated sequences.\n\ncompare_seq(seq,mut_seq)\n\nDifferences found at positions:\n  Position 1: M → A\n  Position 2: E → S",
+    "crumbs": [
+      "Home",
+      "Data",
+      "Core"
+    ]
+  },
+  {
+    "objectID": "data/core.html#copy-files",
+    "href": "data/core.html#copy-files",
+    "title": "Core",
+    "section": "Copy files",
+    "text": "Copy files\nUsing list(Path('files').rglob('*.pdb')) will get all the pdb files of subfolders. Here we define a function that can limit the depth of search.\n\nsource\n\nrglob\n\n rglob (path, pattern, max_depth)\n\nGet a file list given folder depths\n\nfile_list = list(rglob('files','*.pdb',1))\nfile_list\n\n[Path('/teamspace/studios/this_studio/kdock/nbs/data/files/7OFF.pdb'),\n Path('/teamspace/studios/this_studio/kdock/nbs/data/files/7OFF_lig.pdb'),\n Path('/teamspace/studios/this_studio/kdock/nbs/data/files/7OFF_receptor.pdb')]\n\n\n\nsource\n\n\ncopy_files\n\n copy_files (file_list, dest_dir)\n\nCopy a list of files to the destination directory, or zip them if dest_dir ends with .zip.\n\n# copy_files(file_list,'files/protein.zip') # support zip\ncopy_files(file_list,'files/protein')\n\nCopied 3 files to files/protein",
+    "crumbs": [
+      "Home",
+      "Data",
+      "Core"
+    ]
+  },
+  {
+    "objectID": "data/core.html#conformer",
+    "href": "data/core.html#conformer",
+    "title": "Core",
+    "section": "Conformer",
+    "text": "Conformer\n\nsource\n\nrdkit_conformer\n\n rdkit_conformer (SMILES, output=None, method='ETKDG', visualize=True,\n                  seed=3)\n\nGemerate 3D conformers from SMILES\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nSMILES\n\n\nSMILES string\n\n\noutput\nNoneType\nNone\nfile “.sdf” to be saved\n\n\nmethod\nstr\nETKDG\nOptimization method, can be ‘UFF’, ‘MMFF’ or ‘ETKDGv3’\n\n\nvisualize\nbool\nTrue\nwhether or not to visualize the compound\n\n\nseed\nint\n3\nrandomness of the 3D conformation\n\n\n\n\nrdkit_conformer('CC1=C(C=CC(=C1)NC2=NC=NC3=CN=C(N=C32)N4CCC(CC4)NC(=O)C=C)OC5=CC6=C(C=C5)N(C=N6)C')",
+    "crumbs": [
+      "Home",
+      "Data",
+      "Core"
+    ]
+  },
+  {
+    "objectID": "data/core.html#get-receptor-and-ligand-from-pdb",
+    "href": "data/core.html#get-receptor-and-ligand-from-pdb",
+    "title": "Core",
+    "section": "Get receptor and ligand from pdb",
+    "text": "Get receptor and ligand from pdb\n\nsource\n\nget_rec_lig\n\n get_rec_lig (pdb_id:str, lig_id:str, out_dir='.')\n\nDownload pdb and extract receptor and ligand from a PDB ID.\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\npdb_id\nstr\n\npdb id for download\n\n\nlig_id\nstr\n\nligand id shown on the protein page\n\n\nout_dir\nstr\n.\ndirectory path to save pdb files\n\n\n\n\nrec_path,lig_path = get_rec_lig('7OFF','VCB','files')\nrec_path,lig_path\n\n7OFF.pdb is detected!\n\n\n('/teamspace/studios/this_studio/kdock/nbs/data/files/7OFF_receptor.pdb',\n '/teamspace/studios/this_studio/kdock/nbs/data/files/7OFF_lig.sdf')",
+    "crumbs": [
+      "Home",
+      "Data",
+      "Core"
+    ]
+  },
+  {
+    "objectID": "data/core.html#get-ligand-box",
+    "href": "data/core.html#get-ligand-box",
+    "title": "Core",
+    "section": "Get ligand box",
+    "text": "Get ligand box\n\nsource\n\nget_box\n\n get_box (sdf_file, autobox_add=4.0, tolist=False)\n\nGet the box coordinates of ligand.sdf; mimic GNINA’s –autobox_ligand behavior.\n\nbox = get_box(lig_path)\nbox\n\n{'center_x': 38.848,\n 'center_y': -26.77,\n 'center_z': 10.419,\n 'size_x': 14.652,\n 'size_y': 8.942,\n 'size_z': 12.509}\n\n\n\nbox_list = get_box(lig_path,tolist=True)\nbox_list\n\n[38.848, -26.77, 10.419, 14.652, 8.942, 12.509]\n\n\n\nsource\n\n\ntanimoto\n\n tanimoto (df, smiles_col='SMILES', id_col='ID', target_col=None,\n           radius=2)\n\nCalculates the Tanimoto similarity scores between all pairs of molecules in a pandas DataFrame.\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ndf\n\n\ndf with SMILES and ID columns\n\n\nsmiles_col\nstr\nSMILES\ncolname of SMILES\n\n\nid_col\nstr\nID\ncolname of compound ID\n\n\ntarget_col\nNoneType\nNone\ncolname of compound values (e.g., IC50)\n\n\nradius\nint\n2\nradius of the Morgan fingerprint.\n\n\n\n\ndf = Data.kras.get_mirati_g12d_raw()[['ID','SMILES','IC50']]\ndf = df.dropna(subset= 'IC50').reset_index(drop=True)\n\n\ndf.head()\n\n\n\n\n\n\n\n\nID\nSMILES\nIC50\n\n\n\n\n0\nUS_1\nCN1CCC[C@H]1COc1nc(N2CC3CCC(C2)N3)c2cnc(cc2n1)...\n124.7\n\n\n1\nUS_2\nCN1CCC[C@H]1COc1nc(N2CC3CCC(C2)N3)c2cnc(c(F)c2...\n2.7\n\n\n2\nUS_3\nCn1ccnc1CCOc1nc(N2CC3CCC(C2)N3)c2cnc(c(F)c2n1)...\n9.5\n\n\n3\nUS_4\nOc1cc(-c2ncc3c(nc(OCCc4ccccn4)nc3c2F)N2CC3CCC(...\n496.2\n\n\n4\nUS_5\nCn1nccc1COc1nc(N2CC3CCC(C2)N3)c2cnc(c(F)c2n1)-...\n722.9\n\n\n\n\n\n\n\n\n# result = tanimoto(df.head(), target_col = 'IC50')",
+    "crumbs": [
+      "Home",
+      "Data",
+      "Core"
+    ]
+  },
+  {
+    "objectID": "data/core.html#end",
+    "href": "data/core.html#end",
+    "title": "Core",
+    "section": "End",
+    "text": "End",
+    "crumbs": [
+      "Home",
+      "Data",
+      "Core"
+    ]
+  },
+  {
+    "objectID": "gnina/gnina_af3_rescore.html#split-the-af3-output-.cif-into-protein.pdb-and-ligand.sdf",
+    "href": "gnina/gnina_af3_rescore.html#split-the-af3-output-.cif-into-protein.pdb-and-ligand.sdf",
+    "title": "AF3 rescore with gnina",
+    "section": "Split the AF3 output .cif into protein.pdb and ligand.sdf",
+    "text": "Split the AF3 output .cif into protein.pdb and ligand.sdf\n\nsource\n\nChainSelect\n\n ChainSelect (chain_ids)\n\nSelect chain to save\n\nsource\n\n\nrename_residues\n\n rename_residues (structure, chain_id, new_resname='LIG')\n\nRename residue name from LIG_L to LIG as LIG_L exceeds lengths and leads to error in RDKit\n\nsource\n\n\nsplit_cif\n\n split_cif (cif_path, rec_chain_id, lig_chain_id, rec_pdb_path,\n            lig_pdb_path)\n\nSplit AF3 output CIF to protein and ligand PDBs\n\nsource\n\n\npdb2sdf\n\n pdb2sdf (pdb_path, sdf_path)\n\nConvert ligand pdb to sdf file\n\nsource\n\n\nprepare_rec_lig\n\n prepare_rec_lig (cif_path, rec_chain_id, lig_chain_id, rec_pdb_path,\n                  lig_pdb_path)\n\nSplit AF3 cif to protein.pdb (chainA) and ligand.sdf (chainL)\n\n# AF3 output\nprepare_rec_lig('gnina_test/cif/test.cif','A','L','gnina_test/chain_A.pdb','gnina_test/chain_L.sdf')\n\n\n# Protenix output\nprepare_rec_lig('gnina_test/protenix_cif/test.cif','A','B','gnina_test/protenix_A.pdb','gnina_test/protenix_B.sdf')",
+    "crumbs": [
+      "Home",
+      "GNINA",
+      "AF3 rescore with gnina"
+    ]
+  },
+  {
+    "objectID": "gnina/gnina_af3_rescore.html#gnina-score",
+    "href": "gnina/gnina_af3_rescore.html#gnina-score",
+    "title": "AF3 rescore with gnina",
+    "section": "gnina score",
+    "text": "gnina score\nAccording to gnina doc:\ngnina -r chain_A.pdb -l chain_L.sdf --minimize -o minimized.sdf.gz\n\nsource\n\ngnina_rescore_local\n\n gnina_rescore_local (protein_pdb, ligand_sdf, CNN_affinity=True,\n                      vinardo=False)\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nprotein_pdb\n\n\nreceptor file\n\n\nligand_sdf\n\n\nligand file\n\n\nCNN_affinity\nbool\nTrue\n\n\n\nvinardo\nbool\nFalse\nif True, use vinardo instead of vina\n\n\n\n\n# %%time\n# out = gnina_rescore_local('gnina_test/chain_A.pdb',\n#                           'gnina_test/chain_L.sdf',\n#                           CNN_affinity=False\n#                           )\n# out\n\n\nsource\n\n\ngnina_rescore_docker\n\n gnina_rescore_docker (protein_pdb, ligand_sdf, CNN_affinity=True,\n                       vinardo=False)\n\nRun GNINA rescoring using Docker. Supports receptor and ligand in different folders.\n\n# %%time\n# out = gnina_rescore_docker('gnina_test/chain_A.pdb',\n#                            'gnina_test/chain_L.sdf',\n#                            CNN_affinity=False)\n# out\n\n\nsource\n\n\nextract_gnina_rescore\n\n extract_gnina_rescore (txt)\n\nExtract GNINA output metrics into a dictionary (partial match allowed).\n\nout = \"              _             \\n             (_)            \\n   __ _ _ __  _ _ __   __ _ \\n  / _` | '_ \\\\| | '_ \\\\ / _` |\\n | (_| | | | | | | | | (_| |\\n  \\\\__, |_| |_|_|_| |_|\\\\__,_|\\n   __/ |                    \\n  |___/                     \\n\\ngnina  master:e9cb230+   Built Feb 11 2023.\\ngnina is based on smina and AutoDock Vina.\\nPlease cite appropriately.\\n\\nWARNING: No GPU detected. CNN scoring will be slow.\\nRecommend running with single model (--cnn crossdock_default2018)\\nor without cnn scoring (--cnn_scoring=none).\\n\\nCommandline: ./gnina -r chain_A.pdb -l chain_L.sdf --minimize\\nAffinity: -10.96345  -1.51405 (kcal/mol)\\nRMSD: 1.15404\\nCNNscore: 0.49978 \\nCNNaffinity: 7.32008\\nCNNvariance: 0.18500\\n\"\n\n\nextract_gnina_rescore(out)\n\n{'binding_energy': -10.96345,\n 'uncertainty': -1.51405,\n 'RMSD': 1.15404,\n 'CNNscore': 0.49978,\n 'CNNaffinity': 7.32008,\n 'CNNvariance': 0.185}\n\n\n\n# set CNN affinity to False\nout2 = \"              _             \\n             (_)            \\n   __ _ _ __  _ _ __   __ _ \\n  / _` | '_ \\\\| | '_ \\\\ / _` |\\n | (_| | | | | | | | | (_| |\\n  \\\\__, |_| |_|_|_| |_|\\\\__,_|\\n   __/ |                    \\n  |___/                     \\n\\ngnina v1.1 master:e4cb380+   Built Dec 18 2023.\\ngnina is based on smina and AutoDock Vina.\\nPlease cite appropriately.\\n\\nWARNING: No GPU detected. CNN scoring will be slow.\\nRecommend running with single model (--cnn crossdock_default2018)\\nor without cnn scoring (--cnn_scoring=none).\\n\\nCommandline: ./gnina -r gnina_test/chain_A.pdb -l gnina_test/chain_L.sdf --minimize --cnn_scoring none\\nAffinity: -10.96345  -1.51405 (kcal/mol)\\nRMSD: 1.15404\\nCNNscore: -1.00000 \\nCNNaffinity: 0.00000\\n\"\n\n\nextract_gnina_rescore(out2)\n\n{'binding_energy': -10.96345,\n 'uncertainty': -1.51405,\n 'RMSD': 1.15404,\n 'CNNscore': -1.0,\n 'CNNaffinity': 0.0}\n\n\n\nsource\n\n\nget_gnina_rescore\n\n get_gnina_rescore (cif_path, rec_chain_id='A', lig_chain_id='L',\n                    CNN_affinity=True, vinardo=False, is_local=True)\n\nSplit the CIF into receptor and ligand folders, then extract the GNINA rescored affinity score\n\n# get_gnina_rescore('gnina_test/cif/test.cif',\n#                   rec_chain_id='A', \n#                   lig_chain_id='L',\n#                   CNN_affinity=False,\n#                   is_local=True)\n\n\n# get_gnina_rescore('gnina_test/cif/test.cif',\n#                   rec_chain_id='A', \n#                   lig_chain_id='L',\n#                   CNN_affinity=False,\n#                   vinardo=True,\n#                   is_local=True)\n\nNon-parallel for multiple .cif files:\n\n# cifs = L(Path('gnina_test/cif').expanduser().glob(\"*.cif\")) # just take cif file\n\n# out = {p.stem: get_gnina_rescore(p) for p in tqdm(cifs)}\n\n# out_df = pd.DataFrame(out).T\n\n\nsource\n\n\nget_gnina_rescore_folder\n\n get_gnina_rescore_folder (cif_folder, rec_chain_id='A', lig_chain_id='L',\n                           CNN_affinity=True, vinardo=False,\n                           is_local=True)\n\nParallel processing to get gnina rescore given folder path\nVinardo scoring:\n\n# %%time\n# get_gnina_rescore_folder('gnina_test/cif',\n#                          rec_chain_id='A', \n#                          lig_chain_id='L',\n#                          CNN_affinity=False,\n#                          vinardo=True,\n#                          )\n\nVina scoring:\n\n# get_gnina_rescore_folder('gnina_test/cif',\n#                          rec_chain_id='A', \n#                          lig_chain_id='L',\n#                          CNN_affinity=False,\n#                          vinardo=False,\n#                          )",
+    "crumbs": [
+      "Home",
+      "GNINA",
+      "AF3 rescore with gnina"
+    ]
+  },
+  {
+    "objectID": "gnina/gnina_af3_rescore.html#end",
+    "href": "gnina/gnina_af3_rescore.html#end",
+    "title": "AF3 rescore with gnina",
+    "section": "End",
+    "text": "End",
+    "crumbs": [
+      "Home",
+      "GNINA",
+      "AF3 rescore with gnina"
+    ]
+  },
+  {
+    "objectID": "protenix/protenix.html",
+    "href": "protenix/protenix.html",
+    "title": "Protenix",
+    "section": "",
+    "text": "This is for protein-ligand task using Protenix github repository.",
+    "crumbs": [
+      "Home",
+      "Protenix",
+      "Protenix"
+    ]
+  },
+  {
+    "objectID": "protenix/protenix.html#install",
+    "href": "protenix/protenix.html#install",
+    "title": "Protenix",
+    "section": "Install",
+    "text": "Install\ngit clone https://github.com/bytedance/Protenix.git\ncd Protenix\npip install .",
+    "crumbs": [
+      "Home",
+      "Protenix",
+      "Protenix"
+    ]
+  },
+  {
+    "objectID": "protenix/protenix.html#setup",
+    "href": "protenix/protenix.html#setup",
+    "title": "Protenix",
+    "section": "Setup",
+    "text": "Setup",
+    "crumbs": [
+      "Home",
+      "Protenix",
+      "Protenix"
+    ]
+  },
+  {
+    "objectID": "protenix/protenix.html#single-job-json",
+    "href": "protenix/protenix.html#single-job-json",
+    "title": "Protenix",
+    "section": "Single job json",
+    "text": "Single job json\nRun the protein sequence on server to get msa folder that contains pairing.a3m and unpairing.a3m\nUse the folder as the msa_dir\n\nsource\n\nget_single_job\n\n get_single_job (job_name, protein_seq, msa_dir, SMILES=None, CCD=None)\n\nGet protenix json format of protein and ligand.\n\nget_single_job('job_name', 'AAA', './msa', SMILES='CCC',CCD=None)\n\n{'name': 'job_name',\n 'sequences': [{'proteinChain': {'count': 1,\n    'sequence': 'AAA',\n    'msa': {'precomputed_msa_dir': './msa', 'pairing_db': 'uniref100'}}},\n  {'ligand': {'count': 1, 'ligand': 'CCC'}}]}\n\n\n\nsource\n\n\nget_single_protein_ligand_json\n\n get_single_protein_ligand_json (job_name, protein_seq, msa_dir,\n                                 SMILES=None, CCD=None, json_path=None)\n\nGenerate json input for one protein-ligand job.\n\n# _ = get_single_protein_ligand_json('kras_g12d_mrtx',\n#                                  g12d,\n#                                  msa_dir='kras_g12d_msa',\n#                                  SMILES=\"C#CC1=C(C=CC2=CC(=CC(=C21)C3=NC=C4C(=C3F)N=C(N=C4N5CC6CCC(C5)N6)OC[C@@]78CCCN7C[C@@H](C8)F)O)F\",\n#                                  json_path='g12d_mrtx.json'\n#                                 )\n\nUse the json as input file for protenix\nprotenix predict --input input.json --out_dir  ./output --seeds 101",
+    "crumbs": [
+      "Home",
+      "Protenix",
+      "Protenix"
+    ]
+  },
+  {
+    "objectID": "protenix/protenix.html#different-protein-ligand-pairs-in-df",
+    "href": "protenix/protenix.html#different-protein-ligand-pairs-in-df",
+    "title": "Protenix",
+    "section": "Different protein-ligand pairs in df",
+    "text": "Different protein-ligand pairs in df\n\nsource\n\nget_protein_ligand_df_json\n\n get_protein_ligand_df_json (df, id_col, seq_col, msa_col, smi_col=None,\n                             ccd_col=None, save_json=None)\n\nGet json file of protein and ligand in a dataframe.\n\n# _ = get_protein_ligand_df_json(df,\n                               # id_col='ID',\n                               # seq_col='sequence', \n                               # msa_col='msa_dir', \n                               # smi_col=\"SMILES\", \n                               # ccd_col=None, \n                               # save_json=\"input.json\")",
+    "crumbs": [
+      "Home",
+      "Protenix",
+      "Protenix"
+    ]
+  },
+  {
+    "objectID": "protenix/protenix.html#virtual-screening",
+    "href": "protenix/protenix.html#virtual-screening",
+    "title": "Protenix",
+    "section": "Virtual screening",
+    "text": "Virtual screening\n\nsingle protein against multiple ligands\n\n\nsource\n\nget_virtual_screening_json\n\n get_virtual_screening_json (df, protein_seq, msa_dir, id_col,\n                             smi_col=None, ccd_col=None, save_json=None)\n\nGet json file of single protein against multiple SMILES in a dataframe.\n\n# _ = get_virtual_screening_json(df,\n#                                g12d_seq,\n#                                'kras_g12d_msa',\n#                                id_col='ID',\n#                                smi_col='SMILES',\n#                                save_json='kras_g12d_input.json')",
+    "crumbs": [
+      "Home",
+      "Protenix",
+      "Protenix"
+    ]
+  },
+  {
+    "objectID": "protenix/protenix.html#end",
+    "href": "protenix/protenix.html#end",
+    "title": "Protenix",
+    "section": "End",
+    "text": "End",
+    "crumbs": [
+      "Home",
+      "Protenix",
+      "Protenix"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_02_protein_pairs.html",
+    "href": "tutorials/af3_02_protein_pairs.html",
+    "title": "Protein pairs",
+    "section": "",
+    "text": "from kdock.data.core import *\nfrom kdock.data.protein_pairs import *\nimport pandas as pd\nfrom tqdm import tqdm\n\npip install \"colabfold[alphafold] @ git+https://github.com/sokrypton/ColabFold\"\n\n## MSA\n\nMSA can be run in cpu only server\n\nPrepare a csv that have first column `id` and second column `sequence` of amino acid sequence\n\n::: {#0bea2a4a-965d-4107-ad6a-21b5c12a0ad8 .cell}\n``` {.python .cell-code}\nproject_name='sdf'\n:::\n\nget_colabfold_cmd('a.csv',project_name)\n\nRun below in terminal:\n\n colabfold_batch a.csv msa_sdf --msa-only\n\n\nAfter finish, copy a3m files to a gpu available place\n\ncopy_a3m(a3m_dir=f'/teamspace/studios/alphfold3/msa_{project_name}',\n         dest_dir=f'af_input/{project_name}/msa')",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Protein pairs"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_02_protein_pairs.html#setup",
+    "href": "tutorials/af3_02_protein_pairs.html#setup",
+    "title": "Protein pairs",
+    "section": "",
+    "text": "from kdock.data.core import *\nfrom kdock.data.protein_pairs import *\nimport pandas as pd\nfrom tqdm import tqdm\n\npip install \"colabfold[alphafold] @ git+https://github.com/sokrypton/ColabFold\"\n\n## MSA\n\nMSA can be run in cpu only server\n\nPrepare a csv that have first column `id` and second column `sequence` of amino acid sequence\n\n::: {#0bea2a4a-965d-4107-ad6a-21b5c12a0ad8 .cell}\n``` {.python .cell-code}\nproject_name='sdf'\n:::\n\nget_colabfold_cmd('a.csv',project_name)\n\nRun below in terminal:\n\n colabfold_batch a.csv msa_sdf --msa-only\n\n\nAfter finish, copy a3m files to a gpu available place\n\ncopy_a3m(a3m_dir=f'/teamspace/studios/alphfold3/msa_{project_name}',\n         dest_dir=f'af_input/{project_name}/msa')",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Protein pairs"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_02_protein_pairs.html#json-file",
+    "href": "tutorials/af3_02_protein_pairs.html#json-file",
+    "title": "Protein pairs",
+    "section": "JSON file",
+    "text": "JSON file\nRead the file that contained id and sequence\n\ndf = pd.read_csv('file.csv')\n\n\nprotein_list = df['gene_id'].tolist()\n\n\ndf = generate_pair_df(protein_list)\n\n\nfor idx, row in tqdm(df.iterrows(),total=len(df)):\n    json_data = get_multi_protein_json([row['Gene1'], row['Gene2']], \n                             a3m_dir=f'af_input/{project_name}/a3m', \n                             save_folder=f'af_input/{project_name}')\n\nThis will generate a number of json files in the save_folder.\nWe need to distribute them to nfolders for parallel running when multiple gpus are available.\n\nsplit_nfolder(f'af_input/{project_name}',n=4) # default n is 4",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Protein pairs"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_02_protein_pairs.html#docker-command",
+    "href": "tutorials/af3_02_protein_pairs.html#docker-command",
+    "title": "Protein pairs",
+    "section": "Docker Command",
+    "text": "Docker Command\ndocker pull sky1ove/alphafold3\n\nfor i in range(4):\n    docker_multi_full(input_dir=f\"af_input/{project_name}/folder_{i}\",\n                       output_dir=f\"af_output/{project_name}\",\n                       gpus=i)\n\nRun the printed command in your terminal",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Protein pairs"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_02_protein_pairs.html#report-for-protein-pairs",
+    "href": "tutorials/af3_02_protein_pairs.html#report-for-protein-pairs",
+    "title": "Protein pairs",
+    "section": "Report for protein pairs",
+    "text": "Report for protein pairs\n\ndf_sum, top_genes = get_report(f\"af_output/{project_name}\",\n                               save_dir=f'af_report/{project_name}')\n\ndf_sum.sort_values('iptm_ptm_rnk_add').head(10)\n\nA 3d plot will be generated with x=‘iptm’,y=‘ptm’,z=‘chain_pair_pae_min_add’\nTop genes are: - Smallest 30 from ‘iptm_ptm_rnk_add’, ‘chain_pair_pae_min_add’, ‘chain_pair_pae_min_0_1’, ‘chain_pair_pae_min_1_0’, ‘iptm_pae_add_rnk’ - Largest 30 from ‘ranking_score’, ‘iptm’, ‘iptm_ptm_add’\ndf_sum contains the score for each metric",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Protein pairs"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_02_protein_pairs.html#copy-top-protein-structures-to-a-local-folder",
+    "href": "tutorials/af3_02_protein_pairs.html#copy-top-protein-structures-to-a-local-folder",
+    "title": "Protein pairs",
+    "section": "Copy top protein structures to a local folder",
+    "text": "Copy top protein structures to a local folder\n\nfrom fastcore.utils import L\ncopy_file('proA_proB',source_dir='af_output/proA',dest_dir='af_top')\n\n# Or \nL(top_genes).map(copy_file,source_dir='af_output/proA',dest_dir='af_top')",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Protein pairs"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_02_protein_pairs.html#embeddings",
+    "href": "tutorials/af3_02_protein_pairs.html#embeddings",
+    "title": "Protein pairs",
+    "section": "Embeddings",
+    "text": "Embeddings\nTo do",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Protein pairs"
+    ]
+  },
+  {
+    "objectID": "tutorials/px_05_protenix_virtual_screening.html",
+    "href": "tutorials/px_05_protenix_virtual_screening.html",
+    "title": "Protenix: virtual screening",
+    "section": "",
+    "text": "git clone https://github.com/bytedance/Protenix.git\ncd Protenix\npip install .",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Protenix: virtual screening"
+    ]
+  },
+  {
+    "objectID": "tutorials/px_05_protenix_virtual_screening.html#install",
+    "href": "tutorials/px_05_protenix_virtual_screening.html#install",
+    "title": "Protenix: virtual screening",
+    "section": "",
+    "text": "git clone https://github.com/bytedance/Protenix.git\ncd Protenix\npip install .",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Protenix: virtual screening"
+    ]
+  },
+  {
+    "objectID": "tutorials/px_05_protenix_virtual_screening.html#setup",
+    "href": "tutorials/px_05_protenix_virtual_screening.html#setup",
+    "title": "Protenix: virtual screening",
+    "section": "Setup",
+    "text": "Setup\n\nfrom kdock.data.core import Data\nfrom kdock.px.core import *",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Protenix: virtual screening"
+    ]
+  },
+  {
+    "objectID": "tutorials/px_05_protenix_virtual_screening.html#protein-sequence",
+    "href": "tutorials/px_05_protenix_virtual_screening.html#protein-sequence",
+    "title": "Protenix: virtual screening",
+    "section": "Protein sequence",
+    "text": "Protein sequence\n\nkras = Data.get_kras_seq()\nkras\n\n\n\n\n\n\n\n\nID\nWT_sequence\ng12d_seq\ng12c_seq\n\n\n\n\n0\nkras_human\nMTEYKLVVVGAGGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQVVI...\nMTEYKLVVVGADGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQVVI...\nMTEYKLVVVGACGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQVVI...\n\n\n1\nkras_human_isoform2b\nMTEYKLVVVGAGGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQVVI...\nMTEYKLVVVGADGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQVVI...\nMTEYKLVVVGACGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQVVI...\n\n\n\n\n\n\n\n\ng12d = kras.iloc[0]['g12d_seq']\n\n\ng12d\n\n'MTEYKLVVVGADGVGKSALTIQLIQNHFVDEYDPTIEDSYRKQVVIDGETCLLDILDTAGQEEYSAMRDQYMRTGEGFLCVFAINNTKSFEDIHHYREQIKRVKDSEDVPMVLVGNKCDLPSRTVDTKQAQDLARSYGIPFIETSAKTRQRVEDAFYTLVREIRQYRLKKISKEEKTPGCVKIKKCIIM'",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Protenix: virtual screening"
+    ]
+  },
+  {
+    "objectID": "tutorials/px_05_protenix_virtual_screening.html#get-msa-on-server",
+    "href": "tutorials/px_05_protenix_virtual_screening.html#get-msa-on-server",
+    "title": "Protenix: virtual screening",
+    "section": "Get MSA on server",
+    "text": "Get MSA on server\nSubmitted on protenix-server to get msa/pairing & unpairing a3m files.\nUpload and make a folder that contains the two files, use it as msa_dir",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Protenix: virtual screening"
+    ]
+  },
+  {
+    "objectID": "tutorials/px_05_protenix_virtual_screening.html#smiles",
+    "href": "tutorials/px_05_protenix_virtual_screening.html#smiles",
+    "title": "Protenix: virtual screening",
+    "section": "SMILES",
+    "text": "SMILES\n\ndf = Data.get_mirati_g12d()\n\n\ndf.ID.duplicated(keep=False).sum()\n\n0\n\n\n\ndf.head()\n\n\n\n\n\n\n\n\nID\nSMILES\nKd\nIC50\nerk_IC50\n\n\n\n\n0\nUS_1\nCN1CCC[C@H]1COc1nc(N2CC3CCC(C2)N3)c2cnc(cc2n1)...\n97.7\n124.7\n3159.1\n\n\n1\nUS_4\nOc1cc(-c2ncc3c(nc(OCCc4ccccn4)nc3c2F)N2CC3CCC(...\n155.7\n496.2\n8530.0\n\n\n2\nUS_5\nCn1nccc1COc1nc(N2CC3CCC(C2)N3)c2cnc(c(F)c2n1)-...\n294.8\n722.9\n8193.8\n\n\n3\nUS_6\nCc1cccnc1CCOc1nc(N2CC3CCC(C2)N3)c2cnc(c(F)c2n1...\n442.2\n434.1\n11518.2\n\n\n4\nUS_7\nOc1cc(-c2ncc3c(nc(OCCc4ncccn4)nc3c2F)N2CC3CCC(...\n463.5\n1867.3\nNaN",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Protenix: virtual screening"
+    ]
+  },
+  {
+    "objectID": "tutorials/px_05_protenix_virtual_screening.html#test-a-positive-control",
+    "href": "tutorials/px_05_protenix_virtual_screening.html#test-a-positive-control",
+    "title": "Protenix: virtual screening",
+    "section": "Test a positive control",
+    "text": "Test a positive control\n\nMRTX\n\n\nget_single_protein_ligand_json?\n\n\nSignature:\nget_single_protein_ligand_json(\n    job_name,\n    protein_seq,\n    msa_dir,\n    SMILES=None,\n    CCD=None,\n    json_path=None,\n)\nDocstring: Generate and optionally save a JSON config for one protein-ligand job.\nFile:      /tmp/ipykernel_1724/1197518213.py\nType:      function\n\n\n\n\n_ = get_single_protein_ligand_json('kras_g12d_mrtx',\n                                 g12d,\n                                 msa_dir='kras_g12d_msa',\n                                 SMILES=\"C#CC1=C(C=CC2=CC(=CC(=C21)C3=NC=C4C(=C3F)N=C(N=C4N5CC6CCC(C5)N6)OC[C@@]78CCCN7C[C@@H](C8)F)O)F\",\n                                 json_path='g12d_mrtx.json'\n                                )\n\nJSON saved to g12d_mrtx.json",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Protenix: virtual screening"
+    ]
+  },
+  {
+    "objectID": "tutorials/px_05_protenix_virtual_screening.html#protenix-command",
+    "href": "tutorials/px_05_protenix_virtual_screening.html#protenix-command",
+    "title": "Protenix: virtual screening",
+    "section": "Protenix command",
+    "text": "Protenix command\nprotenix predict --input g12d_mrtx.json --out_dir  ./output --seeds 101",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Protenix: virtual screening"
+    ]
+  },
+  {
+    "objectID": "tutorials/px_05_protenix_virtual_screening.html#run-with-other-smiles",
+    "href": "tutorials/px_05_protenix_virtual_screening.html#run-with-other-smiles",
+    "title": "Protenix: virtual screening",
+    "section": "Run with other SMILES",
+    "text": "Run with other SMILES\n\nget_virtual_screening_json?\n\n\nSignature:\nget_virtual_screening_json(\n    df,\n    protein_seq,\n    msa_dir,\n    id_col,\n    smi_col=None,\n    ccd_col=None,\n    save_json=None,\n)\nDocstring: Get json file of single protein against multiple SMILES in a dataframe.\nFile:      /tmp/ipykernel_1724/3782683879.py\nType:      function\n\n\n\n\n_ = get_virtual_screening_json(df,\n                               g12d,\n                               'kras_g12d_msa',\n                               id_col='ID',\n                               smi_col='SMILES',\n                               save_json='kras_g12d_input.json')\n\nJSON saved to kras_g12d_input.json\n\n\nprotenix predict --input kras_g12d_input.json --out_dir  ./output --seeds 101",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Protenix: virtual screening"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_01_virtual_screening.html",
+    "href": "tutorials/af3_01_virtual_screening.html",
+    "title": "Virtual screening",
+    "section": "",
+    "text": "from kdock.data.core import *\nfrom kdock.af3.json import *\nfrom kdock.af3.docker import *\nimport pandas as pd",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Virtual screening"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_01_virtual_screening.html#setup",
+    "href": "tutorials/af3_01_virtual_screening.html#setup",
+    "title": "Virtual screening",
+    "section": "",
+    "text": "from kdock.data.core import *\nfrom kdock.af3.json import *\nfrom kdock.af3.docker import *\nimport pandas as pd",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Virtual screening"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_01_virtual_screening.html#run-single-protein-default-pipeline",
+    "href": "tutorials/af3_01_virtual_screening.html#run-single-protein-default-pipeline",
+    "title": "Virtual screening",
+    "section": "Run single protein default pipeline",
+    "text": "Run single protein default pipeline\n\nJson:\n\ndata = get_protein_json('proteinA','AAA','data/proteinA.json',seeds=[1,2,3])\n\n\ndata\n\n{'name': 'proteinA',\n 'modelSeeds': [1, 2, 3],\n 'sequences': [{'protein': {'id': 'A', 'sequence': 'AAA'}}],\n 'bondedAtomPairs': [],\n 'dialect': 'alphafold3',\n 'version': 3}\n\n\n\n\nDocker command\nMove the generated proteinA.json to the af_input/project_name folder\n\nproject_name='sdf'\n\n\ndocker_single_full(json_path=f\"af_input/{project_name}/proteinA.json\",\n                               output_dir=f\"af_output/{project_name}\")\n\ndocker run --rm \\\n    --volume \"$HOME/af_input:/root/af_input\" \\\n    --volume \"$HOME/af_output/sdf:/root/af_output\" \\\n    --volume \"$HOME/af_model:/root/models\" \\\n    --volume \"$HOME/af_database:/root/public_databases\" \\\n    --gpus \"device=0\" \\\n    sky1ove/alphafold3 \\\n    python run_alphafold.py \\\n    --json_path=/root/af_input/sdf/proteinA.json \\\n    --output_dir=/root/af_output \\\n    --model_dir=/root/models",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Virtual screening"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_01_virtual_screening.html#prepare-protein-smiles-files",
+    "href": "tutorials/af3_01_virtual_screening.html#prepare-protein-smiles-files",
+    "title": "Virtual screening",
+    "section": "Prepare protein-smiles files",
+    "text": "Prepare protein-smiles files\n\nRead output json\n\nprotein_json = read_json('../af3/data/seq_only_data.json')\n\n\nstr(protein_json)[:1000]\n\n'{\\'dialect\\': \\'alphafold3\\', \\'version\\': 2, \\'name\\': \\'PDCD1_seq_only\\', \\'sequences\\': [{\\'protein\\': {\\'id\\': \\'A\\', \\'sequence\\': \\'LDSPDRPWNPPTFSPALLVVTEGDNATFTCSFSNTSESFVLNWYRMSPSNQTDKLAAFPEDRSQPGQDCRFRVTQLPNGRDFHMSVVRARRNDSGTYLCGAISLAPKAQIKESLRAELRVTERRAEVPTAHPSPSPRPAGQFQTLV\\', \\'modifications\\': [], \\'unpairedMsa\\': \"&gt;query\\\\nLDSPDRPWNPPTFSPALLVVTEGDNATFTCSFSNTSESFVLNWYRMSPSNQTDKLAAFPEDRSQPGQDCRFRVTQLPNGRDFHMSVVRARRNDSGTYLCGAISLAPKAQIKESLRAELRVTERRAEVPTAHPSPSPRPAGQFQTLV\\\\n&gt;UniRef90_UPI0009801507/25-167 [subseq from] Programmed cell death protein 1 n=10 Tax=Homo sapiens TaxID=9606 RepID=UPI0009801507\\\\nLDSPDRPWNPPTFSPALLVVTEGDNATFTCSFSNTSESFVLNWYRMSPSNQTDKLAAFPEDRSQPGQDCRFRVTQLPNGRDFHMSVVRARRNDSGTYLCGAISLAPKAQIKESLRAELRVTERRAEVPTAHPSPSPRPAGQFQ---\\\\n&gt;UniRef90_A0A5F7ZCX7/24-168 [subseq from] Programmed cell death 1 n=1 Tax=Macaca mulatta TaxID=9544 RepID=A0A5F7ZCX7_MACMU\\\\n-ESPDRPWNPPTFSPALLLVTEGDNATFTCSFSNASESFVLNWYRMSPSNQTDKLAAFPEDRSQPGRDCRFRVTQLPNGRDFHMSVVRARRNDSGTYLCGAISLAPKAQIKESLRAELRVTERRAEVPTAHPSPSPRP'\n\n\n\n\nSingle protein-smile pair\n\nout = get_protein_smiles_json('smi_name','CCC',protein_json,'data/protein_smi.json')\n\n\n\nMultiple protein-smile pairs in a df\n\ndf = pd.DataFrame({'idx':['a','b'],'smi':['CCC','OCO']})\ndf\n\n\n\n\n\n\n\n\nidx\nsmi\n\n\n\n\n0\na\nCCC\n\n\n1\nb\nOCO\n\n\n\n\n\n\n\n\nfor idx, smi in df.values:\n    _ = get_protein_smiles_json(idx,smi,protein_json,f'af_input/{project_name}/{idx}.json',seeds=[1,2,3])\n\nThis will generate many json files in the directory",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Virtual screening"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_01_virtual_screening.html#split-file-into-multiple-subfolder-for-multi-gpus",
+    "href": "tutorials/af3_01_virtual_screening.html#split-file-into-multiple-subfolder-for-multi-gpus",
+    "title": "Virtual screening",
+    "section": "Split file into multiple subfolder for multi-GPUs",
+    "text": "Split file into multiple subfolder for multi-GPUs\n\nsplit_nfolder(f'af_input/{project_name}')\n\nDistributed 2 files into 4 folders.",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Virtual screening"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_01_virtual_screening.html#docker",
+    "href": "tutorials/af3_01_virtual_screening.html#docker",
+    "title": "Virtual screening",
+    "section": "Docker",
+    "text": "Docker\ndocker pull sky1ove/alphafold3\n\nfor i in range(4):\n    docker_multi_infer(input_dir=f\"af_input/{project_name}/folder_{i}\",\n                               output_dir=f\"af_output/{project_name}\",\n                               gpus=i)\n# norun_data_pipeline means skip template search as we already did in the first step\n\ndocker run --rm \\\n    --volume \"$HOME/af_input:/root/af_input\" \\\n    --volume \"$HOME/af_output/sdf:/root/af_output\" \\\n    --volume \"$HOME/af_model:/root/models\" \\\n    --volume \"$HOME/af_database:/root/public_databases\" \\\n    --volume \"$HOME/af_cache:/root/cache\" \\\n    --gpus \"device=0\" \\\n    sky1ove/alphafold3 \\\n    python run_alphafold.py \\\n    --input_dir=/root/af_input/sdf/folder_0 \\\n    --output_dir=/root/af_output \\\n    --model_dir=/root/models \\\n    --jax_compilation_cache_dir=/root/cache \\\n    --norun_data_pipeline\ndocker run --rm \\\n    --volume \"$HOME/af_input:/root/af_input\" \\\n    --volume \"$HOME/af_output/sdf:/root/af_output\" \\\n    --volume \"$HOME/af_model:/root/models\" \\\n    --volume \"$HOME/af_database:/root/public_databases\" \\\n    --volume \"$HOME/af_cache:/root/cache\" \\\n    --gpus \"device=1\" \\\n    sky1ove/alphafold3 \\\n    python run_alphafold.py \\\n    --input_dir=/root/af_input/sdf/folder_1 \\\n    --output_dir=/root/af_output \\\n    --model_dir=/root/models \\\n    --jax_compilation_cache_dir=/root/cache \\\n    --norun_data_pipeline\ndocker run --rm \\\n    --volume \"$HOME/af_input:/root/af_input\" \\\n    --volume \"$HOME/af_output/sdf:/root/af_output\" \\\n    --volume \"$HOME/af_model:/root/models\" \\\n    --volume \"$HOME/af_database:/root/public_databases\" \\\n    --volume \"$HOME/af_cache:/root/cache\" \\\n    --gpus \"device=2\" \\\n    sky1ove/alphafold3 \\\n    python run_alphafold.py \\\n    --input_dir=/root/af_input/sdf/folder_2 \\\n    --output_dir=/root/af_output \\\n    --model_dir=/root/models \\\n    --jax_compilation_cache_dir=/root/cache \\\n    --norun_data_pipeline\ndocker run --rm \\\n    --volume \"$HOME/af_input:/root/af_input\" \\\n    --volume \"$HOME/af_output/sdf:/root/af_output\" \\\n    --volume \"$HOME/af_model:/root/models\" \\\n    --volume \"$HOME/af_database:/root/public_databases\" \\\n    --volume \"$HOME/af_cache:/root/cache\" \\\n    --gpus \"device=3\" \\\n    sky1ove/alphafold3 \\\n    python run_alphafold.py \\\n    --input_dir=/root/af_input/sdf/folder_3 \\\n    --output_dir=/root/af_output \\\n    --model_dir=/root/models \\\n    --jax_compilation_cache_dir=/root/cache \\\n    --norun_data_pipeline",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Virtual screening"
+    ]
+  },
+  {
+    "objectID": "tutorials/gnina_03_gnina_rescore.html",
+    "href": "tutorials/gnina_03_gnina_rescore.html",
+    "title": "Gnina rescore with docked ligand",
+    "section": "",
+    "text": "from kdock.data.core import Data\nfrom kdock.gnina.dock import *\nfrom kdock.gnina.rescore import *\nimport pandas as pd, numpy as np\n\n\n# setup_gnina_local('v1.1') # &lt;= v1.1 allows cpu environment\n\nReading package lists...\nBuilding dependency tree...\nReading state information...\nopenbabel is already the newest version (3.0.0+dfsg-3ubuntu3).\n0 upgraded, 0 newly installed, 0 to remove and 6 not upgraded.\nDownloading v1.1 gnina\nFinish setup!\n\n\n\n# setup_gnina_docker()\n\nPulling GNINA Docker image: gnina/gnina\nGNINA Docker image is ready.",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Gnina rescore with docked ligand"
+    ]
+  },
+  {
+    "objectID": "tutorials/gnina_03_gnina_rescore.html#setup",
+    "href": "tutorials/gnina_03_gnina_rescore.html#setup",
+    "title": "Gnina rescore with docked ligand",
+    "section": "",
+    "text": "from kdock.data.core import Data\nfrom kdock.gnina.dock import *\nfrom kdock.gnina.rescore import *\nimport pandas as pd, numpy as np\n\n\n# setup_gnina_local('v1.1') # &lt;= v1.1 allows cpu environment\n\nReading package lists...\nBuilding dependency tree...\nReading state information...\nopenbabel is already the newest version (3.0.0+dfsg-3ubuntu3).\n0 upgraded, 0 newly installed, 0 to remove and 6 not upgraded.\nDownloading v1.1 gnina\nFinish setup!\n\n\n\n# setup_gnina_docker()\n\nPulling GNINA Docker image: gnina/gnina\nGNINA Docker image is ready.",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Gnina rescore with docked ligand"
+    ]
+  },
+  {
+    "objectID": "tutorials/gnina_03_gnina_rescore.html#rescore",
+    "href": "tutorials/gnina_03_gnina_rescore.html#rescore",
+    "title": "Gnina rescore with docked ligand",
+    "section": "Rescore",
+    "text": "Rescore\nGet folder that contains the AF3 .cif files\n\nlocal ./gnina\n\ndf = get_gnina_rescore_folder('~/mirati_structure',\n                              rec_chain_id='A',\n                              lig_chain_id='L',\n                             )\n\n\n\n\nCPU times: user 1.19 s, sys: 257 ms, total: 1.44 s\nWall time: 21min 55s\n\n\nif vinardo score only:\n\ndf = get_gnina_rescore_folder('~/mirati_structure',\n                              rec_chain_id='A',\n                              lig_chain_id='L',\n                              CNN_affinity=False,\n                              vinardo=True,\n                             )\n\n\n\nDocker gnina (latest)\n\ndf = get_gnina_rescore_folder('~/mirati_structure',\n                              rec_chain_id='A',\n                              lig_chain_id='L',\n                              is_local=False)",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Gnina rescore with docked ligand"
+    ]
+  },
+  {
+    "objectID": "tutorials/gnina_03_gnina_rescore.html#merge-with-target",
+    "href": "tutorials/gnina_03_gnina_rescore.html#merge-with-target",
+    "title": "Gnina rescore with docked ligand",
+    "section": "Merge with target",
+    "text": "Merge with target\n\ndf.ID = df.ID.str[:-15]\n\n\ntarget = Data.get_mirati_g12d()\n\n\ntarget.ID=target.ID.str.lower()\n\n\ntarget['log_Kd'] = np.log(target['Kd'] + 1e-5)\ntarget['log_IC50'] = np.log(target['IC50'] + 1e-5)\ntarget['log_erk_IC50'] = np.log(target['erk_IC50'] + 1e-5)\n\n\nout =target.merge(df)\n\n\nout.head()\n\n\n\n\n\n\n\n\nID\nSMILES\nKd\nIC50\nerk_IC50\nlog_Kd\nlog_IC50\nlog_erk_IC50\nbinding_energy\nuncertainty\nRMSD\nCNNscore\nCNNaffinity\nCNNvariance\n\n\n\n\n0\nus_1\nCN1CCC[C@H]1COc1nc(N2CC3CCC(C2)N3)c2cnc(cc2n1)...\n97.7\n124.7\n3159.1\n4.581902\n4.825911\n8.058042\n-13.02696\n-0.30852\n0.88857\n0.67440\n7.76933\n0.23841\n\n\n1\nus_4\nOc1cc(-c2ncc3c(nc(OCCc4ccccn4)nc3c2F)N2CC3CCC(...\n155.7\n496.2\n8530.0\n5.047931\n6.206979\n9.051345\n-11.44830\n-0.70801\n1.01023\n0.67062\n7.98086\n0.29582\n\n\n2\nus_5\nCn1nccc1COc1nc(N2CC3CCC(C2)N3)c2cnc(c(F)c2n1)-...\n294.8\n722.9\n8193.8\n5.686297\n6.583271\n9.011133\n-7.58041\n-1.00321\n0.91650\n0.48476\n7.27615\n0.59758\n\n\n3\nus_6\nCc1cccnc1CCOc1nc(N2CC3CCC(C2)N3)c2cnc(c(F)c2n1...\n442.2\n434.1\n11518.2\n6.091762\n6.073275\n9.351684\n-7.00049\n-1.53471\n4.55312\n0.54943\n6.14055\n0.24137\n\n\n4\nus_7\nOc1cc(-c2ncc3c(nc(OCCc4ncccn4)nc3c2F)N2CC3CCC(...\n463.5\n1867.3\nNaN\n6.138806\n7.532249\nNaN\n-13.12053\n-0.93447\n0.28536\n0.71432\n7.42845\n0.04068\n\n\n\n\n\n\n\n\nout.to_csv('mirati_gnina_v1_1.csv',index=False)",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Gnina rescore with docked ligand"
+    ]
+  },
+  {
+    "objectID": "tutorials/gnina_03_gnina_rescore.html#merge-with-af-score",
+    "href": "tutorials/gnina_03_gnina_rescore.html#merge-with-af-score",
+    "title": "Gnina rescore with docked ligand",
+    "section": "Merge with AF score",
+    "text": "Merge with AF score\n\ndf=pd.read_csv('mirati_gnina_rescore_v1_3.csv')\n\n\naf = pd.read_csv('AF3_mirati_660.csv')\n\n\ncols = ['ID','chain_pair_pae_min_0_1',\n       'chain_pair_pae_min_1_0', 'chain_pair_pae_min_1_1', 'chain_ptm_0',\n       'chain_ptm_1', 'fraction_disordered', 'iptm', 'ptm', 'ranking_score',\n       'iptm_ptm_add', 'chain_pair_pae_min_add', 'iptm_rnk', 'ptm_rnk',\n       'iptm_ptm_rnk_add', 'chain_pair_pae_min_add_rnk', 'iptm_pae_add_rnk']\n\n\naf = af[cols]\n\n\ndf = df.merge(af)\n\n\ndf.to_csv('mirati_gnina_v1_3_af.csv',index=False)",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Gnina rescore with docked ligand"
+    ]
+  },
+  {
+    "objectID": "tutorials/gnina_03_gnina_rescore.html#correlation",
+    "href": "tutorials/gnina_03_gnina_rescore.html#correlation",
+    "title": "Gnina rescore with docked ligand",
+    "section": "Correlation",
+    "text": "Correlation\n\nout.corr(numeric_only=True)\n\n\n\n\n\n\n\n\nKd\nIC50\nerk_IC50\nlog_Kd\nlog_IC50\nlog_erk_IC50\nbinding_energy\nuncertainty\nRMSD\nCNNscore\nCNNaffinity\nCNNvariance\n\n\n\n\nKd\n1.000000\n0.137290\n-0.088274\n0.567310\n0.081667\n-0.167722\n0.057558\n-0.017178\n-0.025133\n-0.048843\n-0.050384\n0.025814\n\n\nIC50\n0.137290\n1.000000\n0.379993\n0.409676\n0.405385\n0.242495\n0.053759\n0.043837\n0.004114\n-0.018452\n-0.084494\n-0.056643\n\n\nerk_IC50\n-0.088274\n0.379993\n1.000000\n0.340125\n0.712639\n0.734366\n0.021087\n0.178889\n-0.048670\n0.003114\n-0.090038\n-0.111960\n\n\nlog_Kd\n0.567310\n0.409676\n0.340125\n1.000000\n0.685839\n0.489439\n0.248571\n-0.040234\n0.127425\n-0.239114\n-0.297084\n-0.032168\n\n\nlog_IC50\n0.081667\n0.405385\n0.712639\n0.685839\n1.000000\n0.782773\n0.122564\n0.225565\n0.034728\n-0.102558\n-0.241604\n-0.134573\n\n\nlog_erk_IC50\n-0.167722\n0.242495\n0.734366\n0.489439\n0.782773\n1.000000\n0.104046\n0.180925\n-0.018172\n-0.056561\n-0.203590\n-0.102189\n\n\nbinding_energy\n0.057558\n0.053759\n0.021087\n0.248571\n0.122564\n0.104046\n1.000000\n-0.446761\n0.585579\n-0.605980\n-0.719846\n0.146693\n\n\nuncertainty\n-0.017178\n0.043837\n0.178889\n-0.040234\n0.225565\n0.180925\n-0.446761\n1.000000\n-0.340409\n0.415752\n0.292460\n-0.295152\n\n\nRMSD\n-0.025133\n0.004114\n-0.048670\n0.127425\n0.034728\n-0.018172\n0.585579\n-0.340409\n1.000000\n-0.502661\n-0.567085\n0.241297\n\n\nCNNscore\n-0.048843\n-0.018452\n0.003114\n-0.239114\n-0.102558\n-0.056561\n-0.605980\n0.415752\n-0.502661\n1.000000\n0.804062\n-0.475357\n\n\nCNNaffinity\n-0.050384\n-0.084494\n-0.090038\n-0.297084\n-0.241604\n-0.203590\n-0.719846\n0.292460\n-0.567085\n0.804062\n1.000000\n-0.334174\n\n\nCNNvariance\n0.025814\n-0.056643\n-0.111960\n-0.032168\n-0.134573\n-0.102189\n0.146693\n-0.295152\n0.241297\n-0.475357\n-0.334174\n1.000000\n\n\n\n\n\n\n\n\nout.corr('spearman',numeric_only=True)\n\n\n\n\n\n\n\n\nKd\nIC50\nerk_IC50\nlog_Kd\nlog_IC50\nlog_erk_IC50\nbinding_energy\nuncertainty\nRMSD\nCNNscore\nCNNaffinity\nCNNvariance\n\n\n\n\nKd\n1.000000\n0.770684\n0.484753\n1.000000\n0.770684\n0.484753\n0.307612\n-0.041270\n0.197978\n-0.271837\n-0.377634\n-0.075319\n\n\nIC50\n0.770684\n1.000000\n0.821105\n0.770684\n1.000000\n0.821105\n0.214448\n0.201271\n0.024432\n-0.102062\n-0.317811\n-0.171460\n\n\nerk_IC50\n0.484753\n0.821105\n1.000000\n0.484753\n0.821105\n1.000000\n0.148804\n0.197881\n-0.012566\n-0.031280\n-0.228966\n-0.100639\n\n\nlog_Kd\n1.000000\n0.770684\n0.484753\n1.000000\n0.770684\n0.484753\n0.307612\n-0.041270\n0.197978\n-0.271837\n-0.377634\n-0.075319\n\n\nlog_IC50\n0.770684\n1.000000\n0.821105\n0.770684\n1.000000\n0.821105\n0.214448\n0.201271\n0.024432\n-0.102062\n-0.317811\n-0.171460\n\n\nlog_erk_IC50\n0.484753\n0.821105\n1.000000\n0.484753\n0.821105\n1.000000\n0.148804\n0.197881\n-0.012566\n-0.031280\n-0.228966\n-0.100639\n\n\nbinding_energy\n0.307612\n0.214448\n0.148804\n0.307612\n0.214448\n0.148804\n1.000000\n-0.318202\n0.643279\n-0.596055\n-0.657687\n0.110284\n\n\nuncertainty\n-0.041270\n0.201271\n0.197881\n-0.041270\n0.201271\n0.197881\n-0.318202\n1.000000\n-0.285817\n0.383521\n0.103260\n-0.278986\n\n\nRMSD\n0.197978\n0.024432\n-0.012566\n0.197978\n0.024432\n-0.012566\n0.643279\n-0.285817\n1.000000\n-0.608563\n-0.558381\n0.233253\n\n\nCNNscore\n-0.271837\n-0.102062\n-0.031280\n-0.271837\n-0.102062\n-0.031280\n-0.596055\n0.383521\n-0.608563\n1.000000\n0.765298\n-0.483761\n\n\nCNNaffinity\n-0.377634\n-0.317811\n-0.228966\n-0.377634\n-0.317811\n-0.228966\n-0.657687\n0.103260\n-0.558381\n0.765298\n1.000000\n-0.251215\n\n\nCNNvariance\n-0.075319\n-0.171460\n-0.100639\n-0.075319\n-0.171460\n-0.100639\n0.110284\n-0.278986\n0.233253\n-0.483761\n-0.251215\n1.000000\n\n\n\n\n\n\n\n\nout.corr('spearman',numeric_only=True)\n\n\n\n\n\n\n\n\nKd\nIC50\nerk_IC50\nbinding_energy\nuncertainty\nRMSD\nCNNscore\nCNNaffinity\nCNNvariance\n\n\n\n\nKd\n1.000000\n0.770684\n0.484753\n0.307595\n-0.041586\n0.198397\n-0.318074\n-0.343751\n0.173958\n\n\nIC50\n0.770684\n1.000000\n0.821105\n0.214860\n0.201848\n0.019858\n-0.164505\n-0.355147\n0.205119\n\n\nerk_IC50\n0.484753\n0.821105\n1.000000\n0.150561\n0.201548\n-0.023826\n-0.118687\n-0.287123\n0.202999\n\n\nbinding_energy\n0.307595\n0.214860\n0.150561\n1.000000\n-0.317127\n0.642633\n-0.723730\n-0.723106\n0.457403\n\n\nuncertainty\n-0.041586\n0.201848\n0.201548\n-0.317127\n1.000000\n-0.290202\n0.329470\n0.111949\n-0.021203\n\n\nRMSD\n0.198397\n0.019858\n-0.023826\n0.642633\n-0.290202\n1.000000\n-0.664650\n-0.442909\n0.441766\n\n\nCNNscore\n-0.318074\n-0.164505\n-0.118687\n-0.723730\n0.329470\n-0.664650\n1.000000\n0.635484\n-0.412043\n\n\nCNNaffinity\n-0.343751\n-0.355147\n-0.287123\n-0.723106\n0.111949\n-0.442909\n0.635484\n1.000000\n-0.269412\n\n\nCNNvariance\n0.173958\n0.205119\n0.202999\n0.457403\n-0.021203\n0.441766\n-0.412043\n-0.269412\n1.000000",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Gnina rescore with docked ligand"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_03_covalent_bond.html",
+    "href": "tutorials/af3_03_covalent_bond.html",
+    "title": "Covalent bond small inhibitor",
+    "section": "",
+    "text": "github AF3 issues: https://github.com/google-deepmind/alphafold3/issues/159",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Covalent bond small inhibitor"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_03_covalent_bond.html#reference",
+    "href": "tutorials/af3_03_covalent_bond.html#reference",
+    "title": "Covalent bond small inhibitor",
+    "section": "",
+    "text": "github AF3 issues: https://github.com/google-deepmind/alphafold3/issues/159",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Covalent bond small inhibitor"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_03_covalent_bond.html#setup",
+    "href": "tutorials/af3_03_covalent_bond.html#setup",
+    "title": "Covalent bond small inhibitor",
+    "section": "Setup",
+    "text": "Setup\n\nfrom kdock.data.core import *\nimport pandas as pd",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Covalent bond small inhibitor"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_03_covalent_bond.html#prepare-json-file",
+    "href": "tutorials/af3_03_covalent_bond.html#prepare-json-file",
+    "title": "Covalent bond small inhibitor",
+    "section": "Prepare json file",
+    "text": "Prepare json file\n\nseq='HHHHHHAPNQALLRILKETEFKKIKVLGSGAFGTVYKGLWIPEGEKVKIPVAIKELREATSPKANKEILDEAYVMASVDNPHVCRLLGICLTSTVQLIMQLMPFGCLLDYVREHKDNIGSQYLLNWCVQIAKGMNYLEDRRLVHRDLAARNVLVKTPQHVKITDFGRAKLLGAEEKEYHAEGGKVPIKWMALESILHRIYTHQSDVWSYGVTVWELMTFGSKPYDGIPASEISSILEKGERLPQPPICTIDVYMIMVKCWMIDADSRPKFRELIIEFSKMARDPQRYLVIQGDERMHLPSPTDSNFYRALMDEEDMDDVVDADEYLIPQQG'\n\n\nseq[106-1] # always check if the bonded Atom Pair of receptor is correct\n\n'C'\n\n\nFirst run with database to get msa and template:\n\nprotein_json = get_protein_json('proteinA',seq,'data/proteinA.json',seeds=[1])\n\nSecond run directly read the protein json:\n\nprotein_json = read_json('3w2q_test_data.json')\n\n\nprint(str(protein_json)[:1000])\n\n{'dialect': 'alphafold3', 'version': 3, 'name': '3W2Q_test', 'sequences': [{'ligand': {'id': 'L', 'ccdCodes': ['lig-any']}}, {'protein': {'id': 'A', 'sequence': 'HHHHHHAPNQALLRILKETEFKKIKVLGSGAFGTVYKGLWIPEGEKVKIPVAIKELREATSPKANKEILDEAYVMASVDNPHVCRLLGICLTSTVQLIMQLMPFGCLLDYVREHKDNIGSQYLLNWCVQIAKGMNYLEDRRLVHRDLAARNVLVKTPQHVKITDFGRAKLLGAEEKEYHAEGGKVPIKWMALESILHRIYTHQSDVWSYGVTVWELMTFGSKPYDGIPASEISSILEKGERLPQPPICTIDVYMIMVKCWMIDADSRPKFRELIIEFSKMARDPQRYLVIQGDERMHLPSPTDSNFYRALMDEEDMDDVVDADEYLIPQQG', 'modifications': [], 'unpairedMsa': \"&gt;query\\nHHHHHHAPNQALLRILKETEFKKIKVLGSGAFGTVYKGLWIPEGEKVKIPVAIKELREATSPKANKEILDEAYVMASVDNPHVCRLLGICLTSTVQLIMQLMPFGCLLDYVREHKDNIGSQYLLNWCVQIAKGMNYLEDRRLVHRDLAARNVLVKTPQHVKITDFGRAKLLGAEEKEYHAEGGKVPIKWMALESILHRIYTHQSDVWSYGVTVWELMTFGSKPYDGIPASEISSILEKGERLPQPPICTIDVYMIMVKCWMIDADSRPKFRELIIEFSKMARDPQRYLVIQGDERMHLPSPTDSNFYRALMDEEDMDDVVDADEYLIPQQG\\n&gt;UniRef90_A0A498NET7/528-812 [subseq from] Receptor protein-tyrosine kinase n=2 Tax=Labeo rohita TaxID=84645 RepID=A0A498NET7_",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Covalent bond small inhibitor"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_03_covalent_bond.html#prepare-ligand",
+    "href": "tutorials/af3_03_covalent_bond.html#prepare-ligand",
+    "title": "Covalent bond small inhibitor",
+    "section": "Prepare ligand",
+    "text": "Prepare ligand\nLoad pdb in maestro, split complex, save ligand (without covalent bond) into pdb\nConvert the pdb to ccd\n\nccd_text = sdf2ccd('covalent_test/lig-HKI.sdf')\n\n\nccd_text\n\n\"data_lig-1\\n#\\n_chem_comp.id lig-1\\n_chem_comp.name 'lig-1'\\n_chem_comp.type non-polymer\\n_chem_comp.formula '?'\\n_chem_comp.mon_nstd_parent_comp_id ?\\n_chem_comp.pdbx_synonyms ?\\n_chem_comp.formula_weight '?'\\n#\\nloop_\\n_chem_comp_atom.comp_id\\n_chem_comp_atom.atom_id\\n_chem_comp_atom.type_symbol\\n_chem_comp_atom.charge\\n_chem_comp_atom.pdbx_leaving_atom_flag\\n_chem_comp_atom.pdbx_model_Cartn_x_ideal\\n_chem_comp_atom.pdbx_model_Cartn_y_ideal\\n_chem_comp_atom.pdbx_model_Cartn_z_ideal\\nlig-1 C1 C 0 N 1.654 24.013 52.956\\nlig-1 C2 C 0 N 1.438 32.804 50.984\\nlig-1 C3 C 0 N 0.712 33.151 49.868\\nlig-1 C4 C 0 N -0.692 25.377 50.586\\nlig-1 C5 C 0 N -0.322 26.674 50.279\\nlig-1 C6 C 0 N 1.518 31.470 51.317\\nlig-1 C7 C 0 N -0.243 20.239 50.608\\nlig-1 C8 C 0 N 1.486 18.601 51.967\\nlig-1 C9 C 0 N 1.586 24.734 50.460\\nlig-1 C10 C 0 N 0.101 32.158 49.137\\nlig-1 C11 C 0 N 2.414 21.749 53.291\\nlig-1 C12 C 0 N 1.591 22.631 52.634\\nlig-1 C13 C 0 N 0.661 20.790 51.497\\nlig-1 C14 C 0 N 1.536 19.963 52.199\\nlig-1 C15 C 0 N 0.256 24.378 50.677\\nlig-1 C16 C 0 N -0.289 18.874 50.388\\nlig-1 C17 C 0 N 0.679 22.164 51.710\\nlig-1 C18 C 0 N 1.009 26.999 50.081\\nlig-1 C19 C 0 N 0.589 18.055 51.071\\nlig-1 C20 C 0 N 1.985 26.032 50.174\\nlig-1 C21 C 0 N 0.874 30.542 50.526\\nlig-1 C22 C 0 N -2.591 18.634 49.703\\nlig-1 C23 C 0 N 1.402 14.519 51.149\\nlig-1 C24 C 0 N -7.831 18.607 48.749\\nlig-1 C25 C 0 N -7.717 17.604 46.668\\nlig-1 C26 C 0 N 0.962 29.094 50.896\\nlig-1 C27 C 0 N -3.554 17.670 49.067\\nlig-1 C28 C 0 N -5.011 18.123 49.196\\nlig-1 C29 C 0 N -5.726 17.713 47.913\\nlig-1 C30 C 0 N 1.690 16.001 51.281\\nlig-1 N31 N 0 N 1.622 25.129 53.300\\nlig-1 N32 N 0 N 2.416 20.432 53.093\\nlig-1 N33 N 0 N 0.164 30.856 49.437\\nlig-1 N34 N 0 N -0.176 23.061 51.022\\nlig-1 N35 N 0 N -1.237 18.341 49.477\\nlig-1 N36 N 0 N -6.959 18.439 47.595\\nlig-1 O37 O 0 N -3.018 19.579 50.358\\nlig-1 O38 O 0 N 1.397 28.299 49.780\\nlig-1 O39 O 0 N 0.523 16.689 50.833\\nlig-1 Cl40 Cl 0 N 3.657 26.498 49.921\\n#\\nloop_\\n_chem_comp_bond.atom_id_1\\n_chem_comp_bond.atom_id_2\\n_chem_comp_bond.value_order\\n_chem_comp_bond.pdbx_aromatic_flag\\nC1 C12 SING N\\nC1 N31 TRIP N\\nC2 C3 DOUB N\\nC2 C6 SING N\\nC3 C10 SING N\\nC4 C5 DOUB N\\nC4 C15 SING N\\nC5 C18 SING N\\nC6 C21 DOUB N\\nC7 C13 DOUB N\\nC7 C16 SING N\\nC8 C14 DOUB N\\nC8 C19 SING N\\nC9 C15 DOUB N\\nC9 C20 SING N\\nC10 N33 DOUB N\\nC11 C12 SING N\\nC11 N32 DOUB N\\nC12 C17 DOUB N\\nC13 C14 SING N\\nC13 C17 SING N\\nC14 N32 SING N\\nC15 N34 SING N\\nC16 C19 DOUB N\\nC16 N35 SING N\\nC17 N34 SING N\\nC18 C20 DOUB N\\nC18 O38 SING N\\nC19 O39 SING N\\nC20 Cl40 SING N\\nC21 C26 SING N\\nC21 N33 SING N\\nC22 C27 SING N\\nC22 N35 SING N\\nC22 O37 DOUB N\\nC23 C30 SING N\\nC24 N36 SING N\\nC25 N36 SING N\\nC26 O38 SING N\\nC27 C28 SING N\\nC28 C29 SING N\\nC29 N36 SING N\\nC30 O39 SING N\\n#\"\n\n\n\nget_protein_ccd_json?\n\n\nSignature:\nget_protein_ccd_json(\n    protein_json,\n    rec_residue_num: int,\n    rec_atom_id: str,\n    lig_sdf_path,\n    lig_atom_id: str,\n    job_id: str,\n    save_path=None,\n    seeds=[1],\n)\nDocstring: Create AlphaFold3 docking JSON with customized CCD ligand and bondedAtomPairs.\nFile:      ~/af_kit/af_kit/covalent.py\nType:      function\n\n\n\n\ndata = get_protein_ccd_json(protein_json,\n                            106,\n                            'SG',\n                            'covalent_test/lig-HKI.sdf',\n                            'C28',\n                            'test',\n                            '3W2Q_3.json')\n\n\nprint(str(data)[:1000])\n\n{'name': '3W2Q_test', 'modelSeeds': [1], 'sequences': [{'ligand': {'id': 'L', 'ccdCodes': ['lig-any']}}, {'protein': {'id': 'A', 'sequence': 'HHHHHHAPNQALLRILKETEFKKIKVLGSGAFGTVYKGLWIPEGEKVKIPVAIKELREATSPKANKEILDEAYVMASVDNPHVCRLLGICLTSTVQLIMQLMPFGCLLDYVREHKDNIGSQYLLNWCVQIAKGMNYLEDRRLVHRDLAARNVLVKTPQHVKITDFGRAKLLGAEEKEYHAEGGKVPIKWMALESILHRIYTHQSDVWSYGVTVWELMTFGSKPYDGIPASEISSILEKGERLPQPPICTIDVYMIMVKCWMIDADSRPKFRELIIEFSKMARDPQRYLVIQGDERMHLPSPTDSNFYRALMDEEDMDDVVDADEYLIPQQG', 'modifications': [], 'unpairedMsa': \"&gt;query\\nHHHHHHAPNQALLRILKETEFKKIKVLGSGAFGTVYKGLWIPEGEKVKIPVAIKELREATSPKANKEILDEAYVMASVDNPHVCRLLGICLTSTVQLIMQLMPFGCLLDYVREHKDNIGSQYLLNWCVQIAKGMNYLEDRRLVHRDLAARNVLVKTPQHVKITDFGRAKLLGAEEKEYHAEGGKVPIKWMALESILHRIYTHQSDVWSYGVTVWELMTFGSKPYDGIPASEISSILEKGERLPQPPICTIDVYMIMVKCWMIDADSRPKFRELIIEFSKMARDPQRYLVIQGDERMHLPSPTDSNFYRALMDEEDMDDVVDADEYLIPQQG\\n&gt;UniRef90_A0A498NET7/528-812 [subseq from] Receptor protein-tyrosine kinase n=2 Tax=Labeo rohita TaxID=84645 RepID=A0A498NET7_LABRO\\n---KHHKKKETRR\n\n\n\nstr(data)[-1000:]\n\nig-any O37 O 0 N -3.018 19.579 50.358\\nlig-any O38 O 0 N 1.397 28.299 49.780\\nlig-any O39 O 0 N 0.523 16.689 50.833\\nlig-any Cl40 Cl 0 N 3.657 26.498 49.921\\n#\\nloop_\\n_chem_comp_bond.atom_id_1\\n_chem_comp_bond.atom_id_2\\n_chem_comp_bond.value_order\\n_chem_comp_bond.pdbx_aromatic_flag\\nC1 C12 SING N\\nC1 N31 TRIP N\\nC2 C3 DOUB N\\nC2 C6 SING N\\nC3 C10 SING N\\nC4 C5 DOUB N\\nC4 C15 SING N\\nC5 C18 SING N\\nC6 C21 DOUB N\\nC7 C13 DOUB N\\nC7 C16 SING N\\nC8 C14 DOUB N\\nC8 C19 SING N\\nC9 C15 DOUB N\\nC9 C20 SING N\\nC10 N33 DOUB N\\nC11 C12 SING N\\nC11 N32 DOUB N\\nC12 C17 DOUB N\\nC13 C14 SING N\\nC13 C17 SING N\\nC14 N32 SING N\\nC15 N34 SING N\\nC16 C19 DOUB N\\nC16 N35 SING N\\nC17 N34 SING N\\nC18 C20 DOUB N\\nC18 O38 SING N\\nC19 O39 SING N\\nC20 Cl40 SING N\\nC21 C26 SING N\\nC21 N33 SING N\\nC22 C27 SING N\\nC22 N35 SING N\\nC22 O37 DOUB N\\nC23 C30 SING N\\nC24 N36 SING N\\nC25 N36 SING N\\nC26 O38 SING N\\nC27 C28 SING N\\nC28 C29 SING N\\nC29 N36 SING N\\nC30 O39 SING N\\n#\", 'dialect': 'alphafold3', 'version': 3}\n\n\n\ndata['bondedAtomPairs']\n\n[[['A', 106, 'SG'], ['L', 1, 'C28']]]\n\n\n\nDocker command\nMove the generated proteinA.json to the af_input/project_name folder\n\nproject_name='common'\n\nFirst run with search enabled:\n\ndocker_single_full(f\"af_input/{project_name}/3W2Q.json\",\n                               output_dir=f\"af_output/{project_name}\")\n\nAfter the first run, skip msa:\n\ndocker_single_full(json_path=f\"af_input/{project_name}/3W2Q_3.json\",\n                               output_dir=f\"af_output/{project_name}\",skip_search=True)\n\ndocker run --rm \\\n    --volume \"$HOME/af_input:/root/af_input\" \\\n    --volume \"$HOME/af_output/common:/root/af_output\" \\\n    --volume \"$HOME/af_model:/root/models\" \\\n    --volume \"$HOME/af_database:/root/public_databases\" \\\n    --gpus \"device=0\" \\\n    sky1ove/alphafold3 \\\n    python run_alphafold.py \\\n    --json_path=/root/af_input/common/3W2Q_3.json \\\n    --output_dir=/root/af_output \\\n    --model_dir=/root/models \\\n    --norun_data_pipeline\n\n\n\n\nMultiple protein-smile pairs in a df\n\ndf = pd.DataFrame({'idx':['a','b'],'smi':['CCC','OCO']})\ndf\n\n\n\n\n\n\n\n\nidx\nsmi\n\n\n\n\n0\na\nCCC\n\n\n1\nb\nOCO\n\n\n\n\n\n\n\n\nfor idx, smi in df.values:\n    _ = get_protein_smiles_json(idx,smi,protein_json,f'af_input/{project_name}/{idx}.json',seeds=[1,2,3])\n\nThis will generate many json files in the directory",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Covalent bond small inhibitor"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_03_covalent_bond.html#split-file-into-multiple-subfolder-for-multi-gpus",
+    "href": "tutorials/af3_03_covalent_bond.html#split-file-into-multiple-subfolder-for-multi-gpus",
+    "title": "Covalent bond small inhibitor",
+    "section": "Split file into multiple subfolder for multi-GPUs",
+    "text": "Split file into multiple subfolder for multi-GPUs\n\nsplit_nfolder(f'af_input/{project_name}')\n\nDistributed 2 files into 4 folders.",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Covalent bond small inhibitor"
+    ]
+  },
+  {
+    "objectID": "tutorials/af3_03_covalent_bond.html#docker",
+    "href": "tutorials/af3_03_covalent_bond.html#docker",
+    "title": "Covalent bond small inhibitor",
+    "section": "Docker",
+    "text": "Docker\ndocker pull sky1ove/alphafold3\n\nfor i in range(4):\n    docker_multi_infer(input_dir=f\"af_input/{project_name}/folder_{i}\",\n                               output_dir=f\"af_output/{project_name}\",\n                               gpus=i)\n# norun_data_pipeline means skip template search as we already did in the first step\n\ndocker run --rm \\\n    --volume \"$HOME/af_input:/root/af_input\" \\\n    --volume \"$HOME/af_output/sdf:/root/af_output\" \\\n    --volume \"$HOME/af_model:/root/models\" \\\n    --volume \"$HOME/af_db:/root/public_databases\" \\\n    --volume \"$HOME/af_cache:/root/cache\" \\\n    --gpus \"device=0\" \\\n    sky1ove/alphafold3 \\\n    python run_alphafold.py \\\n    --input_dir=/root/af_input/sdf/folder_0 \\\n    --output_dir=/root/af_output \\\n    --model_dir=/root/models \\\n    --jax_compilation_cache_dir=/root/cache \\\n    --norun_data_pipeline\ndocker run --rm \\\n    --volume \"$HOME/af_input:/root/af_input\" \\\n    --volume \"$HOME/af_output/sdf:/root/af_output\" \\\n    --volume \"$HOME/af_model:/root/models\" \\\n    --volume \"$HOME/af_db:/root/public_databases\" \\\n    --volume \"$HOME/af_cache:/root/cache\" \\\n    --gpus \"device=1\" \\\n    sky1ove/alphafold3 \\\n    python run_alphafold.py \\\n    --input_dir=/root/af_input/sdf/folder_1 \\\n    --output_dir=/root/af_output \\\n    --model_dir=/root/models \\\n    --jax_compilation_cache_dir=/root/cache \\\n    --norun_data_pipeline\ndocker run --rm \\\n    --volume \"$HOME/af_input:/root/af_input\" \\\n    --volume \"$HOME/af_output/sdf:/root/af_output\" \\\n    --volume \"$HOME/af_model:/root/models\" \\\n    --volume \"$HOME/af_db:/root/public_databases\" \\\n    --volume \"$HOME/af_cache:/root/cache\" \\\n    --gpus \"device=2\" \\\n    sky1ove/alphafold3 \\\n    python run_alphafold.py \\\n    --input_dir=/root/af_input/sdf/folder_2 \\\n    --output_dir=/root/af_output \\\n    --model_dir=/root/models \\\n    --jax_compilation_cache_dir=/root/cache \\\n    --norun_data_pipeline\ndocker run --rm \\\n    --volume \"$HOME/af_input:/root/af_input\" \\\n    --volume \"$HOME/af_output/sdf:/root/af_output\" \\\n    --volume \"$HOME/af_model:/root/models\" \\\n    --volume \"$HOME/af_db:/root/public_databases\" \\\n    --volume \"$HOME/af_cache:/root/cache\" \\\n    --gpus \"device=3\" \\\n    sky1ove/alphafold3 \\\n    python run_alphafold.py \\\n    --input_dir=/root/af_input/sdf/folder_3 \\\n    --output_dir=/root/af_output \\\n    --model_dir=/root/models \\\n    --jax_compilation_cache_dir=/root/cache \\\n    --norun_data_pipeline",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Covalent bond small inhibitor"
+    ]
+  },
+  {
+    "objectID": "protenix/proteinix_dock.html",
+    "href": "protenix/proteinix_dock.html",
+    "title": "Protenix-dock",
+    "section": "",
+    "text": "TODO: get more conformers in sdf file, and test for virtual screening",
+    "crumbs": [
+      "Home",
+      "Protenix",
+      "Protenix-dock"
+    ]
+  },
+  {
+    "objectID": "protenix/proteinix_dock.html#install-instruction",
+    "href": "protenix/proteinix_dock.html#install-instruction",
+    "title": "Protenix-dock",
+    "section": "Install instruction",
+    "text": "Install instruction\n\ntutorial, install protenix-dock accordingly\nofficial github",
+    "crumbs": [
+      "Home",
+      "Protenix",
+      "Protenix-dock"
+    ]
+  },
+  {
+    "objectID": "protenix/proteinix_dock.html#after-install",
+    "href": "protenix/proteinix_dock.html#after-install",
+    "title": "Protenix-dock",
+    "section": "After install",
+    "text": "After install\n\nTest whether the notebook can import it successfully\n\nif vscode:\nexport LD_LIBRARY_PATH=${CONDA_PREFIX}/lib:$LD_LIBRARY_PATH\nIf jupyterlab on a cloud, need to set secrete:\nimport os\nconda_lib_path = os.path.join(os.environ[\"CONDA_PREFIX\"], \"lib\")\ncurrent_path = os.environ.get(\"LD_LIBRARY_PATH\", \"\")\nprint(conda_lib_path,current_path)\n\n# if in cloud, set the secrete according to below\nos.environ['LD_LIBRARY_PATH'] =\"/home/zeus/miniconda3/envs/cloudspace/lib:/opt/jupyter/envs/main/lib\"\nprint(os.environ['LD_LIBRARY_PATH'])",
+    "crumbs": [
+      "Home",
+      "Protenix",
+      "Protenix-dock"
+    ]
+  },
+  {
+    "objectID": "protenix/proteinix_dock.html#setup",
+    "href": "protenix/proteinix_dock.html#setup",
+    "title": "Protenix-dock",
+    "section": "Setup",
+    "text": "Setup",
+    "crumbs": [
+      "Home",
+      "Protenix",
+      "Protenix-dock"
+    ]
+  },
+  {
+    "objectID": "protenix/proteinix_dock.html#one-time-protenix-dock",
+    "href": "protenix/proteinix_dock.html#one-time-protenix-dock",
+    "title": "Protenix-dock",
+    "section": "One-time protenix-dock",
+    "text": "One-time protenix-dock\n\nget_rec_lig('7OFF','VCB','protenix_test')\n\n7OFF.pdb is detected!\n\n\n('/teamspace/studios/this_studio/kdock/nbs/protenix_test/7OFF_receptor.pdb',\n '/teamspace/studios/this_studio/kdock/nbs/protenix_test/7OFF_lig.sdf')\n\n\n\nbox = get_box('protenix_test/7OFF_lig.sdf',tolist=True)\nbox\n\n[38.848, -26.77, 10.419, 14.652, 8.942, 12.509]\n\n\n\nsource\n\ncapture_output\n\n capture_output (log_path)\n\n\nsource\n\n\nget_protenix_dock\n\n get_protenix_dock (receptor_pdb, ligand_sdf, box:list, out_dir='.',\n                    num_walker=20, mc_prune_energy_threshold=500,\n                    include_affinity=True, **kwargs)\n\nUse protenix-dock to dock ligand sdf to receptor pdb using protenix-dock\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nreceptor_pdb\n\n\npdb path\n\n\nligand_sdf\n\n\nsdf path\n\n\nbox\nlist\n\ncenter xyz + size xyz\n\n\nout_dir\nstr\n.\noutput directory\n\n\nnum_walker\nint\n20\nnumber of Monte Carlo threads, the more walkers the more space to explore\n\n\nmc_prune_energy_threshold\nint\n500\nmaximum allowed energy for a pose; if exceeds, skipped\n\n\ninclude_affinity\nbool\nTrue\ninclude bscore\n\n\nkwargs\nVAR_KEYWORD\n\n\n\n\n\nThe function will output -prepared-ligand/receptor.json in the same directory as the receptor & ligand files\nAnd output a out.json and log in the out_dir\n\n# %%time\n# get_protenix_dock('protenix_test/7OFF_receptor.pdb',\n#                   'protenix_test/7OFF_lig.sdf',\n#                   box,\n#                   out_dir='protenix_test/dock_result',\n#                   num_walker=20\n#                  )",
+    "crumbs": [
+      "Home",
+      "Protenix",
+      "Protenix-dock"
+    ]
+  },
+  {
+    "objectID": "protenix/proteinix_dock.html#protenix-vina",
+    "href": "protenix/proteinix_dock.html#protenix-vina",
+    "title": "Protenix-dock",
+    "section": "Protenix-vina",
+    "text": "Protenix-vina\n\nVina function in protenix-dock repository\n\n\nsource\n\nget_protenix_vina_dock\n\n get_protenix_vina_dock (receptor_pdb, ligand_sdf, box:list, out_dir='.',\n                         **kwargs)\n\nDock ligand sdf to receptor pdb using protenix-dock\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nreceptor_pdb\n\n\npdb path\n\n\nligand_sdf\n\n\nsdf path\n\n\nbox\nlist\n\ncenter xyz + size xyz\n\n\nout_dir\nstr\n.\noutput directory\n\n\nkwargs\nVAR_KEYWORD\n\n\n\n\n\n\n# %%time\n# get_protenix_vina_dock('protenix_test/7OFF_receptor.pdb',\n#                   'protenix_test/7OFF_lig.sdf',\n#                   box,\n#                   out_dir='protenix_test/vina_result',\n#                  )",
+    "crumbs": [
+      "Home",
+      "Protenix",
+      "Protenix-dock"
+    ]
+  },
+  {
+    "objectID": "protenix/proteinix_dock.html#output-to-sdf",
+    "href": "protenix/proteinix_dock.html#output-to-sdf",
+    "title": "Protenix-dock",
+    "section": "Output to sdf",
+    "text": "Output to sdf\n\nsource\n\njson2sdf\n\n json2sdf (json_path, sdf_path=None)\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\njson_path\n\n\n\n\n\nsdf_path\nNoneType\nNone\n.sdf to be saved\n\n\n\n\nlist(Path('protenix_test/dock_result').glob('*_out.json'))\n\n[PosixPath('protenix_test/dock_result/7OFF_lig-prepared-ligand-0_out.json')]\n\n\n\n# json2sdf('protenix_test/dock_result/7OFF_lig-prepared-ligand-0_out.json',\n#          sdf_path='protenix_test/predicted.sdf')",
+    "crumbs": [
+      "Home",
+      "Protenix",
+      "Protenix-dock"
+    ]
+  },
+  {
+    "objectID": "protenix/proteinix_dock.html#end",
+    "href": "protenix/proteinix_dock.html#end",
+    "title": "Protenix-dock",
+    "section": "End",
+    "text": "End",
+    "crumbs": [
+      "Home",
+      "Protenix",
+      "Protenix-dock"
+    ]
+  },
+  {
+    "objectID": "gnina/gnina_docking.html#setup-gnina",
+    "href": "gnina/gnina_docking.html#setup-gnina",
+    "title": "gnina docking",
+    "section": "Setup gnina",
+    "text": "Setup gnina\nBelow are the commands to setup\n\n# !sudo apt install -yq openbabel\n# !wget https://github.com/gnina/gnina/releases/download/v1.0.3/gnina #check the latest version please\n# !chmod +x gnina\n# !./gnina\n\nAlternatively, use python script to setup:\n\nsource\n\nsetup_gnina_local\n\n setup_gnina_local (version='v1.3')\n\nDownload and install gnina in the current directory\n\n# setup_gnina_local('v1.1')\n\n\ndef delete_gnina(gnina_path=\"gnina\"):\n    \"Remove gnina after finish\"\n    path=Path(gnina_path)\n    if path.exists() and path.is_file():\n        path.unlink()\n        print('Deleted!')\n    else: print('Not exist!')\n\n\n# delete_gnina()\n\nDeleted!\n\n\nIf local is not successful, use docker\n\nsource\n\n\nsetup_gnina_docker\n\n setup_gnina_docker ()\n\nPull gnina docker image\n\n# setup_gnina_docker()\n\nPulling GNINA Docker image: gnina/gnina\nGNINA Docker image is ready.",
+    "crumbs": [
+      "Home",
+      "GNINA",
+      "gnina docking"
+    ]
+  },
+  {
+    "objectID": "gnina/gnina_docking.html#get-protein-and-ligand",
+    "href": "gnina/gnina_docking.html#get-protein-and-ligand",
+    "title": "gnina docking",
+    "section": "Get protein and ligand",
+    "text": "Get protein and ligand\n\n# #nature medicine paper, mrtx\n# !wget http://files.rcsb.org/download/7T47.pdb\n\n# # get ligand\n# !grep 6IC 7T47.pdb &gt; lig.pdb\n\n# # get protein\n# # !grep ATOM 7T47.pdb &gt; rec.pdb #not as good as the one below\n\n# !grep -v 6IC 7T47.pdb &gt; rec.pdb",
+    "crumbs": [
+      "Home",
+      "GNINA",
+      "gnina docking"
+    ]
+  },
+  {
+    "objectID": "gnina/gnina_docking.html#gnina-affinity",
+    "href": "gnina/gnina_docking.html#gnina-affinity",
+    "title": "gnina docking",
+    "section": "Gnina affinity",
+    "text": "Gnina affinity\n\nsource\n\nextract_gnina_dock\n\n extract_gnina_dock (gnina_output)\n\nExtract values from gnina output\n\nsource\n\n\ngnina_dock\n\n gnina_dock (receptor, ligand, autobox_ligand, output='docked.sdf',\n             seed=0, exhaustiveness=None)\n\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nreceptor\n\n\nreceptor file\n\n\nligand\n\n\nligand file\n\n\nautobox_ligand\n\n\nligand file isolated from the complex\n\n\noutput\nstr\ndocked.sdf\noutput file (sdf or sdf.gz) to be saved\n\n\nseed\nint\n0\nset seeds\n\n\nexhaustiveness\nNoneType\nNone\nnumber of MC chains, default is 8 if None, the higher the better (16,32); for whole protein, use 64\n\n\n\n\n# df = Data.get_g12d_dedup()[:10]\n\n\nsource\n\n\ngnina_dock\n\n gnina_dock (df, ID_col='ID', smi_col='SMILES', output_dir='gnina_docked')\n\n\n# out = gnina_dock_df(df)\n\nTODO: make it parallel",
+    "crumbs": [
+      "Home",
+      "GNINA",
+      "gnina docking"
+    ]
+  },
+  {
+    "objectID": "gnina/gnina_docking.html#end",
+    "href": "gnina/gnina_docking.html#end",
+    "title": "gnina docking",
+    "section": "End",
+    "text": "End",
+    "crumbs": [
+      "Home",
+      "GNINA",
+      "gnina docking"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "kdock",
+    "section": "",
+    "text": "Install latest from the GitHub repository:\n$ pip install -U git+https://github.com/sky1ove/kdock.git\n\n\nDocumentation can be found hosted on this GitHub repository’s pages. Additionally you can find package manager specific guidelines on conda and pypi respectively.",
+    "crumbs": [
+      "Home",
+      "Get Started"
+    ]
+  },
+  {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "kdock",
+    "section": "",
+    "text": "Install latest from the GitHub repository:\n$ pip install -U git+https://github.com/sky1ove/kdock.git\n\n\nDocumentation can be found hosted on this GitHub repository’s pages. Additionally you can find package manager specific guidelines on conda and pypi respectively.",
+    "crumbs": [
+      "Home",
+      "Get Started"
+    ]
+  },
+  {
+    "objectID": "index.html#quick-start",
+    "href": "index.html#quick-start",
+    "title": "kdock",
+    "section": "Quick start",
+    "text": "Quick start\nTodo",
+    "crumbs": [
+      "Home",
+      "Get Started"
+    ]
+  },
+  {
+    "objectID": "data/plot.html#visualize-mol",
+    "href": "data/plot.html#visualize-mol",
+    "title": "Plot",
+    "section": "Visualize mol",
+    "text": "Visualize mol\n\nsource\n\nview_mol\n\n view_mol (file)\n\nVisualize pdb or sdf file\n\n\n\n\nDetails\n\n\n\n\nfile\nsdf or pdb file\n\n\n\n\nview_mol('files/7OFF_receptor.pdb')\n\n\n        3Dmol.js failed to load for some reason.  Please check your browser console for error messages.\n        \n\n\n\n\nsource\n\n\nview_complex\n\n view_complex (receptor, ligand, ori_ligand=None, box=None)\n\nVisualize the receptor, ligand, optional original ligand, and optional box via py3Dmol.\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nreceptor\n\n\nprotein file\n\n\nligand\n\n\nligand (green), or docked ligand\n\n\nori_ligand\nNoneType\nNone\noriginal ligand (yellow)\n\n\nbox\nNoneType\nNone\noptional box: [x, y, z, sizeX, sizeY, sizeZ]\n\n\n\n\nbox_list = get_box('files/7OFF_lig.sdf',tolist=True)\nbox_list\n\n[38.848, -26.77, 10.419, 14.652, 8.942, 12.509]\n\n\n\nview_complex('files/7OFF.pdb','files/7OFF_lig.sdf',box=box_list)\n\n\n        3Dmol.js failed to load for some reason.  Please check your browser console for error messages.",
+    "crumbs": [
+      "Home",
+      "Data",
+      "Plot"
+    ]
+  },
+  {
+    "objectID": "data/plot.html#d-plot",
+    "href": "data/plot.html#d-plot",
+    "title": "Plot",
+    "section": "2d plot",
+    "text": "2d plot\n\nsource\n\nset_sns\n\n set_sns ()\n\n\nset_sns()\n\n/opt/hostedtoolcache/Python/3.10.17/x64/lib/python3.10/site-packages/fastcore/docscrape.py:230: UserWarning: Unknown section See Also\n  else: warn(msg)\n\nsource\n\n\nplot_2d\n\n plot_2d (X:pandas.core.frame.DataFrame, data=None, x=None, y=None,\n          hue=None, size=None, style=None, palette=None, hue_order=None,\n          hue_norm=None, sizes=None, size_order=None, size_norm=None,\n          markers=True, style_order=None, legend='auto', ax=None)\n\nMake 2D plot from a dataframe that has first column to be x, and second column to be y\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nX\nDataFrame\n\na dataframe that has first column to be x, and second column to be y\n\n\ndata\nNoneType\nNone\nInput data structure. Either a long-form collection of vectors that can beassigned to named variables or a wide-form dataset that will be internallyreshaped.\n\n\nx\nNoneType\nNone\n\n\n\ny\nNoneType\nNone\n\n\n\nhue\nNoneType\nNone\nGrouping variable that will produce points with different colors.Can be either categorical or numeric, although color mapping willbehave differently in latter case.\n\n\nsize\nNoneType\nNone\nGrouping variable that will produce points with different sizes.Can be either categorical or numeric, although size mapping willbehave differently in latter case.\n\n\nstyle\nNoneType\nNone\nGrouping variable that will produce points with different markers.Can have a numeric dtype but will always be treated as categorical.\n\n\npalette\nNoneType\nNone\nMethod for choosing the colors to use when mapping the hue semantic.String values are passed to :func:color_palette. List or dict valuesimply categorical mapping, while a colormap object implies numeric mapping.\n\n\nhue_order\nNoneType\nNone\nSpecify the order of processing and plotting for categorical levels of thehue semantic.\n\n\nhue_norm\nNoneType\nNone\nEither a pair of values that set the normalization range in data unitsor an object that will map from data units into a [0, 1] interval. Usageimplies numeric mapping.\n\n\nsizes\nNoneType\nNone\nAn object that determines how sizes are chosen when size is used.List or dict arguments should provide a size for each unique data value,which forces a categorical interpretation. The argument may also be amin, max tuple.\n\n\nsize_order\nNoneType\nNone\nSpecified order for appearance of the size variable levels,otherwise they are determined from the data. Not relevant when thesize variable is numeric.\n\n\nsize_norm\nNoneType\nNone\nNormalization in data units for scaling plot objects when thesize variable is numeric.\n\n\nmarkers\nbool\nTrue\nObject determining how to draw the markers for different levels of thestyle variable. Setting to True will use default markers, oryou can pass a list of markers or a dictionary mapping levels of thestyle variable to markers. Setting to False will drawmarker-less lines. Markers are specified as in matplotlib.\n\n\nstyle_order\nNoneType\nNone\nSpecified order for appearance of the style variable levelsotherwise they are determined from the data. Not relevant when thestyle variable is numeric.\n\n\nlegend\nstr\nauto\nHow to draw the legend. If “brief”, numeric hue and sizevariables will be represented with a sample of evenly spaced values.If “full”, every group will get an entry in the legend. If “auto”,choose between brief or full representation based on number of levels.If False, no legend data is added and no legend is drawn.\n\n\nax\nNoneType\nNone\nPre-existing axes for the plot. Otherwise, call :func:matplotlib.pyplot.gcainternally.\n\n\nReturns\n:class:matplotlib.axes.Axes\n\nThe matplotlib axes containing the plot.\n\n\n\n\n# plot_2d(pca.iloc[:,:2])\n\n\n\n\n\n\n\n\n\nsource\n\n\nplot_corr\n\n plot_corr (x, y, xlabel=None, ylabel=None, order=3)\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nx\n\n\na column of df\n\n\ny\n\n\na column of df\n\n\nxlabel\nNoneType\nNone\nx axis label\n\n\nylabel\nNoneType\nNone\ny axis label\n\n\norder\nint\n3\npolynomial level, if straight, order=1\n\n\n\n\n# plot_corr(pca.PCA1,pca.PCA2)",
+    "crumbs": [
+      "Home",
+      "Data",
+      "Plot"
+    ]
+  },
+  {
+    "objectID": "af3/analyze.html#read-summary-confidences-json",
+    "href": "af3/analyze.html#read-summary-confidences-json",
+    "title": "Analyze",
+    "section": "Read summary confidences json",
+    "text": "Read summary confidences json\n\nsource\n\nread_summary_json\n\n read_summary_json (json_path)\n\nRead json file to dictionary\n\ndata = read_summary_json('data/seq_only_summary_confidences.json')\ndata\n\n{'ID': 'seq_only_summary_confidences',\n 'chain_iptm_0': None,\n 'chain_pair_iptm_0_0': 0.72,\n 'chain_pair_pae_min_0_0': 0.76,\n 'chain_ptm_0': 0.72,\n 'fraction_disordered': 0.19,\n 'has_clash': 0.0,\n 'iptm': None,\n 'ptm': 0.72,\n 'ranking_score': 0.82}\n\n\n\nsource\n\n\nget_summary_df\n\n get_summary_df (output_dir)\n\nPack the summary json from the output folder to the df\n\nout = get_summary_df('data')\nout\n\n1 summary_confidences.json files detected\n\n\n\n\n\n\n\n\n\nID\nchain_iptm_0\nchain_pair_iptm_0_0\nchain_pair_pae_min_0_0\nchain_ptm_0\nfraction_disordered\nhas_clash\niptm\nptm\nranking_score\n\n\n\n\n0\nseq_only_summary_confidences\nNone\n0.72\n0.76\n0.72\n0.19\n0.0\nNone\n0.72\n0.82",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Analyze"
+    ]
+  },
+  {
+    "objectID": "af3/analyze.html#specific-for-protein-pairs",
+    "href": "af3/analyze.html#specific-for-protein-pairs",
+    "title": "Analyze",
+    "section": "Specific for protein pairs",
+    "text": "Specific for protein pairs\n\nsource\n\nprocess_summary_df\n\n process_summary_df (df, generate_report=False)\n\nPost process the json-converted pandas df; remove redundant columns; available for pairs\n\n# out2 = process_summary_df(out)\n\n\nsource\n\n\nget_top_cases\n\n get_top_cases (df, n=30)\n\nGet top cases from the metric\n\n# genes = get_top_cases(out2)\n\n\nsource\n\n\nget_3d_report\n\n get_3d_report (df, index_list, x='iptm', y='ptm',\n                z='chain_pair_pae_min_add', save_dir='af_report')\n\nGenerate 3d plot html file given case index and x, y, z colname\n\n# get_3d_report(out2,genes)\n\n\nsource\n\n\nget_report\n\n get_report (out_dir, save_dir='af_report')\n\nGenerate summary report based on summary_confidences file; return summary df and top cases\ndf_sum, top_genes = get_report('af_output/data','af_report/proteinA')\n\ndf_sum.sort_values('iptm_ptm_rnk_add').head(10)\n\nsource\n\n\ncopy_file\n\n copy_file (idx_name, source_dir, dest_dir)\n\nCopy all model cif generated by AF3 to the new dest folder\nfrom fastcore.utils import L\ncopy_file('proA_proB',source_dir='af_output/proA',dest_dir='af_top')\n# Or \nL(top_genes).map(copy_file,source_dir='af_output/proA',dest_dir='af_top')",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Analyze"
+    ]
+  },
+  {
+    "objectID": "af3/analyze.html#end",
+    "href": "af3/analyze.html#end",
+    "title": "Analyze",
+    "section": "End",
+    "text": "End",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Analyze"
+    ]
+  },
+  {
+    "objectID": "af3/docker.html#command",
+    "href": "af3/docker.html#command",
+    "title": "Docker command",
+    "section": "Command",
+    "text": "Command\nBefore running, make sure you have af_model, af_output, af_database folder prepared in the current directory\n\nsource\n\nget_docker_command\n\n get_docker_command (input_dir='af_input', output_dir='af_output',\n                     model_dir='af_model', db_dir='af_database',\n                     cache_dir='af_cache', gpus=0,\n                     docker_name='sky1ove/alphafold3', embedding=False,\n                     skip_search=False, search_only=False, json_path=None)\n\nGenerate a Docker run command for Alphafold with customizable parameters.\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ninput_dir\nstr\naf_input\nDirectory for input data\n\n\noutput_dir\nstr\naf_output\nDirectory for output results\n\n\nmodel_dir\nstr\naf_model\nDirectory containing models\n\n\ndb_dir\nstr\naf_database\nDirectory for databases. If None, this option is ommitted\n\n\ncache_dir\nstr\naf_cache\nDirectory for JAX compilation cache. If None, this option is omitted\n\n\ngpus\nint\n0\nGPU devices to allocate (e.g., 0,1), if None, ommitted\n\n\ndocker_name\nstr\nsky1ove/alphafold3\nDocker image name\n\n\nembedding\nbool\nFalse\nIf True, includes the –save_embeddings=true flag\n\n\nskip_search\nbool\nFalse\nif MSA is precalculated and present in json; If True, includes the –norun_data_pipeline flag\n\n\nsearch_only\nbool\nFalse\nsearch MSA only; If True, sets skip_search to False and includes the –norun_inference flag\n\n\njson_path\nNoneType\nNone\nPath to JSON file. If not None, uses json_file instead of input_dir\n\n\n\nSingle json file:\n\n# for single json file, we don't need to cache the model\nget_docker_command(json_path=f\"af_input/subfolder/data.json\",\n                   output_dir=\"af_output/subfolder\",\n                   cache_dir=False)\n\ndocker run --rm \\\n    --volume \"$HOME/af_input:/root/af_input\" \\\n    --volume \"$HOME/af_output/subfolder:/root/af_output\" \\\n    --volume \"$HOME/af_model:/root/models\" \\\n    --volume \"$HOME/af_database:/root/public_databases\" \\\n    --gpus \"device=0\" \\\n    sky1ove/alphafold3 \\\n    python run_alphafold.py \\\n    --json_path=/root/af_input/subfolder/data.json \\\n    --output_dir=/root/af_output \\\n    --model_dir=/root/models\n\n\nInput directory with json files:\n\n# For a number of json files in the input folder\nget_docker_command(input_dir=\"af_input/subfolder/folder_0\",\n                   output_dir=\"af_output/subfolder\")\n\ndocker run --rm \\\n    --volume \"$HOME/af_input:/root/af_input\" \\\n    --volume \"$HOME/af_output/subfolder:/root/af_output\" \\\n    --volume \"$HOME/af_model:/root/models\" \\\n    --volume \"$HOME/af_database:/root/public_databases\" \\\n    --volume \"$HOME/af_cache:/root/cache\" \\\n    --gpus \"device=0\" \\\n    sky1ove/alphafold3 \\\n    python run_alphafold.py \\\n    --input_dir=/root/af_input/subfolder/folder_0 \\\n    --output_dir=/root/af_output \\\n    --model_dir=/root/models \\\n    --jax_compilation_cache_dir=/root/cache",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Docker command"
+    ]
+  },
+  {
+    "objectID": "af3/docker.html#single-json-full-pipeline",
+    "href": "af3/docker.html#single-json-full-pipeline",
+    "title": "Docker command",
+    "section": "Single json full pipeline",
+    "text": "Single json full pipeline\n\nsource\n\ndocker_single_full\n\n docker_single_full (json_path, output_dir, cache_dir=False,\n                     input_dir='af_input', model_dir='af_model',\n                     db_dir='af_database', gpus=0,\n                     docker_name='sky1ove/alphafold3', embedding=False,\n                     skip_search=False, search_only=False)\n\nSingle json task with full pipeline.\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\njson_path\nNoneType\nNone\nPath to JSON file. If not None, uses json_file instead of input_dir\n\n\noutput_dir\nstr\naf_output\nDirectory for output results\n\n\ncache_dir\nstr\naf_cache\nDirectory for JAX compilation cache. If None, this option is omitted\n\n\ninput_dir\nstr\naf_input\nDirectory for input data\n\n\nmodel_dir\nstr\naf_model\nDirectory containing models\n\n\ndb_dir\nstr\naf_database\nDirectory for databases. If None, this option is ommitted\n\n\ngpus\nint\n0\nGPU devices to allocate (e.g., 0,1), if None, ommitted\n\n\ndocker_name\nstr\nsky1ove/alphafold3\nDocker image name\n\n\nembedding\nbool\nFalse\nIf True, includes the –save_embeddings=true flag\n\n\nskip_search\nbool\nFalse\nif MSA is precalculated and present in json; If True, includes the –norun_data_pipeline flag\n\n\nsearch_only\nbool\nFalse\nsearch MSA only; If True, sets skip_search to False and includes the –norun_inference flag\n\n\n\n\ndocker_single_full('a.json','output_folder')\n\ndocker run --rm \\\n    --volume \"$HOME/a.json:/root/af_input\" \\\n    --volume \"$HOME/output_folder:/root/af_output\" \\\n    --volume \"$HOME/af_model:/root/models\" \\\n    --volume \"$HOME/af_database:/root/public_databases\" \\\n    --gpus \"device=0\" \\\n    sky1ove/alphafold3 \\\n    python run_alphafold.py \\\n    --json_path=/root/af_input/ \\\n    --output_dir=/root/af_output \\\n    --model_dir=/root/models",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Docker command"
+    ]
+  },
+  {
+    "objectID": "af3/docker.html#folder-input",
+    "href": "af3/docker.html#folder-input",
+    "title": "Docker command",
+    "section": "Folder input",
+    "text": "Folder input\n\nFull pipeline\n\nsource\n\n\ndocker_multi_full\n\n docker_multi_full (input_dir, output_dir, model_dir='af_model',\n                    db_dir='af_database', cache_dir='af_cache', gpus=0,\n                    docker_name='sky1ove/alphafold3', embedding=False,\n                    skip_search=False, search_only=False, json_path=None)\n\nFolder of json as input with full pipeline.\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ninput_dir\nstr\naf_input\nDirectory for input data\n\n\noutput_dir\nstr\naf_output\nDirectory for output results\n\n\nmodel_dir\nstr\naf_model\nDirectory containing models\n\n\ndb_dir\nstr\naf_database\nDirectory for databases. If None, this option is ommitted\n\n\ncache_dir\nstr\naf_cache\nDirectory for JAX compilation cache. If None, this option is omitted\n\n\ngpus\nint\n0\nGPU devices to allocate (e.g., 0,1), if None, ommitted\n\n\ndocker_name\nstr\nsky1ove/alphafold3\nDocker image name\n\n\nembedding\nbool\nFalse\nIf True, includes the –save_embeddings=true flag\n\n\nskip_search\nbool\nFalse\nif MSA is precalculated and present in json; If True, includes the –norun_data_pipeline flag\n\n\nsearch_only\nbool\nFalse\nsearch MSA only; If True, sets skip_search to False and includes the –norun_inference flag\n\n\njson_path\nNoneType\nNone\nPath to JSON file. If not None, uses json_file instead of input_dir\n\n\n\n\ndocker_multi_full('input_folder','output_folder')\n\ndocker run --rm \\\n    --volume \"$HOME/input_folder:/root/af_input\" \\\n    --volume \"$HOME/output_folder:/root/af_output\" \\\n    --volume \"$HOME/af_model:/root/models\" \\\n    --volume \"$HOME/af_database:/root/public_databases\" \\\n    --volume \"$HOME/af_cache:/root/cache\" \\\n    --gpus \"device=0\" \\\n    sky1ove/alphafold3 \\\n    python run_alphafold.py \\\n    --input_dir=/root/af_input \\\n    --output_dir=/root/af_output \\\n    --model_dir=/root/models \\\n    --jax_compilation_cache_dir=/root/cache\n\n\n\n\nMSA only\n\nsource\n\n\ndocker_multi_msa\n\n docker_multi_msa (input_dir, output_dir, search_only=True,\n                   model_dir='af_model', db_dir='af_database',\n                   cache_dir='af_cache', gpus=0,\n                   docker_name='sky1ove/alphafold3', embedding=False,\n                   skip_search=False, json_path=None)\n\nMSA search only, without structure inference; CPU only.\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ninput_dir\nstr\naf_input\nDirectory for input data\n\n\noutput_dir\nstr\naf_output\nDirectory for output results\n\n\nsearch_only\nbool\nFalse\nsearch MSA only; If True, sets skip_search to False and includes the –norun_inference flag\n\n\nmodel_dir\nstr\naf_model\nDirectory containing models\n\n\ndb_dir\nstr\naf_database\nDirectory for databases. If None, this option is ommitted\n\n\ncache_dir\nstr\naf_cache\nDirectory for JAX compilation cache. If None, this option is omitted\n\n\ngpus\nint\n0\nGPU devices to allocate (e.g., 0,1), if None, ommitted\n\n\ndocker_name\nstr\nsky1ove/alphafold3\nDocker image name\n\n\nembedding\nbool\nFalse\nIf True, includes the –save_embeddings=true flag\n\n\nskip_search\nbool\nFalse\nif MSA is precalculated and present in json; If True, includes the –norun_data_pipeline flag\n\n\njson_path\nNoneType\nNone\nPath to JSON file. If not None, uses json_file instead of input_dir\n\n\n\n\ndocker_multi_msa('input_folder','output_folder')\n\ndocker run --rm \\\n    --volume \"$HOME/input_folder:/root/af_input\" \\\n    --volume \"$HOME/output_folder:/root/af_output\" \\\n    --volume \"$HOME/af_model:/root/models\" \\\n    --volume \"$HOME/af_database:/root/public_databases\" \\\n    --volume \"$HOME/af_cache:/root/cache\" \\\n    --gpus \"device=0\" \\\n    sky1ove/alphafold3 \\\n    python run_alphafold.py \\\n    --input_dir=/root/af_input \\\n    --output_dir=/root/af_output \\\n    --model_dir=/root/models \\\n    --jax_compilation_cache_dir=/root/cache \\\n    --norun_inference\n\n\n\n\nInfer only\n\nsource\n\n\ndocker_multi_infer\n\n docker_multi_infer (input_dir, output_dir, skip_search=True,\n                     model_dir='af_model', db_dir='af_database',\n                     cache_dir='af_cache', gpus=0,\n                     docker_name='sky1ove/alphafold3', embedding=False,\n                     search_only=False, json_path=None)\n\nInfer only with pre-calculated MSA; GPU is needed.\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ninput_dir\nstr\naf_input\nDirectory for input data\n\n\noutput_dir\nstr\naf_output\nDirectory for output results\n\n\nskip_search\nbool\nFalse\nif MSA is precalculated and present in json; If True, includes the –norun_data_pipeline flag\n\n\nmodel_dir\nstr\naf_model\nDirectory containing models\n\n\ndb_dir\nstr\naf_database\nDirectory for databases. If None, this option is ommitted\n\n\ncache_dir\nstr\naf_cache\nDirectory for JAX compilation cache. If None, this option is omitted\n\n\ngpus\nint\n0\nGPU devices to allocate (e.g., 0,1), if None, ommitted\n\n\ndocker_name\nstr\nsky1ove/alphafold3\nDocker image name\n\n\nembedding\nbool\nFalse\nIf True, includes the –save_embeddings=true flag\n\n\nsearch_only\nbool\nFalse\nsearch MSA only; If True, sets skip_search to False and includes the –norun_inference flag\n\n\njson_path\nNoneType\nNone\nPath to JSON file. If not None, uses json_file instead of input_dir\n\n\n\n\ndocker_multi_infer('input_folder','output_folder')\n\ndocker run --rm \\\n    --volume \"$HOME/input_folder:/root/af_input\" \\\n    --volume \"$HOME/output_folder:/root/af_output\" \\\n    --volume \"$HOME/af_model:/root/models\" \\\n    --volume \"$HOME/af_database:/root/public_databases\" \\\n    --volume \"$HOME/af_cache:/root/cache\" \\\n    --gpus \"device=0\" \\\n    sky1ove/alphafold3 \\\n    python run_alphafold.py \\\n    --input_dir=/root/af_input \\\n    --output_dir=/root/af_output \\\n    --model_dir=/root/models \\\n    --jax_compilation_cache_dir=/root/cache \\\n    --norun_data_pipeline",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Docker command"
+    ]
+  },
+  {
+    "objectID": "af3/docker.html#end",
+    "href": "af3/docker.html#end",
+    "title": "Docker command",
+    "section": "End",
+    "text": "End",
+    "crumbs": [
+      "Home",
+      "Alphafold3",
+      "Docker command"
+    ]
+  }
+]
