@@ -34,8 +34,8 @@ website:
         href: index.ipynb
       - section: Tutorials
         contents: tutorials/*
-      - section: Data
-        contents: data/*
+      - section: Core
+        contents: core/*
       - section: Alphafold3
         contents: af3/*
       - section: GNINA

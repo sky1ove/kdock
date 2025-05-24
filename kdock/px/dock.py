@@ -5,7 +5,7 @@ __all__ = ['capture_output', 'get_protenix_dock', 'get_protenix_vina_dock', 'jso
 
 # %% ../../nbs/protenix/06_proteinix_dock.ipynb 11
 # kdock
-from ..data.core import *
+from ..core.utils import *
 
 # basics
 import json,shutil

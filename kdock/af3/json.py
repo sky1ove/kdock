@@ -13,7 +13,6 @@ from rdkit.Chem import AllChem,rdmolfiles
 from rdkit import Chem
 
 from Bio.PDB import PDBParser
-from ..data.core import *
 
 # %% ../../nbs/af3/00_json.ipynb 4
 def dump_json(data, save_path):
