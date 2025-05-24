@@ -45,7 +45,7 @@ class Collins:
         """
         return fetch_csv(BASE_URL + "dataset/antibiotics_enzyme.csv")
 
-# %% ../../nbs/core/00_data.ipynb 10
+# %% ../../nbs/core/00_data.ipynb 19
 class Kras:
     "A class of fetching various KRAS datasets."
     @staticmethod
