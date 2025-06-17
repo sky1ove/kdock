@@ -94,7 +94,7 @@ def get_uniprot_type(uniprot_id,type_='Signal'):
 # %% ../../nbs/core/02_protein.ipynb 15
 def apply_mut_single(seq, # protein sequence
            *mutations, # e.g., E709A
-           verbose=True,
+           start_pos=1, # if the protein sequence does not start from index 1, indicate the start index to match the mutations
            ):
     "Apply mutations to a protein sequence."
     seq_list = list(seq)  # convert to list for mutability
@@ -103,7 +103,7 @@ def apply_mut_single(seq, # protein sequence
         # check mutation format
         if len(mut) < 3: raise ValueError(f"Invalid mutation format: {mut}")
         
-        from_aa,pos,to_aa = mut[0],int(mut[1:-1])-1,mut[-1]
+        from_aa,pos,to_aa = mut[0],int(mut[1:-1])-start_pos,mut[-1]
 
         # make sure position is within the sequence length
         if pos < 0 or pos >= len(seq_list): raise IndexError(f"Position {pos + 1} out of range for sequence length {len(seq_list)}")
@@ -111,15 +111,15 @@ def apply_mut_single(seq, # protein sequence
         if seq_list[pos] != from_aa: raise ValueError(f"Expected {from_aa} at position {pos + 1}, found {seq_list[pos]}")
         
         seq_list[pos] = to_aa
-        if verbose: print('Converted:', mut)
+        print('Converted:', mut)
         
     return ''.join(seq_list)
 
 # %% ../../nbs/core/02_protein.ipynb 17
-def apply_mut_complex(seq: str, # protein sequence
-                      mut: str, # mutation (e.g., G776delinsVC/S783C, G778dupGSP)
-                      start_pos: int=1, # if subdomain, indicate where it starts to match the position of mutation
-                      ) -> str:
+def apply_mut_complex(seq, # protein sequence
+                      mut, # mutation (e.g., G776delinsVC/S783C, G778dupGSP)
+                      start_pos=1, # if truncated protein sequence, indicate where it starts to match the position of mutation
+                      ):
     """
     Apply a composite mutation like 'G776delinsVC/S783C' to `seq`,
     assuming `seq[0]` corresponds to residue number `start_pos`.
