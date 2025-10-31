@@ -41,57 +41,84 @@ def get_uniprot_features(uniprot_id):
         data = response.json()
         # Extract the "features" section which contains information
         features = data.get('features', [])
-        return features
+        
+        protein_name = (
+            data.get("proteinDescription", {})
+                .get("recommendedName", {})
+                .get("fullName", {})
+                .get("value")
+        )
+
+        gene_name = (
+            data.get("genes", [{}])[0]
+                .get("geneName", {})
+                .get("value")
+        )
+        return {
+            "uniprot_id": uniprot_id,
+            "protein_name": protein_name,
+            "gene_name": gene_name,
+            "features": features
+        }
     else:
         raise ValueError(f"Failed to retrieve UniProt features for {uniprot_id}")
 
 # %% ../../nbs/core/02_protein.ipynb 9
 def get_uniprot_kd(uniprot_id):
     "Query 'Domain: Protein kinase' based on UniProt ID and get its sequence info."
-    features = get_uniprot_features(uniprot_id)
-    out_regions = []
+    data = get_uniprot_features(uniprot_id)
     seq = get_uniprot_seq(uniprot_id)
+    out = []
 
-    for feature in features:
+    for feature in data['features']:
         if feature.get("type") == "Domain" and "Protein kinase" in feature.get("description", ""):
             start = feature['location']['start']['value']
             end = feature['location']['end']['value']
-            region = {
-                'uniprot_id': uniprot_id,
-                'type': feature['type'],
-                'start': start,
-                'end': end,
-                'description': feature['description'],
-                'sequence': seq[start-1:end]
-            }
-            out_regions.append(region)
+            out.append({
+                "uniprot_id": uniprot_id,
+                "protein_name": data["protein_name"],
+                "gene_name": data["gene_name"],
+                "start": start,
+                "end": end,
+                "description": feature.get("description", ""),
+                "sequence": seq[start-1:end]
+            })
 
-    return out_regions
+    return out
 
 # %% ../../nbs/core/02_protein.ipynb 11
 def get_uniprot_type(uniprot_id,type_='Signal'):
     "Get region sequences based on UniProt ID features."
-    features = get_uniprot_features(uniprot_id)
-    out_regions = []
+    data = get_uniprot_features(uniprot_id)
     seq = get_uniprot_seq(uniprot_id)
 
-    for feature in features:
+    out = []
+
+    for feature in data['features']:
         if feature.get("type") == type_:
             start = feature['location']['start']['value']
             end = feature['location']['end']['value']
             region = {
                 'uniprot_id': uniprot_id,
                 'type': feature['type'],
+                "protein_name": data["protein_name"],
+                "gene_name": data["gene_name"],
                 'start': start,
                 'end': end,
                 'description': feature['description'],
                 'sequence': seq[start-1:end]
             }
-            out_regions.append(region)
+            out.append(region)
 
-    return out_regions
+    if not out:
+        available = sorted({f.get("type") for f in data['features'] if f.get("type")})
+        print(f"No feature of type '{type_}' found for {uniprot_id}.")
+        print(f"Available feature types: {', '.join(available)}")
+        return available
 
-# %% ../../nbs/core/02_protein.ipynb 15
+    return out
+
+# %% ../../nbs/core/02_protein.ipynb 16
 def apply_mut_single(seq, # protein sequence
            *mutations, # e.g., E709A
            start_pos=1, # if the protein sequence does not start from index 1, indicate the start index to match the mutations
@@ -115,7 +142,7 @@ def apply_mut_single(seq, # protein sequence
         
     return ''.join(seq_list)
 
-# %% ../../nbs/core/02_protein.ipynb 17
+# %% ../../nbs/core/02_protein.ipynb 18
 def apply_mut_complex(seq, # protein sequence
                       mut, # mutation (e.g., G776delinsVC/S783C, G778dupGSP)
                       start_pos=1, # if truncated protein sequence, indicate where it starts to match the position of mutation
@@ -169,7 +196,7 @@ def apply_mut_complex(seq, # protein sequence
 
     return ''.join(seq)
 
-# %% ../../nbs/core/02_protein.ipynb 21
+# %% ../../nbs/core/02_protein.ipynb 22
 def compare_seq(
     seq1: str,  # original
     seq2: str,  # mutant
