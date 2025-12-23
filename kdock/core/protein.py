@@ -198,16 +198,18 @@ def apply_mut_complex(seq, # protein sequence
 
 # %% ../../nbs/core/02_protein.ipynb 22
 def compare_seq(
-    seq1: str,  # original
-    seq2: str,  # mutant
+    seq1: str,
+    seq2: str,
     *,
     start_pos: int = 1,
     label1: str = "Original",
     label2: str = "Mutant",
-    visualize: bool = True
+    visualize: bool = True,
+    return_text: bool = False,
 ):
     """
     Align two protein sequences and summarise differences.
+    Returns a formatted text block (and can optionally print it).
     """
 
     # ----- global alignment using PairwiseAligner -----
@@ -223,37 +225,21 @@ def compare_seq(
     aln2 = alignment.aligned[1]
 
     # Reconstruct aligned strings from aligned segments
-    aligned_seq1 = []
-    aligned_seq2 = []
+    aligned_seq1, aligned_seq2 = [], []
     i1, i2 = 0, 0
 
     for (start1, end1), (start2, end2) in zip(aln1, aln2):
-        # Add gaps to make sequences align
         while i1 < start1:
-            aligned_seq1.append(seq1[i1])
-            aligned_seq2.append('-')
-            i1 += 1
+            aligned_seq1.append(seq1[i1]); aligned_seq2.append('-'); i1 += 1
         while i2 < start2:
-            aligned_seq1.append('-')
-            aligned_seq2.append(seq2[i2])
-            i2 += 1
+            aligned_seq1.append('-'); aligned_seq2.append(seq2[i2]); i2 += 1
+        for _ in range(end1 - start1):
+            aligned_seq1.append(seq1[i1]); aligned_seq2.append(seq2[i2]); i1 += 1; i2 += 1
 
-        # Add aligned part
-        for j in range(end1 - start1):
-            aligned_seq1.append(seq1[i1])
-            aligned_seq2.append(seq2[i2])
-            i1 += 1
-            i2 += 1
-
-    # Remaining tails
     while i1 < len(seq1):
-        aligned_seq1.append(seq1[i1])
-        aligned_seq2.append('-')
-        i1 += 1
+        aligned_seq1.append(seq1[i1]); aligned_seq2.append('-'); i1 += 1
     while i2 < len(seq2):
-        aligned_seq1.append('-')
-        aligned_seq2.append(seq2[i2])
-        i2 += 1
+        aligned_seq1.append('-'); aligned_seq2.append(seq2[i2]); i2 += 1
 
     aln1_str = ''.join(aligned_seq1)
     aln2_str = ''.join(aligned_seq2)
@@ -273,21 +259,25 @@ def compare_seq(
             diffs.append((start_pos + raw_i1, a1, '-', 'deletion'))
             raw_i1 += 1
 
-    # ----- visualization -----
+    # ----- build output text -----
+    lines = []
     if visualize:
         for block in range(0, len(aln1_str), 80):
             s1_block = aln1_str[block:block + 80]
             s2_block = aln2_str[block:block + 80]
             marker = ''.join(' ' if x == y else '^' for x, y in zip(s1_block, s2_block))
-            left_idx = start_pos + aln1_str[:block].replace('-', '').__len__()
-            right_idx = left_idx + s1_block.replace('-', '').__len__() - 1
-            print(f"{label1:<10} {left_idx:>5}-{right_idx:<5}: {s1_block}")
-            print(f"{label2:<10} {'':>11}: {s2_block}")
-            print(f"{'':>22}  {marker}\n")
+            left_idx = start_pos + len(aln1_str[:block].replace('-', ''))
+            right_idx = left_idx + len(s1_block.replace('-', '')) - 1
+            lines.append(f"{label1:<10} {left_idx:>5}-{right_idx:<5}: {s1_block}")
+            lines.append(f"{label2:<10} {'':>11}: {s2_block}")
+            lines.append(f"{'':>22}  {marker}\n")
 
-    # ----- summary list -----
-    print("Differences:")
+    lines.append("Differences:")
     for pos, ref, new, kind in diffs:
-        print(f"  {kind:<12} at {pos:>4}: {ref} → {new}")
+        lines.append(f"  {kind:<12} at {pos:>4}: {ref} → {new}")
 
-    # return diffs
+    text = "\n".join(lines)
+
+    if not return_text: print(text)
+
+    return text if return_text else None
