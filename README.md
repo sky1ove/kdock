@@ -5,8 +5,13 @@
 
 ## Installation
 
-Install latest from the GitHub
-[repository](https://github.com/sky1ove/kdock):
+Install stable version from Pypi:
+
+``` sh
+$ pip install kdock
+```
+
+Install latest from the GitHub:
 
 ``` sh
 $ pip install -U git+https://github.com/sky1ove/kdock.git
