@@ -2,6 +2,11 @@
 
 <!-- do not remove -->
 
+## 0.0.4
+
+- Migrate from nbdev2 to nbdev3
+
+
 ## 0.0.3
 
 ### New Features
