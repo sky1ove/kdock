@@ -1,11 +1,33 @@
 [build-system]
-requires = ["setuptools>=64.0"]
+requires = ["setuptools>=64"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name="kdock"
-requires-python=">=3.9"
-dynamic = [ "keywords", "description", "version", "dependencies", "optional-dependencies", "readme", "license", "authors", "classifiers", "entry-points", "scripts", "urls"]
+name = "kdock"
+dynamic = ["version"]
+description = "A collection of docking tools"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "Apache-2.0"}
+authors = [{name = "Lily Cai", email = "lcai888666@gmail.com"}]
+keywords = ['nbdev', 'jupyter', 'notebook', 'python']
+classifiers = ["Natural Language :: English", "Intended Audience :: Developers", "Development Status :: 3 - Alpha", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3 :: Only"]
+dependencies = ['fastcore', 'pandas', 'rdkit', 'seaborn', 'scikit-learn', 'umap-learn', 'py3Dmol', 'biopython', 'tqdm', 'pathlib', 'plotly', 'adjustText', 'matplotlib', 'openpyxl', 'biopython', 'requests', 'scikit-fingerprints', 'pubchempy']
 
-[tool.uv]
-cache-keys = [{ file = "pyproject.toml" }, { file = "settings.ini" }, { file = "setup.py" }]
+[project.urls]
+Repository = "https://github.com/sky1ove/kdock"
+Documentation = "https://sky1ove.github.io/kdock"
+
+[project.entry-points.nbdev]
+kdock = "kdock._modidx:d"
+
+[project.optional-dependencies]
+dev = ['nbdev', 'ipykernel']
+
+[tool.setuptools.dynamic]
+version = {attr = "kdock.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["kdock"]
+
+[tool.nbdev]
