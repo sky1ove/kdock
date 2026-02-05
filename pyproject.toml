@@ -22,7 +22,7 @@ Documentation = "https://sky1ove.github.io/kdock"
 kdock = "kdock._modidx:d"
 
 [project.optional-dependencies]
-dev = ['nbdev', 'ipykernel']
+dev = ['nbdev', 'ipykernel','twine']
 
 [tool.setuptools.dynamic]
 version = {attr = "kdock.__version__"}
