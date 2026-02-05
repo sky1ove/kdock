@@ -5,7 +5,7 @@
 # %% auto #0
 __all__ = ['reduce_feature', 'set_sns', 'plot_2d', 'plot_corr']
 
-# %% ../../nbs/core/04_plot.ipynb #9b876d5b
+# %% ../../nbs/core/04_plot.ipynb #1fdc92f2
 import pandas as pd, seaborn as sns
 from fastcore.meta import delegates
 from matplotlib import pyplot as plt
@@ -18,7 +18,7 @@ from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 from umap import UMAP
 
-# %% ../../nbs/core/04_plot.ipynb #99dc1755
+# %% ../../nbs/core/04_plot.ipynb #2e65eb15
 def reduce_feature(data, # df or numpy array
                    method='pca', # dimensionality reduction method, accept both capital and lower case
                    complexity=20, # None for PCA; perfplexity for TSNE, recommend: 30; n_neigbors for UMAP, recommend: 15
@@ -53,13 +53,13 @@ def reduce_feature(data, # df or numpy array
 
     return embedding_df
 
-# %% ../../nbs/core/04_plot.ipynb #75d062ad
+# %% ../../nbs/core/04_plot.ipynb #3012ced7
 def set_sns():
     sns.set(rc={"figure.dpi":300, 'savefig.dpi':300})
     sns.set_context('notebook')
     sns.set_style("ticks")
 
-# %% ../../nbs/core/04_plot.ipynb #c7550063
+# %% ../../nbs/core/04_plot.ipynb #e284443d
 @delegates(sns.scatterplot)
 def plot_2d(X: pd.DataFrame, # a dataframe that has first column to be x, and second column to be y
             **kwargs, # arguments for sns.scatterplot
@@ -68,7 +68,7 @@ def plot_2d(X: pd.DataFrame, # a dataframe that has first column to be x, and se
     plt.figure(figsize=(7,7))
     sns.scatterplot(data = X,x=X.columns[0],y=X.columns[1],alpha=0.7,**kwargs)
 
-# %% ../../nbs/core/04_plot.ipynb #c139d2b4
+# %% ../../nbs/core/04_plot.ipynb #afb87d13
 def plot_corr(x,#a column of df
               y,#a column of df
               xlabel=None,# x axis label

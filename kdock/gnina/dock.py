@@ -3,7 +3,7 @@
 # %% auto #0
 __all__ = ['setup_gnina_local', 'setup_gnina_docker', 'extract_gnina_dock', 'gnina_dock']
 
-# %% ../../nbs/gnina/04_gnina_docking.ipynb #56d3fd8c
+# %% ../../nbs/gnina/04_gnina_docking.ipynb #e20fcc7c
 # basics
 import re,subprocess, py3Dmol
 from tqdm import tqdm
@@ -14,7 +14,7 @@ import pandas as pd,numpy as np
 from rdkit import Chem
 from rdkit.Chem import AllChem
 
-# %% ../../nbs/gnina/04_gnina_docking.ipynb #f84c982c
+# %% ../../nbs/gnina/04_gnina_docking.ipynb #1ce62365
 def setup_gnina_local(version='v1.3'):
     "Download and install gnina in the current directory"
     # Check CUDA availability
@@ -35,14 +35,14 @@ def setup_gnina_local(version='v1.3'):
     
     print('Finish setup!')
 
-# %% ../../nbs/gnina/04_gnina_docking.ipynb #ccf0e071
+# %% ../../nbs/gnina/04_gnina_docking.ipynb #c259e599
 def setup_gnina_docker():
     "Pull gnina docker image"
     print("Pulling GNINA Docker image: gnina/gnina")
     subprocess.run(["docker", "pull", "gnina/gnina"], check=True,stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     print("GNINA Docker image is ready.")
 
-# %% ../../nbs/gnina/04_gnina_docking.ipynb #f199c007
+# %% ../../nbs/gnina/04_gnina_docking.ipynb #a68899f4
 def extract_gnina_dock(gnina_output):
     "Extract values from gnina output"
     mode1_line = re.search(r'\b1\s+(-?\d+\.\d+)\s+(-?\d+\.\d+)\s+(-?\d+\.\d+)\b', gnina_output)
@@ -56,7 +56,7 @@ def extract_gnina_dock(gnina_output):
     
     return None
 
-# %% ../../nbs/gnina/04_gnina_docking.ipynb #ee52e0e1
+# %% ../../nbs/gnina/04_gnina_docking.ipynb #78d04091
 def gnina_dock(receptor, # receptor file
               ligand, # ligand file
               autobox_ligand, # ligand file isolated from the complex
@@ -85,7 +85,7 @@ def gnina_dock(receptor, # receptor file
 
     return values
 
-# %% ../../nbs/gnina/04_gnina_docking.ipynb #ff6a0822
+# %% ../../nbs/gnina/04_gnina_docking.ipynb #8e868b74
 def gnina_dock(df, 
                  ID_col = 'ID',
                  smi_col = 'SMILES',

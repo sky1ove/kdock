@@ -3,7 +3,7 @@
 # %% auto #0
 __all__ = ['rglob', 'copy_files', 'get_rec_lig', 'get_box', 'view_mol', 'view_complex']
 
-# %% ../../nbs/core/01_utils.ipynb #f232fc55
+# %% ../../nbs/core/01_utils.ipynb #61fddcbc
 from pathlib import Path
 import subprocess,shutil,zipfile
 import numpy as np
@@ -11,7 +11,7 @@ import numpy as np
 import py3Dmol
 from rdkit import Chem
 
-# %% ../../nbs/core/01_utils.ipynb #0ca5978c
+# %% ../../nbs/core/01_utils.ipynb #2cb26b85
 def rglob(path, pattern, max_depth):
     "Get a file list given folder depths"
     base_path = Path(path).resolve()
@@ -19,7 +19,7 @@ def rglob(path, pattern, max_depth):
         if len(path.relative_to(base_path).parts) <= max_depth:
             yield path
 
-# %% ../../nbs/core/01_utils.ipynb #07a7bb15
+# %% ../../nbs/core/01_utils.ipynb #8d003773
 def copy_files(file_list, dest_dir):
     "Copy a list of files to the destination directory, or zip them if dest_dir ends with .zip."
     dest_path = Path(dest_dir)
@@ -37,7 +37,7 @@ def copy_files(file_list, dest_dir):
             shutil.copy2(file_path, dest_path / file_path.name)
         print(f'Copied {len(file_list)} files to {dest_path}')
 
-# %% ../../nbs/core/01_utils.ipynb #5f706653
+# %% ../../nbs/core/01_utils.ipynb #3ffd3d10
 def get_rec_lig(pdb_id: str, # pdb id for download
                             lig_id: str, # ligand id shown on the protein page
                             out_dir = '.', # directory path to save pdb files
@@ -81,7 +81,7 @@ def get_rec_lig(pdb_id: str, # pdb id for download
 
     return str(rec_file), str(lig_sdf_file)
 
-# %% ../../nbs/core/01_utils.ipynb #c735afc3
+# %% ../../nbs/core/01_utils.ipynb #491e748e
 def get_box(sdf_file, autobox_add=4.0,tolist=False):
     "Get the box coordinates of ligand.sdf; mimic GNINA's --autobox_ligand behavior."
     mol = Chem.SDMolSupplier(str(sdf_file), removeHs=False)[0]
@@ -107,7 +107,7 @@ def get_box(sdf_file, autobox_add=4.0,tolist=False):
     }
     return list(box_dict.values()) if tolist else box_dict
 
-# %% ../../nbs/core/01_utils.ipynb #d0d165d4
+# %% ../../nbs/core/01_utils.ipynb #cdf59cb8
 def view_mol(file, #sdf or pdb file
             ):
     "Visualize pdb or sdf file"
@@ -118,7 +118,7 @@ def view_mol(file, #sdf or pdb file
     v.zoomTo()
     v.show()
 
-# %% ../../nbs/core/01_utils.ipynb #e870ea68
+# %% ../../nbs/core/01_utils.ipynb #83cd0e6a
 def view_complex(receptor,           # protein file
                  ligand,             # ligand (green), or docked ligand
                  ori_ligand=None,    # original ligand (yellow)

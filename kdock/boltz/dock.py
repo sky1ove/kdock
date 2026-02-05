@@ -3,12 +3,12 @@
 # %% auto #0
 __all__ = ['prepare_boltz', 'run_boltz', 'plot_scatter_spearman']
 
-# %% ../../nbs/core/boltz/00_dock.ipynb #af575d97
+# %% ../../nbs/core/boltz/00_dock.ipynb #3b60daa9
 # basics
 import subprocess
 from pathlib import Path
 
-# %% ../../nbs/core/boltz/00_dock.ipynb #b477148b
+# %% ../../nbs/core/boltz/00_dock.ipynb #71a6ad95
 def prepare_boltz(seq: str, # Amino acid sequence of the protein the protein
                     smiles: str, # SMILES string of the ligand
                     fname: str, # Output filename (should end with .yaml)
@@ -29,7 +29,7 @@ properties:
     with open(fname, "w") as f:
         f.write(yaml_content)
 
-# %% ../../nbs/core/boltz/00_dock.ipynb #6eb10442
+# %% ../../nbs/core/boltz/00_dock.ipynb #486e2576
 def run_boltz(file_list:list[Path], # list of .yaml path in Pathlib object
                      api_key):
     
@@ -66,12 +66,12 @@ def run_boltz(file_list:list[Path], # list of .yaml path in Pathlib object
     return failed
 
 
-# %% ../../nbs/core/boltz/00_dock.ipynb #0293c58f
+# %% ../../nbs/core/boltz/00_dock.ipynb #45b0e6aa
 import matplotlib.pyplot as plt
 import seaborn as sns, numpy as np
 from scipy.stats import spearmanr
 
-# %% ../../nbs/core/boltz/00_dock.ipynb #a24fe764
+# %% ../../nbs/core/boltz/00_dock.ipynb #eec74db7
 def plot_scatter_spearman(data, x, y, ax=None):
     """
     Plot scatter + Spearman correlation and p-value annotation.

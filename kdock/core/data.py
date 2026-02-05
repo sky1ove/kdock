@@ -3,13 +3,13 @@
 # %% auto #0
 __all__ = ['BASE_URL', 'name2smi', 'fetch_csv', 'Collins', 'Kras']
 
-# %% ../../nbs/core/00_data.ipynb #b870a112
+# %% ../../nbs/core/00_data.ipynb #e61ba13c
 import pandas as pd
 import requests
 from functools import lru_cache
 import pubchempy as pcp
 
-# %% ../../nbs/core/00_data.ipynb #7fe5bf94
+# %% ../../nbs/core/00_data.ipynb #b97285b8
 def name2smi(name):
     "Given a compound name, get SMILES in PubChem database. "
     compounds = pcp.get_compounds(name, 'name')
@@ -18,15 +18,15 @@ def name2smi(name):
     c = compounds[0]
     return c.smiles # can also return c.cid compound ID
 
-# %% ../../nbs/core/00_data.ipynb #6ebfd5a2
+# %% ../../nbs/core/00_data.ipynb #209ffb82
 BASE_URL = "https://github.com/sky1ove/kdock/raw/main/"
 
-# %% ../../nbs/core/00_data.ipynb #567d9bdb
+# %% ../../nbs/core/00_data.ipynb #d7e2b62a
 @lru_cache()
 def fetch_csv(url):
     return pd.read_csv(url)
 
-# %% ../../nbs/core/00_data.ipynb #a4c5a9bd
+# %% ../../nbs/core/00_data.ipynb #1f1a2239
 class Collins:
     "A class of loading compound datasets from Collins lab."
 
@@ -55,7 +55,7 @@ class Collins:
         """
         return fetch_csv(BASE_URL + "dataset/antibiotics_enzyme.csv")
 
-# %% ../../nbs/core/00_data.ipynb #2febce1f
+# %% ../../nbs/core/00_data.ipynb #16424d50
 class Kras:
     "A class of fetching various KRAS datasets."
     @staticmethod
