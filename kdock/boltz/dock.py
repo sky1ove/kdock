@@ -31,7 +31,9 @@ properties:
 
 # %% ../../nbs/boltz/00_dock.ipynb #486e2576
 def run_boltz(file_list:list[Path], # list of .yaml path in Pathlib object
-                     api_key):
+                     api_key,# API key for Boltz-Lab
+                     job_name=None, # job name appeared in boltz
+                     ):
     
     "Run Boltz-Lab predictions for a list of YAML files."
 
@@ -48,7 +50,7 @@ def run_boltz(file_list:list[Path], # list of .yaml path in Pathlib object
         result = subprocess.run(
             ["boltz-lab", "predict", str(file),
              "--no-wait", # for batch run, so no need to wait the results til the next
-             "--name",file.stem, # job name appeared in boltz
+             "--name",file.stem if job_name is None else job_name, # job name appeared in boltz
              ],
             capture_output=True,
             text=True,
