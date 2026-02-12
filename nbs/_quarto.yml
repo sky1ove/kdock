@@ -36,6 +36,8 @@ website:
         contents: tutorials/*
       - section: Core
         contents: core/*
+      - section: Boltz
+        contents: boltz/*
       - section: Alphafold3
         contents: af3/*
       - section: GNINA
